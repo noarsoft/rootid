@@ -1,18 +1,18 @@
 const { z } = require('zod');
 
 const createSchema = z.object({
-  fk_data_schema: z.number().int().positive(),
+  data_id: z.number().int().positive(),
   name: z.string().max(255).optional(),
-  json: z.record(z.unknown()).default({}),
+  json_form_config: z.any().default({}),
   flag: z.enum(['draft', 'published']).optional(),
-  previous_id: z.number().int().positive().optional(),
+  prev_id: z.number().int().positive().optional(),
 });
 
 const updateSchema = z.object({
   name: z.string().max(255).optional(),
-  json: z.record(z.unknown()).optional(),
+  json_form_config: z.any().optional(),
   flag: z.enum(['draft', 'published']).optional(),
-  previous_id: z.number().int().positive().optional(),
+  prev_id: z.number().int().positive().optional(),
 });
 
 module.exports = { createSchema, updateSchema };

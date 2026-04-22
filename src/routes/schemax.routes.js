@@ -4,9 +4,9 @@ const { validate } = require('../middlewares/validate.middleware');
 const { createSchema, updateSchema } = require('../validators/schemax.validator');
 
 router.get('/', ctrl.findAll);
-router.get('/:root_id', ctrl.findOne);
+router.get('/:rootid', ctrl.findOne);
 router.post('/', validate(createSchema), ctrl.create);
-router.put('/:root_id', validate(updateSchema), ctrl.update);
-router.delete('/:root_id', ctrl.remove);
+router.put('/:rootid', validate(updateSchema), ctrl.update);
+router.delete('/:rootid', ctrl.remove);
 
 module.exports = router;

@@ -8,78 +8,78 @@ datasource db {
 }
 
 model data_schema {
-  root_id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  id                 Int      @unique @default(autoincrement())
-  previous_id        Int?
-  name               String   @db.VarChar(255)
-  json               Json     @default("{}")
-  flag               String?  @default("draft") @db.VarChar(50)
-  activate           Boolean  @default(true)
-  modified_date_time String?  @db.VarChar(15)
+  rootid           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id               Int      @unique @default(autoincrement())
+  prev_id          Int?
+  name             String   @db.VarChar(255)
+  json             Json     @default("{}")
+  flag             String?  @default("draft") @db.VarChar(50)
+  activate         Boolean  @default(true)
+  modify_datetime  String?  @db.VarChar(15)
 
-  previous           data_schema?  @relation("SchemaVersion", fields: [previous_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  versions           data_schema[] @relation("SchemaVersion")
+  previous         data_schema?  @relation("SchemaVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  versions         data_schema[] @relation("SchemaVersion")
 
-  views              data_view[]
-  formcfgs           data_formcfg[]
-  forms              data_form[]
+  views            view[]
+  forms            form[]
+  records          data[]
 
   @@index([flag])
-  @@index([previous_id])
+  @@index([prev_id])
 }
 
-model data_view {
-  root_id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  id                 Int      @unique @default(autoincrement())
-  previous_id        Int?
-  fk_data_schema     Int
-  view_type          String   @db.VarChar(50)
-  name               String?  @db.VarChar(255)
-  json               Json     @default("{}")
-  flag               String?  @default("draft") @db.VarChar(50)
-  activate           Boolean  @default(true)
-  modified_date_time String?  @db.VarChar(15)
+model view {
+  rootid            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                Int      @unique @default(autoincrement())
+  prev_id           Int?
+  data_schema_id    Int
+  view_type         String   @db.VarChar(50)
+  name              String?  @db.VarChar(255)
+  json_table_config Json     @default("{}")
+  flag              String?  @default("draft") @db.VarChar(50)
+  activate          Boolean  @default(true)
+  modify_datetime   String?  @db.VarChar(15)
 
-  previous           data_view?    @relation("ViewVersion", fields: [previous_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  versions           data_view[]   @relation("ViewVersion")
-  schema             data_schema   @relation(fields: [fk_data_schema], references: [id])
+  previous          view?         @relation("ViewVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  versions          view[]        @relation("ViewVersion")
+  schema            data_schema   @relation(fields: [data_schema_id], references: [id])
 
-  @@index([fk_data_schema])
+  @@index([data_schema_id])
   @@index([view_type])
 }
 
-model data_formcfg {
-  root_id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  id                 Int      @unique @default(autoincrement())
-  previous_id        Int?
-  fk_data_schema     Int
-  name               String?  @db.VarChar(255)
-  json               Json     @default("{}")
-  flag               String?  @default("draft") @db.VarChar(50)
-  activate           Boolean  @default(true)
-  modified_date_time String?  @db.VarChar(15)
+model form {
+  rootid            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                Int      @unique @default(autoincrement())
+  prev_id           Int?
+  data_id           Int
+  name              String?  @db.VarChar(255)
+  json_form_config  Json     @default("{}")
+  flag              String?  @default("draft") @db.VarChar(50)
+  activate          Boolean  @default(true)
+  modify_datetime   String?  @db.VarChar(15)
 
-  previous           data_formcfg?  @relation("FormcfgVersion", fields: [previous_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  versions           data_formcfg[] @relation("FormcfgVersion")
-  schema             data_schema    @relation(fields: [fk_data_schema], references: [id])
+  previous          form?         @relation("FormVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  versions          form[]        @relation("FormVersion")
+  schema            data_schema   @relation(fields: [data_id], references: [id])
 
-  @@index([fk_data_schema])
+  @@index([data_id])
 }
 
-model data_form {
-  root_id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  id                 Int      @unique @default(autoincrement())
-  previous_id        Int?
-  fk_data_schema     Int
-  data               Json     @default("{}")
-  flag               String?  @default("active") @db.VarChar(50)
-  activate           Boolean  @default(true)
-  modified_date_time String?  @db.VarChar(15)
+model data {
+  rootid            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                Int      @unique @default(autoincrement())
+  prev_id           Int?
+  data_schema_id    Int
+  data              Json     @default("{}")
+  flag              String?  @default("active") @db.VarChar(50)
+  activate          Boolean  @default(true)
+  modify_datetime   String?  @db.VarChar(15)
 
-  previous           data_form?    @relation("FormVersion", fields: [previous_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  versions           data_form[]   @relation("FormVersion")
-  schema             data_schema   @relation(fields: [fk_data_schema], references: [id])
+  previous          data?         @relation("DataVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  versions          data[]        @relation("DataVersion")
+  schema            data_schema   @relation(fields: [data_schema_id], references: [id])
 
-  @@index([fk_data_schema])
+  @@index([data_schema_id])
   @@index([activate])
 }

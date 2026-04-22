@@ -15,12 +15,12 @@ app.use(express.json({ limit: '1mb' }));
 app.use(rateLimit({ windowMs: 60_000, max: 200 }));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ success: true, data: { status: 'ok', timestamp: new Date().toISOString() } });
 });
 
 app.use('/api', routes);
 
-app.use((req, res) => res.status(404).json({ error: 'Route not found' }));
+app.use((req, res) => res.status(404).json({ success: false, error: 'Route not found' }));
 app.use(errorHandler);
 
 module.exports = app;
