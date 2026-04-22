@@ -43,7 +43,7 @@ prisma/
 
 Each CRUD: GET /, GET /:rootid, POST /, PUT /:rootid, DELETE /:rootid
 
-## DB Design (4 tables) — ดู cakecontrol/DB-DESIGN.md สำหรับ full detail
+## DB Design (4 tables) — ดู DB-DESIGN.md สำหรับ full detail
 
 **Design Principles**:
 - `rootid` = UUID PK ไม่เปลี่ยน
