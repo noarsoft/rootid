@@ -83,7 +83,7 @@ rootid/
 
 ## 3. Database Design (4 Tables)
 
-ดู `cakecontrol/DB-DESIGN.md` สำหรับ full detail — สรุปย่อ:
+ดู `DB-DESIGN.md` (ใน rootid repo) สำหรับ full detail — สรุปย่อ:
 
 ```
 data_schema (1) ──→ (N) view     โชว์ตาราง
@@ -631,15 +631,15 @@ POST /api/schemax   { name: "V3", json: {...}, prev_id: 2 }    → id: 3
 
 ```bash
 npm test
-# → Jest 30 + supertest — 36 tests, ~1 second
+# → Jest 30 + supertest — 95 tests (36 unit + 59 integration), ~2 seconds
 ```
 
 ### Test Strategy
 
-- **Mock Prisma** — ไม่ต้องต่อ DB จริง, mock ที่ `src/__mocks__/prisma.js`
-- **supertest** — ยิง HTTP request ตรงที่ Express app
+- **Unit tests** (36 tests) — Mock Prisma ที่ `src/__mocks__/prisma.js`, ยิง HTTP ด้วย supertest
+- **Integration tests** (59 tests) — ใช้ `prismaStateful` mock ที่จำลอง DB state จริง (in-memory), ทดสอบ flow ข้าม tables
 
-### Test Coverage
+### Test Coverage — Unit Tests (36)
 
 | กลุ่ม | จำนวน | ทดสอบอะไร |
 |-------|-------|----------|
@@ -650,7 +650,15 @@ npm test
 | formx CRUD | 7 | GET, GET filter FK, POST, POST validate FK, PUT, DELETE, flag enum |
 | Response format | 2 | success format, error format |
 | DB column naming | 4 | ตรวจว่า column names ตรง DB design |
-| **Total** | **36** | |
+
+### Test Coverage — Integration Tests (59)
+
+| กลุ่ม | จำนวน | ทดสอบอะไร |
+|-------|-------|----------|
+| schemax integration | ~15 | Full CRUD flow, pagination, flag filter, soft delete |
+| viewx integration | ~14 | CRUD + FK filter, data_schema_id reference |
+| formcfgx integration | ~14 | CRUD + FK filter, data_id reference |
+| formx integration | ~16 | CRUD + FK filter, data_schema_id reference |
 
 ### ตัวอย่าง Test
 
