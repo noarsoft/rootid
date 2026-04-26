@@ -4,16 +4,14 @@
   "description": "Benchmark: PG Relational vs MongoDB vs PG JSONB-only",
   "main": "index.js",
   "scripts": {
-    "db:up": "docker compose up -d",
-    "db:down": "docker compose down",
-    "db:reset": "docker compose down -v && docker compose up -d",
     "bench": "node index.js",
+    "server": "node server.js",
     "report": "node report.js"
   },
   "dependencies": {
-    "axios": "^1.15.2",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.1",
-    "fs-extra": "^11.3.4",
+    "express": "^5.2.1",
     "mongodb": "^6.16.0",
     "pg": "^8.16.0"
   }
