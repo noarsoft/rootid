@@ -2,11 +2,9 @@
   "name": "db-benchmark",
   "version": "1.0.0",
   "description": "Benchmark: PG Relational vs MongoDB vs PG JSONB-only",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "bench": "node index.js",
-    "server": "node server.js",
-    "report": "node report.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
