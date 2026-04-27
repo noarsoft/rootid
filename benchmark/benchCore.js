@@ -9,7 +9,7 @@ const { loadWikiData } = require('./wikiLoader');
 const PG_URL = process.env.PG_URL || 'postgresql://postgres:postgres@localhost:5432/benchmark';
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const MONGO_DB = process.env.MONGO_DB || 'benchmark';
-const DATA_DIR = path.join(__dirname, '..', 'data', 'json');
+const DATA_DIR = path.join(__dirname, 'data', 'json');
 
 async function timer(fn) {
   const start = performance.now();
@@ -57,7 +57,9 @@ async function ensurePgDatabase() {
   }
 }
 
-async function benchPgRelational(pg, categories, pages, revisions) {
+async function benchPgRelational(pg, categories, pages, rawRevisions) {
+  const seen = new Set();
+  const revisions = rawRevisions.filter(r => { if (seen.has(r.rootid)) return false; seen.add(r.rootid); return true; });
   const R = {};
 
   await pg.query('DROP TABLE IF EXISTS bench_revision');
@@ -467,6 +469,7 @@ async function getStatus() {
 module.exports = {
   runBenchmark,
   getStatus,
+  ensurePgDatabase,
   buildFlatRows,
   benchPgRelational,
   benchMongo,

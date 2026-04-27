@@ -69,11 +69,40 @@ Each CRUD: GET /, GET /:rootid, POST /, PUT /:rootid, DELETE /:rootid
 - Date format: `yyyymmdd_hhmmss` (VARCHAR)
 - PK param: `:rootid` (UUID)
 
+## Project Structure — node_modules
+
+โปรเจค rootid มี **2 package.json แยกกัน** (แต่ละอันมี node_modules ของตัวเอง):
+
+| โฟลเดอร์ | package.json | หน้าที่ | Dependencies หลัก |
+|-----------|-------------|---------|-------------------|
+| `rootid/` | `package.json` | Backend API | Express, Prisma, Zod |
+| `rootid/benchmark/` | `package.json` | Benchmark tool | raw pg, mongodb |
+
+**ทำไมแยก**: Dependencies ต่างกัน — backend ใช้ Prisma ORM, benchmark ใช้ raw pg driver + mongodb
+ถ้ารวมกัน backend จะมี mongodb เป็น dependency ที่ไม่จำเป็น
+
+```bash
+# ติดตั้ง backend
+cd rootid && npm install
+
+# ติดตั้ง benchmark (แยก)
+cd rootid/benchmark && npm install
+```
+
 ## Benchmark (อยู่ที่ rootid/benchmark/)
 วัด execution time + storage ของระบบจริง rootid
 - เปรียบเทียบ 3 แบบ: PG Relational vs MongoDB vs PG JSONB-only
 - Input: k (columns), n (rows)
-- DB: PostgreSQL 18 (port 5433, pass 1234) + MongoDB 8.2 (port 27017, no auth)
+- DB: PostgreSQL 18 (port 5432, pass 1234) + MongoDB 8.2 (port 27017, no auth)
+
+### วิธีรัน Benchmark
+```bash
+cd rootid/benchmark
+npm install          # ครั้งแรก
+npm run bench        # รัน benchmark → results.csv
+npm run report       # สร้าง report.html
+npm run server       # API mode (port 3003)
+```
 
 ## Communication Rules
 - ตอบตรงๆ ไม่อวย

@@ -2,11 +2,11 @@ const { Client } = require('pg');
 const { MongoClient } = require('mongodb');
 
 async function main() {
-  // === PostgreSQL (port 5433) ===
-  console.log('=== PostgreSQL (port 5433) ===\n');
+  // === PostgreSQL (port 5432) ===
+  console.log('=== PostgreSQL (port 5432) ===\n');
 
   // Try connecting to default postgres db first to check if benchmark db exists
-  const pgAdmin = new Client('postgresql://postgres:1234@localhost:5433/postgres');
+  const pgAdmin = new Client('postgresql://postgres:1234@localhost:5432/postgres');
   try {
     await pgAdmin.connect();
     const dbs = await pgAdmin.query("SELECT datname FROM pg_database WHERE datname NOT IN ('template0','template1') ORDER BY datname");
@@ -17,7 +17,7 @@ async function main() {
     console.error('❌ PG Admin Error:', e.code, e.message);
     // Try without password
     try {
-      const pgAdmin2 = new Client({ host: 'localhost', port: 5433, user: 'postgres', database: 'postgres' });
+      const pgAdmin2 = new Client({ host: 'localhost', port: 5432, user: 'postgres', database: 'postgres' });
       await pgAdmin2.connect();
       const dbs = await pgAdmin2.query("SELECT datname FROM pg_database WHERE datname NOT IN ('template0','template1') ORDER BY datname");
       console.log('Databases (no password):');
@@ -28,9 +28,9 @@ async function main() {
     }
   }
 
-  // Try benchmark db on 5433
-  console.log('\n--- Trying benchmark db on port 5433 ---\n');
-  const pg = new Client('postgresql://postgres:1234@localhost:5433/benchmark');
+  // Try benchmark db on 5432
+  console.log('\n--- Trying benchmark db on port 5432 ---\n');
+  const pg = new Client('postgresql://postgres:1234@localhost:5432/benchmark');
   try {
     await pg.connect();
     console.log('✅ Connected to benchmark db\n');
