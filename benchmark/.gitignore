@@ -1,6 +1,0 @@
-node_modules/
-.env
-data/
-results.csv
-result_*.json
-report.html
