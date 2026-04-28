@@ -211,6 +211,102 @@ time ─────────────────────────
 
 ---
 
+## 9.1 กดปุ่ม Run Benchmark แล้วเกิดอะไร (End-to-End Flow)
+
+```
+[Browser]  กดปุ่ม "▶ Run Benchmark"
+    │
+    │  1. ปุ่ม disabled + แสดง spinner "Running benchmark (10-60 seconds)..."
+    │  2. POST /api/benchmark/run (ไม่ส่ง body)
+    │
+    ▼
+[Express server.js :3003]
+    │
+    │  3. เช็คว่ามี benchmark กำลังรันอยู่มั้ย (ถ้ามี → 409 error)
+    │  4. เรียก runBenchmark() จาก benchCore.js
+    │
+    ▼
+[benchCore.js — runBenchmark()]
+    │
+    │  ── ไม่จับเวลา ──────────────────────────────
+    │  5. loadWikiData()     อ่าน JSON จาก data/json/
+    │     → 58 categories, 399 pages, 3,657 revisions
+    │  6. buildFlatRows()   แปลง revision เป็น flat row
+    │     → เพิ่ม category, page_title เข้าทุก revision
+    │  7. connect PG (port 5432) + Mongo (port 27017)
+    │
+    │  ── จับเวลาด้วย timer() ─────────────────────
+    │  8. benchPgRelational()  ← DROP 3 tables → CREATE → 7 ops
+    │     ├─ INSERT: 3 tables ตามลำดับ FK (category→page→revision)
+    │     ├─ SELECT *: JOIN 3 tables
+    │     ├─ SELECT filter: WHERE category='computer_science_research'
+    │     ├─ CREATE INDEX: B-Tree on bench_page(category_id)
+    │     ├─ SELECT indexed: same query หลังมี index
+    │     ├─ UPDATE: SET comment WHERE id=1
+    │     ├─ DELETE: WHERE id=1
+    │     └─ วัด storage (pg_relation_size + pg_indexes_size)
+    │
+    │  9. benchMongo()  ← DROP collection → 7 ops
+    │     ├─ INSERT: insertMany flat documents
+    │     ├─ SELECT *: find({})
+    │     ├─ SELECT filter: find({category:'computer_science_research'})
+    │     ├─ CREATE INDEX: {category:1}
+    │     ├─ SELECT indexed: same find หลังมี index
+    │     ├─ UPDATE: $set {comment} on _seq=1
+    │     ├─ DELETE: deleteOne({_seq:1})
+    │     └─ วัด storage (collStats)
+    │
+    │  10. benchPgJsonb()  ← DROP table → CREATE → 7 ops + GIN bonus
+    │     ├─ INSERT: flat JSONB rows
+    │     ├─ SELECT *: flat scan
+    │     ├─ SELECT filter: data->>'category'='computer_science_research'
+    │     ├─ CREATE INDEX: B-Tree on ((data->>'category'))
+    │     ├─ SELECT indexed: same query หลังมี index
+    │     ├─ UPDATE: data || jsonb WHERE id=1
+    │     ├─ DELETE: WHERE id=1
+    │     ├─ วัด storage (B-Tree)
+    │     ├─ BONUS: DROP B-Tree → CREATE GIN → SELECT @> containment
+    │     └─ วัด storage (GIN)
+    │
+    │  11. buildResult()  รวมผลทั้ง 3 แบบเป็น JSON
+    │
+    ▼
+[Express server.js]
+    │
+    │  12. บันทึกผล:
+    │     ├─ results.csv      ← append แถวใหม่ (สะสมทุกรอบ)
+    │     └─ result_wiki_3657.json ← เขียนทับทุกรอบ
+    │  13. ส่ง JSON กลับ { success: true, data: {...} }
+    │
+    ▼
+[Browser — benchmark.html]
+    │
+    │  14. ซ่อน spinner, enable ปุ่ม Run
+    │  15. แสดง Stats Grid (Categories, Pages, Revisions, Data Size)
+    │  16. renderResults() สร้าง 2 charts ด้วย Chart.js:
+    │     ├─ Execution Time (ms) — horizontal bar, log scale
+    │     │   เทียบ 7 ops ของ 3 แบบ (สีฟ้า/เขียว/เหลือง)
+    │     └─ Storage Size (MB) — vertical bar
+    │         เทียบ Data/Index/Total ของ 3 แบบ
+    │
+    └─ เสร็จ — user เห็นผลเปรียบเทียบ
+```
+
+### ใช้เวลาเท่าไหร่?
+
+| ขั้นตอน | เวลาโดยประมาณ |
+|---------|--------------|
+| loadWikiData (อ่าน 252 MB JSON) | 3-8 วินาที |
+| benchPgRelational (INSERT 3 tables) | 5-20 วินาที |
+| benchMongo (insertMany) | 3-10 วินาที |
+| benchPgJsonb (INSERT + GIN) | 5-15 วินาที |
+| **รวมทั้งหมด** | **~15-60 วินาที** |
+
+> INSERT เป็น operation ที่ช้าสุดเพราะ content column ใหญ่ (~252 MB)
+> รอบแรกจะช้ากว่าเพราะ cold cache — รัน 2-3 ครั้งแล้วเปรียบเทียบ
+
+---
+
 ## 10. API Contract
 
 ### GET `/api/benchmark/status`

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Benchmark (CakeControl Theme)</title>
+  <link rel="stylesheet" href="theme.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Base styles adopting CakeControl variables */
+    body {
+      font-family: var(--camt-font);
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* Header & Glassmorphism */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-primary);
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--text-primary);
+    }
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Buttons */
+    .btn {
+      background-color: var(--accent-primary);
+      color: var(--text-on-accent);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn:hover:not(:disabled) {
+      background-color: var(--accent-primary-hover);
+    }
+    .btn:disabled {
+      background-color: var(--bg-disabled);
+      color: var(--text-disabled);
+      cursor: not-allowed;
+    }
+
+    /* Status Bar */
+    .status-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .status-badge {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-primary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .status-badge.ok { border-left: 3px solid var(--success); }
+    .status-badge.error { border-left: 3px solid var(--error); }
+
+    /* Grid for Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-item {
+      background: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent-primary);
+      margin-top: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Sample Data Table */
+    .sample-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .sample-table th {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border-bottom: 2px solid var(--border-primary);
+      position: sticky;
+      top: 0;
+    }
+    .sample-table td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--border-primary);
+      color: var(--text-primary);
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sample-table tr:hover td {
+      background: var(--bg-tertiary);
+    }
+    .sample-table-wrap {
+      max-height: 400px;
+      overflow: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-primary);
+    }
+
+    /* Charts Container */
+    .charts-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .charts-wrapper { grid-template-columns: 1fr; }
+    }
+    .chart-container {
+      position: relative;
+      height: 350px;
+    }
+
+    /* Loading overlay */
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(var(--bg-primary), 0.8);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      display: none;
+      border-radius: var(--radius-lg);
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border-primary);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>Database Benchmark</h1>
+      <div class="subtitle">PG Relational vs MongoDB vs PG JSONB (Wikipedia Revision Data)</div>
+    </div>
+    <div>
+      <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+      <button class="btn" id="btnRun" onclick="runBench()" disabled>▶ Run Benchmark</button>
+    </div>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <div class="status-badge">Loading status...</div>
+  </div>
+
+  <div class="card" style="padding: 0; border: none; box-shadow: none; background: transparent;">
+    <div class="overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div style="font-weight: 500; color: var(--text-primary)">Running benchmark (10-60 seconds)...</div>
+    </div>
+
+    <div id="resultsContent" style="display: none;">
+      <div class="stats-grid" id="metaGrid"></div>
+
+      <div class="card" id="sampleCard" style="display:none;">
+        <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;" id="sampleTitle">Sample Data — flat row ที่ INSERT เข้า DB</h3>
+        <div class="sample-table-wrap">
+          <table class="sample-table" id="sampleTable"></table>
+        </div>
+      </div>
+
+      <div class="charts-wrapper">
+        <div class="card">
+          <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;">Execution Time (ms) - Line</h3>
+          <div class="chart-container">
+            <canvas id="timeChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;">Storage Size (MB) - Line</h3>
+          <div class="chart-container">
+            <canvas id="storageChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="charts-wrapper" style="margin-top:1.5rem;">
+        <div class="card">
+          <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;">Execution Time (ms) - Bar</h3>
+          <div class="chart-container">
+            <canvas id="timeBarChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;">Storage Size (MB) - Bar</h3>
+          <div class="chart-container">
+            <canvas id="storageBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme logic
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  if (window.timeChartInst) window.timeChartInst.update();
+  if (window.storageChartInst) window.storageChartInst.update();
+}
+
+// Check system preference on load
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  document.documentElement.setAttribute('data-theme', 'light');
+}
+
+// Chart.js global defaults
+Chart.defaults.color = () => getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim();
+Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--camt-font').trim();
+
+let timeChartInst = null;
+let storageChartInst = null;
+
+async function loadStatus() {
+  try {
+    const r = await fetch('/api/benchmark/status');
+    const d = await r.json();
+    if (!d.success) throw new Error(d.error);
+    const s = d.data;
+    
+    const sb = document.getElementById('statusBar');
+    sb.innerHTML = `
+      <div class="status-badge ${s.postgres ? 'ok' : 'error'}">
+        <strong>PostgreSQL:</strong> ${s.postgres ? 'v' + s.pgVersion : 'Offline'}
+      </div>
+      <div class="status-badge ${s.mongodb ? 'ok' : 'error'}">
+        <strong>MongoDB:</strong> ${s.mongodb ? 'v' + s.mongoVersion : 'Offline'}
+      </div>
+      <div class="status-badge ok">
+        <strong>Data:</strong> ${s.wikiData.revisions.toLocaleString()} Revisions
+      </div>
+    `;
+    
+    document.getElementById('btnRun').disabled = !(s.postgres && s.mongodb);
+  } catch(e) {
+    document.getElementById('statusBar').innerHTML = `<div class="status-badge error">Error: ${e.message}</div>`;
+  }
+}
+
+async function runBench() {
+  const btn = document.getElementById('btnRun');
+  const overlay = document.getElementById('loadingOverlay');
+  const results = document.getElementById('resultsContent');
+  
+  btn.disabled = true;
+  overlay.style.display = 'flex';
+  
+  try {
+    const r = await fetch('/api/benchmark/run', { method: 'POST' });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.error);
+    
+    results.style.display = 'block';
+    renderResults(d.data);
+  } catch(e) {
+    alert('Error running benchmark: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    overlay.style.display = 'none';
+  }
+}
+
+function renderResults(data) {
+  const m = data.meta;
+  const t = data.execution_time_ms;
+  const sb = data.storage_bytes;
+  
+  // Render Meta
+  document.getElementById('metaGrid').innerHTML = `
+    <div class="stat-item"><div class="stat-label">Categories</div><div class="stat-value">${m.categories}</div></div>
+    <div class="stat-item"><div class="stat-label">Pages</div><div class="stat-value">${m.pages}</div></div>
+    <div class="stat-item"><div class="stat-label">Revisions</div><div class="stat-value">${m.revisions.toLocaleString()}</div></div>
+    <div class="stat-item"><div class="stat-label">Data Size</div><div class="stat-value">${m.totalSizeMB} MB</div></div>
+  `;
+
+  // Sample Data Table
+  if (data.sampleData && data.sampleData.length) {
+    const rows = data.sampleData;
+    const cols = ['rootid','prev_id','page_rootid','page_title','category','username','timestamp','comment','content_length'];
+    const headers = cols.map(c => `<th>${c}</th>`).join('');
+    const body = rows.map(r => {
+      const cells = cols.map(c => {
+        let v = r[c] != null ? r[c] : '';
+        if (typeof v === 'string' && v.length > 40) v = v.slice(0, 40) + '…';
+        return `<td title="${String(r[c] || '').replace(/"/g, '&quot;')}">${v}</td>`;
+      }).join('');
+      return `<tr>${cells}</tr>`;
+    }).join('');
+    document.getElementById('sampleTable').innerHTML = `<thead><tr>${headers}</tr></thead><tbody>${body}</tbody>`;
+    document.getElementById('sampleTitle').textContent = `Sample Data (${rows.length} rows) — flat row ที่ INSERT เข้า DB`;
+    document.getElementById('sampleCard').style.display = 'block';
+  }
+
+  // Colors
+  const colors = {
+    pg: '#3b82f6', // Accent primary
+    mongo: '#10b981', // Success
+    jsonb: '#f59e0b' // Warning
+  };
+
+  // Time Chart
+  const timeLabels = ['INSERT (bulk)', 'SELECT *', 'SELECT (filter)', 'CREATE Index', 'SELECT (indexed)', 'UPDATE (1)', 'DELETE (1)'];
+  const pgData = [t.insert.pg_relational, t.selectAll.pg_relational, t.selectFilter.pg_relational, t.createIndex.pg_relational, t.selectIndexed.pg_relational, t.update.pg_relational, t.delete.pg_relational];
+  const mongoData = [t.insert.mongodb, t.selectAll.mongodb, t.selectFilter.mongodb, t.createIndex.mongodb, t.selectIndexed.mongodb, t.update.mongodb, t.delete.mongodb];
+  const jsonbData = [t.insert.pg_jsonb, t.selectAll.pg_jsonb, t.selectFilter.pg_jsonb, t.createIndex.pg_jsonb, t.selectIndexed.pg_jsonb, t.update.pg_jsonb, t.delete.pg_jsonb];
+
+  if (window.timeChartInst) window.timeChartInst.destroy();
+  const ctxTime = document.getElementById('timeChart').getContext('2d');
+  window.timeChartInst = new Chart(ctxTime, {
+    type: 'line',
+    data: {
+      labels: timeLabels,
+      datasets: [
+        { label: 'PG Relational', data: pgData, borderColor: colors.pg, backgroundColor: colors.pg + '33', pointBackgroundColor: colors.pg, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 },
+        { label: 'MongoDB', data: mongoData, borderColor: colors.mongo, backgroundColor: colors.mongo + '33', pointBackgroundColor: colors.mongo, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 },
+        { label: 'PG JSONB', data: jsonbData, borderColor: colors.jsonb, backgroundColor: colors.jsonb + '33', pointBackgroundColor: colors.jsonb, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { type: 'logarithmic', title: { display: true, text: 'Time (ms) - Log Scale' } }
+      },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} ms` } }
+      }
+    }
+  });
+
+  // Storage Chart
+  const bToMB = (b) => (b / (1024 * 1024)).toFixed(2);
+  const storageLabels = ['Data Size', 'Index Size', 'Total Size'];
+  const pgStore = [bToMB(sb.pg_relational.data), bToMB(sb.pg_relational.index), bToMB(sb.pg_relational.total)];
+  const mongoStore = [bToMB(sb.mongodb.data), bToMB(sb.mongodb.index), bToMB(sb.mongodb.total)];
+  const jsonbStore = [bToMB(sb.pg_jsonb.data), bToMB(sb.pg_jsonb.index), bToMB(sb.pg_jsonb.total)];
+
+  if (window.storageChartInst) window.storageChartInst.destroy();
+  const ctxStorage = document.getElementById('storageChart').getContext('2d');
+  window.storageChartInst = new Chart(ctxStorage, {
+    type: 'line',
+    data: {
+      labels: storageLabels,
+      datasets: [
+        { label: 'PG Relational', data: pgStore, borderColor: colors.pg, backgroundColor: colors.pg + '33', pointBackgroundColor: colors.pg, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 },
+        { label: 'MongoDB', data: mongoStore, borderColor: colors.mongo, backgroundColor: colors.mongo + '33', pointBackgroundColor: colors.mongo, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 },
+        { label: 'PG JSONB', data: jsonbStore, borderColor: colors.jsonb, backgroundColor: colors.jsonb + '33', pointBackgroundColor: colors.jsonb, tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2.5 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Size (MB)' } }
+      },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} MB` } }
+      }
+    }
+  });
+
+  // Time Bar Chart
+  if (window.timeBarInst) window.timeBarInst.destroy();
+  const ctxTimeBar = document.getElementById('timeBarChart').getContext('2d');
+  window.timeBarInst = new Chart(ctxTimeBar, {
+    type: 'bar',
+    data: {
+      labels: timeLabels,
+      datasets: [
+        { label: 'PG Relational', data: pgData, backgroundColor: colors.pg },
+        { label: 'MongoDB', data: mongoData, backgroundColor: colors.mongo },
+        { label: 'PG JSONB', data: jsonbData, backgroundColor: colors.jsonb }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: { type: 'logarithmic', title: { display: true, text: 'Time (ms) - Log Scale' } }
+      },
+      plugins: {
+        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} ms` } }
+      }
+    }
+  });
+
+  // Storage Bar Chart
+  if (window.storageBarInst) window.storageBarInst.destroy();
+  const ctxStorageBar = document.getElementById('storageBarChart').getContext('2d');
+  window.storageBarInst = new Chart(ctxStorageBar, {
+    type: 'bar',
+    data: {
+      labels: storageLabels,
+      datasets: [
+        { label: 'PG Relational', data: pgStore, backgroundColor: colors.pg },
+        { label: 'MongoDB', data: mongoStore, backgroundColor: colors.mongo },
+        { label: 'PG JSONB', data: jsonbStore, backgroundColor: colors.jsonb }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Size (MB)' } }
+      },
+      plugins: {
+        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} MB` } }
+      }
+    }
+  });
+}
+
+// Initial fetch
+loadStatus();
+// Also attempt to load last run
+fetch('/api/benchmark/last')
+  .then(r => r.json())
+  .then(d => {
+    if(d.success && d.data) {
+      document.getElementById('resultsContent').style.display = 'block';
+      renderResults(d.data);
+    }
+  }).catch(() => {});
+</script>
+</body>
+</html>

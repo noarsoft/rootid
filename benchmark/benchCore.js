@@ -6,7 +6,7 @@ const { MongoClient } = require('mongodb');
 const { performance } = require('perf_hooks');
 const { loadWikiData } = require('./wikiLoader');
 
-const PG_URL = process.env.PG_URL || 'postgresql://postgres:postgres@localhost:5432/benchmark';
+const PG_URL = process.env.PG_URL || 'postgresql://postgres:1234@localhost:5432/benchmark';
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const MONGO_DB = process.env.MONGO_DB || 'benchmark';
 const DATA_DIR = path.join(__dirname, 'data', 'json');
@@ -201,7 +201,7 @@ async function benchPgRelational(pg, categories, pages, rawRevisions) {
 
   const sz = await pg.query(`
     SELECT
-      (pg_relation_size('bench_category') + pg_relation_size('bench_page') + pg_relation_size('bench_revision')) AS data,
+      (pg_table_size('bench_category') + pg_table_size('bench_page') + pg_table_size('bench_revision')) AS data,
       (pg_indexes_size('bench_category') + pg_indexes_size('bench_page') + pg_indexes_size('bench_revision')) AS idx,
       (pg_total_relation_size('bench_category') + pg_total_relation_size('bench_page') + pg_total_relation_size('bench_revision')) AS total
   `);
@@ -254,7 +254,7 @@ async function benchPgJsonb(pg, flatRows) {
   R.selectIndexed = tBtreeSelect;
 
   const szBtree = await pg.query(`
-    SELECT pg_relation_size('bench_jsonb') AS data,
+    SELECT pg_table_size('bench_jsonb') AS data,
            pg_indexes_size('bench_jsonb') AS idx,
            pg_total_relation_size('bench_jsonb') AS total
   `);
@@ -277,7 +277,7 @@ async function benchPgJsonb(pg, flatRows) {
   R.ginSelectIndexed = tGinSelect;
 
   const szGin = await pg.query(`
-    SELECT pg_relation_size('bench_jsonb') AS data,
+    SELECT pg_table_size('bench_jsonb') AS data,
            pg_indexes_size('bench_jsonb') AS idx,
            pg_total_relation_size('bench_jsonb') AS total
   `);
@@ -342,7 +342,7 @@ async function benchMongo(db, flatRows) {
   return R;
 }
 
-function buildResult(rel, mongo, jsonb, stats) {
+function buildResult(rel, mongo, jsonb, stats, flatRows) {
   const mainOps = ['insert', 'selectAll', 'selectFilter', 'createIndex', 'selectIndexed', 'update', 'delete'];
   const execution_time_ms = {};
   for (const key of mainOps) {
@@ -372,6 +372,12 @@ function buildResult(rel, mongo, jsonb, stats) {
       totalSizeMB: stats.totalSizeMB,
       timestamp: new Date().toISOString(),
     },
+    sampleData: flatRows.slice(0, 5).map(f => ({
+      rootid: f.rootid, prev_id: f.prev_id, page_rootid: f.page_rootid,
+      page_title: f.page_title, category: f.category, username: f.username,
+      timestamp: f.timestamp, comment: (f.comment || '').slice(0, 80),
+      content_length: (f.content || '').length,
+    })),
   };
 }
 
@@ -394,7 +400,7 @@ async function runBenchmark() {
     const mongoResult = await benchMongo(mongoDB, flatRows);
     const jsonbResult = await benchPgJsonb(pgClient, flatRows);
 
-    return buildResult(relResult, mongoResult, jsonbResult, stats);
+    return buildResult(relResult, mongoResult, jsonbResult, stats, flatRows);
   } finally {
     await pgClient.end();
     await mongoClient.close();
@@ -443,7 +449,7 @@ async function getStatus() {
     date: r.date, time: r.time, date_time: r.date_time,
   }));
 
-  const sampleFlat = flatRows.slice(0, 5).map(f => ({
+  const sampleFlat = flatRows.slice(0, 10).map(f => ({
     rootid: f.rootid, prev_id: f.prev_id, page_rootid: f.page_rootid,
     page_title: f.page_title, category: f.category, username: f.username,
     timestamp: f.timestamp, comment: (f.comment || '').slice(0, 80),

@@ -2,12 +2,13 @@ services:
   bench-postgres:
     image: postgres:18-alpine
     restart: unless-stopped
+    ports:
+      - "5434:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: benchmark
-    ports:
-      - "5432:5432"
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - bench_pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -23,6 +24,21 @@ services:
       - "27017:27017"
     volumes:
       - bench_mongodata:/data/db
+
+  benchmark-app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3003:3003"
+    environment:
+      - BENCH_PORT=3003
+      - PG_URL=postgresql://postgres:1234@bench-postgres:5432/benchmark
+      - MONGO_URL=mongodb://bench-mongo:27017
+    depends_on:
+      bench-postgres:
+        condition: service_healthy
+      bench-mongo:
+        condition: service_started
 
 volumes:
   bench_pgdata:
