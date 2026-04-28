@@ -233,11 +233,18 @@
   <div class="card" style="padding: 0; border: none; box-shadow: none; background: transparent;">
     <div class="overlay" id="loadingOverlay">
       <div class="spinner"></div>
-      <div style="font-weight: 500; color: var(--text-primary)">Running benchmark (10-60 seconds)...</div>
+      <div id="progressMsg" style="font-weight: 500; color: var(--text-primary); text-align: center; max-width: 80%; font-size: 0.95rem;">Running benchmark...</div>
     </div>
 
     <div id="resultsContent" style="display: none;">
       <div class="stats-grid" id="metaGrid"></div>
+
+      <div class="card" id="rowCountCard" style="display:none;">
+        <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;">Row Counts — จำนวน row ที่แต่ละ operation ประมวลผล</h3>
+        <div class="sample-table-wrap">
+          <table class="sample-table" id="rowCountTable"></table>
+        </div>
+      </div>
 
       <div class="card" id="sampleCard" style="display:none;">
         <h3 style="margin-top:0; margin-bottom:1rem; font-size:1rem;" id="sampleTitle">Sample Data — flat row ที่ INSERT เข้า DB</h3>
@@ -327,34 +334,50 @@ async function loadStatus() {
   }
 }
 
-async function runBench() {
+function runBench() {
   const btn = document.getElementById('btnRun');
   const overlay = document.getElementById('loadingOverlay');
   const results = document.getElementById('resultsContent');
-  
+  const progressEl = document.getElementById('progressMsg');
+
   btn.disabled = true;
   overlay.style.display = 'flex';
-  
-  try {
-    const r = await fetch('/api/benchmark/run', { method: 'POST' });
-    const d = await r.json();
-    if (!d.success) throw new Error(d.error);
-    
-    results.style.display = 'block';
-    renderResults(d.data);
-  } catch(e) {
-    alert('Error running benchmark: ' + e.message);
-  } finally {
+  if (progressEl) progressEl.textContent = 'Starting benchmark...';
+
+  const es = new EventSource('/api/benchmark/run-stream');
+
+  es.onmessage = (event) => {
+    const msg = JSON.parse(event.data);
+    if (msg.type === 'progress' && progressEl) {
+      progressEl.textContent = msg.message;
+    } else if (msg.type === 'done') {
+      es.close();
+      results.style.display = 'block';
+      renderResults(msg.data);
+      btn.disabled = false;
+      overlay.style.display = 'none';
+    } else if (msg.type === 'error') {
+      es.close();
+      alert('Error running benchmark: ' + msg.error);
+      btn.disabled = false;
+      overlay.style.display = 'none';
+    }
+  };
+
+  es.onerror = () => {
+    es.close();
+    alert('Connection lost during benchmark');
     btn.disabled = false;
     overlay.style.display = 'none';
-  }
+  };
 }
 
 function renderResults(data) {
   const m = data.meta;
   const t = data.execution_time_ms;
   const sb = data.storage_bytes;
-  
+  const rc = data.row_counts;
+
   // Render Meta
   document.getElementById('metaGrid').innerHTML = `
     <div class="stat-item"><div class="stat-label">Categories</div><div class="stat-value">${m.categories}</div></div>
@@ -362,6 +385,27 @@ function renderResults(data) {
     <div class="stat-item"><div class="stat-label">Revisions</div><div class="stat-value">${m.revisions.toLocaleString()}</div></div>
     <div class="stat-item"><div class="stat-label">Data Size</div><div class="stat-value">${m.totalSizeMB} MB</div></div>
   `;
+
+  // Render Row Counts table
+  if (rc) {
+    const rcCard = document.getElementById('rowCountCard');
+    const ops = [
+      { key: 'insert', label: 'INSERT (bulk)' },
+      { key: 'selectAll', label: 'SELECT *' },
+      { key: 'selectFilter', label: 'SELECT (filter)' },
+      { key: 'selectIndexed', label: 'SELECT (indexed)' },
+      { key: 'update', label: 'UPDATE' },
+      { key: 'delete', label: 'DELETE' },
+    ];
+    const rows = ops.map(op => {
+      const r = rc[op.key] || {};
+      return `<tr><td style="font-weight:500">${op.label}</td><td>${(r.pg_relational || 0).toLocaleString()}</td><td>${(r.mongodb || 0).toLocaleString()}</td><td>${(r.pg_jsonb || 0).toLocaleString()}</td></tr>`;
+    }).join('');
+    document.getElementById('rowCountTable').innerHTML = `
+      <thead><tr><th>Operation</th><th>PG Relational</th><th>MongoDB</th><th>PG JSONB</th></tr></thead>
+      <tbody>${rows}</tbody>`;
+    rcCard.style.display = 'block';
+  }
 
   // Sample Data Table
   if (data.sampleData && data.sampleData.length) {
@@ -388,8 +432,18 @@ function renderResults(data) {
     jsonb: '#f59e0b' // Warning
   };
 
-  // Time Chart
-  const timeLabels = ['INSERT (bulk)', 'SELECT *', 'SELECT (filter)', 'CREATE Index', 'SELECT (indexed)', 'UPDATE (1)', 'DELETE (1)'];
+  // Time Chart — labels include row counts when available
+  const rcPg = rc || {};
+  const fmtRows = (key) => rc ? ` (${(rc[key]?.pg_relational || 0).toLocaleString()} rows)` : '';
+  const timeLabels = [
+    'INSERT' + fmtRows('insert'),
+    'SELECT *' + fmtRows('selectAll'),
+    'SELECT filter' + fmtRows('selectFilter'),
+    'CREATE Index',
+    'SELECT indexed' + fmtRows('selectIndexed'),
+    'UPDATE (1 row)',
+    'DELETE (1 row)',
+  ];
   const pgData = [t.insert.pg_relational, t.selectAll.pg_relational, t.selectFilter.pg_relational, t.createIndex.pg_relational, t.selectIndexed.pg_relational, t.update.pg_relational, t.delete.pg_relational];
   const mongoData = [t.insert.mongodb, t.selectAll.mongodb, t.selectFilter.mongodb, t.createIndex.mongodb, t.selectIndexed.mongodb, t.update.mongodb, t.delete.mongodb];
   const jsonbData = [t.insert.pg_jsonb, t.selectAll.pg_jsonb, t.selectFilter.pg_jsonb, t.createIndex.pg_jsonb, t.selectIndexed.pg_jsonb, t.update.pg_jsonb, t.delete.pg_jsonb];

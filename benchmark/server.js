@@ -26,6 +26,74 @@ app.get('/api/benchmark/status', async (_req, res) => {
 let running = false;
 let lastResult = null;
 
+app.get('/api/benchmark/run-stream', async (req, res) => {
+  if (running) { res.status(409).json({ success: false, error: 'Benchmark is already running' }); return; }
+  running = true;
+
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+  });
+
+  const emit = (progress) => {
+    res.write(`data: ${JSON.stringify({ type: 'progress', ...progress })}\n\n`);
+  };
+
+  try {
+    const data = await runBenchmark(emit);
+    lastResult = data;
+
+    const CSV_FILE = 'results.csv';
+    const csvHeader = [
+      'categories','pages','revisions','timestamp',
+      'insert_pg','insert_mongo','insert_jsonb',
+      'selectAll_pg','selectAll_mongo','selectAll_jsonb',
+      'selectFilter_pg','selectFilter_mongo','selectFilter_jsonb',
+      'createIndex_pg','createIndex_mongo','createIndex_jsonb',
+      'selectIndexed_pg','selectIndexed_mongo','selectIndexed_jsonb',
+      'update_pg','update_mongo','update_jsonb',
+      'delete_pg','delete_mongo','delete_jsonb',
+      'storage_data_pg','storage_data_mongo','storage_data_jsonb',
+      'storage_index_pg','storage_index_mongo','storage_index_jsonb',
+      'storage_total_pg','storage_total_mongo','storage_total_jsonb',
+      'gin_createIndex','gin_selectIndexed',
+      'gin_storage_index','gin_storage_total',
+    ];
+    const t = data.execution_time_ms;
+    const sb = data.storage_bytes;
+    const gin = data.bonus_jsonb_gin;
+    const csvRow = [
+      data.meta.categories, data.meta.pages, data.meta.revisions, new Date().toISOString(),
+      t.insert.pg_relational, t.insert.mongodb, t.insert.pg_jsonb,
+      t.selectAll.pg_relational, t.selectAll.mongodb, t.selectAll.pg_jsonb,
+      t.selectFilter.pg_relational, t.selectFilter.mongodb, t.selectFilter.pg_jsonb,
+      t.createIndex.pg_relational, t.createIndex.mongodb, t.createIndex.pg_jsonb,
+      t.selectIndexed.pg_relational, t.selectIndexed.mongodb, t.selectIndexed.pg_jsonb,
+      t.update.pg_relational, t.update.mongodb, t.update.pg_jsonb,
+      t.delete.pg_relational, t.delete.mongodb, t.delete.pg_jsonb,
+      sb.pg_relational.data, sb.mongodb.data, sb.pg_jsonb.data,
+      sb.pg_relational.index, sb.mongodb.index, sb.pg_jsonb.index,
+      sb.pg_relational.total, sb.mongodb.total, sb.pg_jsonb.total,
+      gin.createIndex_ms, gin.selectIndexed_ms,
+      gin.storage.index, gin.storage.total,
+    ];
+    const needHeader = !fs.existsSync(CSV_FILE);
+    const csvLine = (needHeader ? csvHeader.join(',') + '\n' : '') + csvRow.join(',') + '\n';
+    fs.appendFileSync(CSV_FILE, csvLine);
+
+    const filename = `result_wiki_${data.meta.revisions}.json`;
+    fs.writeFileSync(filename, JSON.stringify(data, null, 2));
+
+    res.write(`data: ${JSON.stringify({ type: 'done', data })}\n\n`);
+  } catch (err) {
+    res.write(`data: ${JSON.stringify({ type: 'error', error: err.message })}\n\n`);
+  } finally {
+    running = false;
+    res.end();
+  }
+});
+
 app.post('/api/benchmark/run', async (_req, res) => {
   if (running) return res.status(409).json({ success: false, error: 'Benchmark is already running' });
   running = true;
