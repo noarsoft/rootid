@@ -58,6 +58,21 @@ function createStatefulModel(modelName) {
             stores[modelName][idx] = { ...stores[modelName][idx], ...data };
             return Promise.resolve({ ...stores[modelName][idx] });
         }),
+
+        updateMany: jest.fn().mockImplementation(({ where, data }) => {
+            let count = 0;
+            stores[modelName].forEach((r, idx) => {
+                let match = true;
+                for (const [k, v] of Object.entries(where || {})) {
+                    if (r[k] !== v) { match = false; break; }
+                }
+                if (match) {
+                    stores[modelName][idx] = { ...stores[modelName][idx], ...data };
+                    count++;
+                }
+            });
+            return Promise.resolve({ count });
+        }),
     };
 }
 

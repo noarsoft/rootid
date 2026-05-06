@@ -4,6 +4,9 @@ const rateLimit = require('express-rate-limit');
 const routes = require('./routes');
 const { errorHandler } = require('./middlewares/error.middleware');
 
+// BigInt → Number for JSON serialization (modify_datetime fits in MAX_SAFE_INTEGER)
+BigInt.prototype.toJSON = function () { return Number(this); };
+
 const app = express();
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS

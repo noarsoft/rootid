@@ -91,15 +91,17 @@ describe('/api/schemax', () => {
         expect(res.body.error).toBe('Validation failed');
     });
 
-    test('PUT /:rootid updates schema', async () => {
-        const updated = { ...SCHEMA_RECORD, name: 'Updated' };
-        mockPrisma.data_schema.update.mockResolvedValue(updated);
+    test('PUT /:rootid updates schema (append-only)', async () => {
+        mockPrisma.data_schema.findFirst.mockResolvedValue(SCHEMA_RECORD);
+        const newVersion = { ...SCHEMA_RECORD, rootid: 'uuid-schema-2', id: 2, name: 'Updated', prev_id: 1 };
+        mockPrisma.data_schema.create.mockResolvedValue(newVersion);
         const res = await request(app)
             .put('/api/schemax/uuid-schema-1')
             .send({ name: 'Updated' });
         expect(res.status).toBe(200);
         expect(res.body.success).toBe(true);
         expect(res.body.data.name).toBe('Updated');
+        expect(res.body.data.prev_id).toBe(1);
     });
 
     test('DELETE /:rootid soft-deletes', async () => {
@@ -189,14 +191,16 @@ describe('/api/viewx', () => {
         expect(res.status).toBe(400);
     });
 
-    test('PUT /:rootid updates json_table_config', async () => {
-        const updated = { ...VIEW_RECORD, json_table_config: { columns: [{ key: 'age', header: 'Age' }] } };
-        mockPrisma.view.update.mockResolvedValue(updated);
+    test('PUT /:rootid updates json_table_config (append-only)', async () => {
+        mockPrisma.view.findFirst.mockResolvedValue(VIEW_RECORD);
+        const newVersion = { ...VIEW_RECORD, rootid: 'uuid-view-2', id: 2, json_table_config: { columns: [{ key: 'age', header: 'Age' }] }, prev_id: 1 };
+        mockPrisma.view.create.mockResolvedValue(newVersion);
         const res = await request(app)
             .put('/api/viewx/uuid-view-1')
             .send({ json_table_config: { columns: [{ key: 'age', header: 'Age' }] } });
         expect(res.status).toBe(200);
         expect(res.body.data.json_table_config.columns[0].key).toBe('age');
+        expect(res.body.data.prev_id).toBe(1);
     });
 });
 
@@ -253,14 +257,16 @@ describe('/api/formcfgx', () => {
         expect(res.body.success).toBe(false);
     });
 
-    test('PUT /:rootid updates form config', async () => {
-        const updated = { ...FORM_RECORD, name: 'Updated Form' };
-        mockPrisma.form.update.mockResolvedValue(updated);
+    test('PUT /:rootid updates form config (append-only)', async () => {
+        mockPrisma.form.findFirst.mockResolvedValue(FORM_RECORD);
+        const newVersion = { ...FORM_RECORD, rootid: 'uuid-form-2', id: 2, name: 'Updated Form', prev_id: 1 };
+        mockPrisma.form.create.mockResolvedValue(newVersion);
         const res = await request(app)
             .put('/api/formcfgx/uuid-form-1')
             .send({ name: 'Updated Form' });
         expect(res.status).toBe(200);
         expect(res.body.data.name).toBe('Updated Form');
+        expect(res.body.data.prev_id).toBe(1);
     });
 
     test('DELETE /:rootid soft-deletes', async () => {
@@ -325,14 +331,16 @@ describe('/api/formx', () => {
         expect(res.body.success).toBe(false);
     });
 
-    test('PUT /:rootid updates data', async () => {
-        const updated = { ...DATA_RECORD, data: { fname: 'Jane', age: 25 } };
-        mockPrisma.data.update.mockResolvedValue(updated);
+    test('PUT /:rootid updates data (append-only)', async () => {
+        mockPrisma.data.findFirst.mockResolvedValue(DATA_RECORD);
+        const newVersion = { ...DATA_RECORD, rootid: 'uuid-data-2', id: 2, data: { fname: 'Jane', age: 25 }, prev_id: 1 };
+        mockPrisma.data.create.mockResolvedValue(newVersion);
         const res = await request(app)
             .put('/api/formx/uuid-data-1')
             .send({ data: { fname: 'Jane', age: 25 } });
         expect(res.status).toBe(200);
         expect(res.body.data.data.fname).toBe('Jane');
+        expect(res.body.data.prev_id).toBe(1);
     });
 
     test('DELETE /:rootid soft-deletes', async () => {

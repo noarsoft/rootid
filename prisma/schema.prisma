@@ -15,7 +15,7 @@ model data_schema {
   json             Json     @default("{}")
   flag             String?  @default("draft") @db.VarChar(50)
   activate         Boolean  @default(true)
-  modify_datetime  String?  @db.VarChar(15)
+  modify_datetime  BigInt?
 
   previous         data_schema?  @relation("SchemaVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   versions         data_schema[] @relation("SchemaVersion")
@@ -38,7 +38,7 @@ model view {
   json_table_config Json     @default("{}")
   flag              String?  @default("draft") @db.VarChar(50)
   activate          Boolean  @default(true)
-  modify_datetime   String?  @db.VarChar(15)
+  modify_datetime   BigInt?
 
   previous          view?         @relation("ViewVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   versions          view[]        @relation("ViewVersion")
@@ -57,7 +57,7 @@ model form {
   json_form_config  Json     @default("{}")
   flag              String?  @default("draft") @db.VarChar(50)
   activate          Boolean  @default(true)
-  modify_datetime   String?  @db.VarChar(15)
+  modify_datetime   BigInt?
 
   previous          form?         @relation("FormVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   versions          form[]        @relation("FormVersion")
@@ -74,7 +74,7 @@ model data {
   data              Json     @default("{}")
   flag              String?  @default("active") @db.VarChar(50)
   activate          Boolean  @default(true)
-  modify_datetime   String?  @db.VarChar(15)
+  modify_datetime   BigInt?
 
   previous          data?         @relation("DataVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   versions          data[]        @relation("DataVersion")

@@ -35,7 +35,15 @@ function createBaseController(service) {
     } catch (err) { next(err); }
   };
 
-  return { findAll, findOne, create, update, remove };
+  const history = async (req, res, next) => {
+    try {
+      const data = await service.findHistory(req.params.rootid);
+      if (!data.length) return res.status(404).json({ success: false, error: 'Not found' });
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  };
+
+  return { findAll, findOne, create, update, remove, history };
 }
 
 module.exports = { createBaseController };

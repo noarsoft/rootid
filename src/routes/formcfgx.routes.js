@@ -5,6 +5,7 @@ const { createSchema, updateSchema } = require('../validators/formcfgx.validator
 
 router.get('/', ctrl.findAll);
 router.get('/:rootid', ctrl.findOne);
+router.get('/:rootid/history', ctrl.history);
 router.post('/', validate(createSchema), ctrl.create);
 router.put('/:rootid', validate(updateSchema), ctrl.update);
 router.delete('/:rootid', ctrl.remove);

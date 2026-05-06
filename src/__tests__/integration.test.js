@@ -207,15 +207,21 @@ describe('Integration: Soft Delete', () => {
 
 // ─── Update Flow ───
 
-describe('Integration: Update', () => {
-    test('update schema name then verify', async () => {
+describe('Integration: Update (append-only)', () => {
+    test('update schema creates new version with prev_id', async () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'Original' })).body.data;
 
-        await request(app).put(`/api/schemax/${s.rootid}`).send({ name: 'Updated' });
+        const putRes = await request(app).put(`/api/schemax/${s.rootid}`).send({ name: 'Updated' });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/schemax/${s.rootid}`);
+        expect(newRootid).not.toBe(s.rootid);
+        expect(putRes.body.data.prev_id).toBe(s.id);
+
+        const found = await request(app).get(`/api/schemax/${newRootid}`);
         expect(found.body.data.name).toBe('Updated');
-        expect(found.body.data.rootid).toBe(s.rootid);
+
+        const old = await request(app).get(`/api/schemax/${s.rootid}`);
+        expect(old.status).toBe(404);
     });
 
     test('update schema json fields then verify', async () => {
@@ -223,9 +229,10 @@ describe('Integration: Update', () => {
             .send({ name: 'S', json: { a: { type: 'string' } } })).body.data;
 
         const newJson = { a: { type: 'string' }, b: { type: 'number' } };
-        await request(app).put(`/api/schemax/${s.rootid}`).send({ json: newJson });
+        const putRes = await request(app).put(`/api/schemax/${s.rootid}`).send({ json: newJson });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/schemax/${s.rootid}`);
+        const found = await request(app).get(`/api/schemax/${newRootid}`);
         expect(found.body.data.json).toEqual(newJson);
     });
 
@@ -235,9 +242,10 @@ describe('Integration: Update', () => {
             .send({ data_schema_id: schema.id, view_type: 'table', json_table_config: { columns: [{ key: 'a' }] } })).body.data;
 
         const newConfig = { columns: [{ key: 'a', header: 'A' }, { key: 'b', header: 'B' }] };
-        await request(app).put(`/api/viewx/${view.rootid}`).send({ json_table_config: newConfig });
+        const putRes = await request(app).put(`/api/viewx/${view.rootid}`).send({ json_table_config: newConfig });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/viewx/${view.rootid}`);
+        const found = await request(app).get(`/api/viewx/${newRootid}`);
         expect(found.body.data.json_table_config.columns).toHaveLength(2);
     });
 
@@ -246,10 +254,11 @@ describe('Integration: Update', () => {
         const cfg = (await request(app).post('/api/formcfgx')
             .send({ data_id: schema.id, json_form_config: { colnumbers: 4, controls: [] } })).body.data;
 
-        await request(app).put(`/api/formcfgx/${cfg.rootid}`)
+        const putRes = await request(app).put(`/api/formcfgx/${cfg.rootid}`)
             .send({ json_form_config: { colnumbers: 6, controls: [{ key: 'x' }] } });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/formcfgx/${cfg.rootid}`);
+        const found = await request(app).get(`/api/formcfgx/${newRootid}`);
         expect(found.body.data.json_form_config.colnumbers).toBe(6);
         expect(found.body.data.json_form_config.controls).toHaveLength(1);
     });
@@ -259,10 +268,11 @@ describe('Integration: Update', () => {
         const record = (await request(app).post('/api/formx')
             .send({ data_schema_id: schema.id, data: { fname: 'Old', age: 20 } })).body.data;
 
-        await request(app).put(`/api/formx/${record.rootid}`)
+        const putRes = await request(app).put(`/api/formx/${record.rootid}`)
             .send({ data: { fname: 'New', age: 30 } });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/formx/${record.rootid}`);
+        const found = await request(app).get(`/api/formx/${newRootid}`);
         expect(found.body.data.data.fname).toBe('New');
         expect(found.body.data.data.age).toBe(30);
     });
@@ -271,9 +281,10 @@ describe('Integration: Update', () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'S' })).body.data;
         expect(s.flag).toBe('draft');
 
-        await request(app).put(`/api/schemax/${s.rootid}`).send({ flag: 'published' });
+        const putRes = await request(app).put(`/api/schemax/${s.rootid}`).send({ flag: 'published' });
+        const newRootid = putRes.body.data.rootid;
 
-        const found = await request(app).get(`/api/schemax/${s.rootid}`);
+        const found = await request(app).get(`/api/schemax/${newRootid}`);
         expect(found.body.data.flag).toBe('published');
     });
 });
@@ -350,19 +361,20 @@ describe('Integration: Pagination & Filtering', () => {
 // ─── modify_datetime ───
 
 describe('Integration: modify_datetime', () => {
-    test('create sets modify_datetime in yyyymmdd_hhmmss format', async () => {
+    test('create sets modify_datetime as 14-digit number', async () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'Test' })).body.data;
-        expect(s.modify_datetime).toMatch(/^\d{8}_\d{6}$/);
+        expect(typeof s.modify_datetime).toBe('number');
+        expect(String(s.modify_datetime)).toMatch(/^\d{14}$/);
     });
 
-    test('update refreshes modify_datetime', async () => {
+    test('update refreshes modify_datetime on new version', async () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'Test' })).body.data;
-        const dt1 = s.modify_datetime;
 
-        await request(app).put(`/api/schemax/${s.rootid}`).send({ name: 'Updated' });
+        const putRes = await request(app).put(`/api/schemax/${s.rootid}`).send({ name: 'Updated' });
+        const newVersion = putRes.body.data;
 
-        const found = await request(app).get(`/api/schemax/${s.rootid}`);
-        expect(found.body.data.modify_datetime).toMatch(/^\d{8}_\d{6}$/);
+        expect(typeof newVersion.modify_datetime).toBe('number');
+        expect(String(newVersion.modify_datetime)).toMatch(/^\d{14}$/);
     });
 
     test('soft delete refreshes modify_datetime', async () => {
@@ -458,10 +470,12 @@ describe('Integration: Validation Edge Cases', () => {
         }
     });
 
-    test('update with empty body is valid (no required fields)', async () => {
+    test('update with empty body creates new version (no required fields)', async () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'Test' })).body.data;
         const res = await request(app).put(`/api/schemax/${s.rootid}`).send({});
         expect(res.status).toBe(200);
+        expect(res.body.data.prev_id).toBe(s.id);
+        expect(res.body.data.name).toBe('Test');
     });
 
     test('extra fields are stripped by Zod', async () => {
@@ -632,10 +646,12 @@ describe('Integration: Response Envelope', () => {
         expect(res.body.data).toHaveProperty('rootid');
     });
 
-    test('PUT → { success: true, data: {...} }', async () => {
+    test('PUT → { success: true, data: {...} } with new version', async () => {
         const s = (await request(app).post('/api/schemax').send({ name: 'Test' })).body.data;
         const res = await request(app).put(`/api/schemax/${s.rootid}`).send({ name: 'Updated' });
         expect(res.body.success).toBe(true);
+        expect(res.body.data.prev_id).toBe(s.id);
+        expect(res.body.data.rootid).not.toBe(s.rootid);
     });
 
     test('DELETE → { success: true, data: { message } }', async () => {
@@ -705,19 +721,25 @@ describe('Integration: Full CRUD lifecycle', () => {
         const read1 = (await request(app).get(`/api/schemax/${created.rootid}`)).body.data;
         expect(read1.name).toBe('Lifecycle');
 
-        // Update
-        await request(app).put(`/api/schemax/${created.rootid}`).send({ name: 'Updated', flag: 'published' });
+        // Update (append-only → new rootid)
+        const putRes = await request(app).put(`/api/schemax/${created.rootid}`).send({ name: 'Updated', flag: 'published' });
+        const newRootid = putRes.body.data.rootid;
+        expect(putRes.body.data.prev_id).toBe(created.id);
 
-        // Read after update
-        const read2 = (await request(app).get(`/api/schemax/${created.rootid}`)).body.data;
+        // Old rootid deactivated
+        const oldRes = await request(app).get(`/api/schemax/${created.rootid}`);
+        expect(oldRes.status).toBe(404);
+
+        // Read after update via new rootid
+        const read2 = (await request(app).get(`/api/schemax/${newRootid}`)).body.data;
         expect(read2.name).toBe('Updated');
         expect(read2.flag).toBe('published');
 
         // Delete
-        await request(app).delete(`/api/schemax/${created.rootid}`);
+        await request(app).delete(`/api/schemax/${newRootid}`);
 
         // Read after delete → 404
-        const read3 = await request(app).get(`/api/schemax/${created.rootid}`);
+        const read3 = await request(app).get(`/api/schemax/${newRootid}`);
         expect(read3.status).toBe(404);
     });
 
@@ -732,13 +754,15 @@ describe('Integration: Full CRUD lifecycle', () => {
         const read1 = (await request(app).get(`/api/formx/${record.rootid}`)).body.data;
         expect(read1.data.fname).toBe('John');
 
-        // Update
-        await request(app).put(`/api/formx/${record.rootid}`).send({ data: { fname: 'Jane', age: 25 } });
-        const read2 = (await request(app).get(`/api/formx/${record.rootid}`)).body.data;
+        // Update (append-only → new rootid)
+        const putRes = await request(app).put(`/api/formx/${record.rootid}`).send({ data: { fname: 'Jane', age: 25 } });
+        const newRootid = putRes.body.data.rootid;
+
+        const read2 = (await request(app).get(`/api/formx/${newRootid}`)).body.data;
         expect(read2.data.fname).toBe('Jane');
 
         // Delete
-        await request(app).delete(`/api/formx/${record.rootid}`);
+        await request(app).delete(`/api/formx/${newRootid}`);
 
         // List should be empty for this schema
         const list = await request(app).get(`/api/formx?data_schema_id=${schema.id}`);
@@ -751,14 +775,15 @@ describe('Integration: Full CRUD lifecycle', () => {
         const view = (await request(app).post('/api/viewx')
             .send({ data_schema_id: schema.id, view_type: 'table', name: 'V1', json_table_config: { columns: [] } })).body.data;
 
-        await request(app).put(`/api/viewx/${view.rootid}`)
+        const putRes = await request(app).put(`/api/viewx/${view.rootid}`)
             .send({ name: 'V1 Updated', json_table_config: { columns: [{ key: 'a' }] } });
+        const newRootid = putRes.body.data.rootid;
 
-        const updated = (await request(app).get(`/api/viewx/${view.rootid}`)).body.data;
+        const updated = (await request(app).get(`/api/viewx/${newRootid}`)).body.data;
         expect(updated.name).toBe('V1 Updated');
 
-        await request(app).delete(`/api/viewx/${view.rootid}`);
-        const deleted = await request(app).get(`/api/viewx/${view.rootid}`);
+        await request(app).delete(`/api/viewx/${newRootid}`);
+        const deleted = await request(app).get(`/api/viewx/${newRootid}`);
         expect(deleted.status).toBe(404);
     });
 
@@ -768,15 +793,16 @@ describe('Integration: Full CRUD lifecycle', () => {
         const cfg = (await request(app).post('/api/formcfgx')
             .send({ data_id: schema.id, name: 'F1', json_form_config: { colnumbers: 6, controls: [] } })).body.data;
 
-        await request(app).put(`/api/formcfgx/${cfg.rootid}`)
+        const putRes = await request(app).put(`/api/formcfgx/${cfg.rootid}`)
             .send({ name: 'F1 Updated', json_form_config: { colnumbers: 12, controls: [{ key: 'x' }] } });
+        const newRootid = putRes.body.data.rootid;
 
-        const updated = (await request(app).get(`/api/formcfgx/${cfg.rootid}`)).body.data;
+        const updated = (await request(app).get(`/api/formcfgx/${newRootid}`)).body.data;
         expect(updated.name).toBe('F1 Updated');
         expect(updated.json_form_config.colnumbers).toBe(12);
 
-        await request(app).delete(`/api/formcfgx/${cfg.rootid}`);
-        const deleted = await request(app).get(`/api/formcfgx/${cfg.rootid}`);
+        await request(app).delete(`/api/formcfgx/${newRootid}`);
+        const deleted = await request(app).get(`/api/formcfgx/${newRootid}`);
         expect(deleted.status).toBe(404);
     });
 });
