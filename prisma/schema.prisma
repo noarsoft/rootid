@@ -7,9 +7,26 @@ datasource db {
   provider = "postgresql"
 }
 
+model business {
+  rootid           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id               Int      @unique @default(autoincrement())
+  prev_id          Int?
+  name             String   @db.VarChar(255)
+  icon             String?  @db.VarChar(100)
+  flag             String?  @default("active") @db.VarChar(50)
+  activate         Boolean  @default(true)
+  modify_datetime  BigInt?
+
+  previous         business?  @relation("BusinessVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  versions         business[] @relation("BusinessVersion")
+
+  schemas          data_schema[]
+}
+
 model data_schema {
   rootid           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   id               Int      @unique @default(autoincrement())
+  business_id      Int?
   prev_id          Int?
   name             String   @db.VarChar(255)
   json             Json     @default("{}")
@@ -19,6 +36,7 @@ model data_schema {
 
   previous         data_schema?  @relation("SchemaVersion", fields: [prev_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   versions         data_schema[] @relation("SchemaVersion")
+  business         business?     @relation(fields: [business_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   views            view[]
   forms            form[]
@@ -26,6 +44,7 @@ model data_schema {
 
   @@index([flag])
   @@index([prev_id])
+  @@index([business_id])
 }
 
 model view {

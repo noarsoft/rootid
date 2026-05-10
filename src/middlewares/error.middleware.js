@@ -7,7 +7,7 @@ function errorHandler(err, req, res, next) {
     if (err.code === 'P2025') return res.status(404).json({ success: false, error: 'Record not found' });
     if (err.code === 'P2002') return res.status(409).json({ success: false, error: 'Duplicate record' });
     if (err.code === 'P2003') return res.status(400).json({ success: false, error: 'Invalid reference' });
-    return res.status(400).json({ success: false, error: 'Database error' });
+    return res.status(400).json({ success: false, error: `Database error (${err.code}): ${err.message}` });
   }
 
   if (err instanceof Prisma.PrismaClientValidationError) {
