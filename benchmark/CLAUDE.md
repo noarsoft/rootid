@@ -1,20 +1,15 @@
 # DB Benchmark — Architecture & Flow Guide
 
-> อัปเดตล่าสุด: 2026-04-27
-> รวมจาก flow.md + BENCHMARK-DETAIL.md + BENCHMARK-PLAN.md
+## Overview
 
----
-
-## 1. ภาพรวม
-
-Benchmark เปรียบเทียบ **PG Relational vs MongoDB vs PG JSONB** ใช้ Wikipedia revision data จริง
+Benchmark comparing **PG Relational vs MongoDB vs PG JSONB** using real Wikipedia revision data.
 
 - **Stack**: Express :3003 → PostgreSQL 18 + MongoDB 8
 - **Data**: 58 categories, ~400 pages, ~3,657 revisions, ~252 MB
-- **No user input**: กดปุ่ม Run อย่างเดียว
+- **No user input**: just click Run
 
 ```
-Browser (BenchmarkPage.jsx)
+Browser (benchmark.html)
     │ POST /api/benchmark/run
     ▼
 Express @ :3003 (server.js)
@@ -34,41 +29,41 @@ PostgreSQL 5432  +  MongoDB 27017
 
 ---
 
-## 2. วิธีรัน
+## How to Run
 
 ```bash
 cd rootid/benchmark
-npm install                    # ครั้งแรก
+npm install                    # first time
 docker compose up -d           # PG 18 + Mongo 8
-npm start                      # http://localhost:3003 แล้วกด Run
+npm start                      # http://localhost:3003 then click Run
 ```
 
-**ต้องการ**: Docker (PG port 5432, Mongo port 27017)
+**Requires**: Docker (PG port 5432, Mongo port 27017)
 
 ---
 
-## 3. Code Map
+## Code Map
 
-| ไฟล์ | หน้าที่ |
+| File | Purpose |
 |------|---------|
-| `wikiLoader.js` | โหลด Wikipedia JSON → `{ categories[], pages[], revisions[], stats }` |
+| `wikiLoader.js` | Load Wikipedia JSON → `{ categories[], pages[], revisions[], stats }` |
 | `benchCore.js` | Core: `runBenchmark()`, `getStatus()`, 3 bench functions, `timer()`, `buildFlatRows()` |
 | `server.js` | Express API server (2 endpoints, port 3003) |
-| `index.js` | CLI runner (`node index.js` รันจาก terminal) |
-| `fetchWikiData.js` | ดึง Wikipedia data จาก API |
+| `index.js` | CLI runner (`node index.js` from terminal) |
+| `fetchWikiData.js` | Fetch Wikipedia data from API |
 
 ---
 
-## 4. Wikipedia Data Structure
+## Wikipedia Data Structure
 
-**ไม่มี user input** — ใช้ข้อมูลจริงจาก Wikipedia API
+**No user input** — uses real data from Wikipedia API
 
-| Parameter | ค่า | ที่มา |
-|-----------|-----|-------|
-| Categories | 58 | directory names ใน `data/json/` |
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Categories | 58 | directory names in `data/json/` |
 | Pages | ~400 | JSON files (1 file = 1 article) |
-| Revisions | ~3,657 | revisions ทั้งหมดจากทุก article |
-| Data size | ~252 MB | raw JSON จาก Wikipedia API |
+| Revisions | ~3,657 | all revisions from every article |
+| Data size | ~252 MB | raw JSON from Wikipedia API |
 
 ### wikiLoader output
 
@@ -76,7 +71,7 @@ npm start                      # http://localhost:3003 แล้วกด Run
 - `pages[]` — ~400 objects `{ rootid(=pageid), category, page_title, date, time, date_time }`
 - `revisions[]` — ~3,657 objects `{ rootid(=revid), prev_id(=parentid), pageid, username, timestamp, comment, content, date, time, date_time }`
 
-### date/time แปลงจาก Wikipedia timestamp
+### date/time conversion from Wikipedia timestamp
 
 ```
 Wikipedia: "2025-07-15T04:56:15Z"
@@ -87,11 +82,11 @@ Wikipedia: "2025-07-15T04:56:15Z"
 
 ---
 
-## 5. Database Schemas
+## Database Schemas
 
-ทุกครั้งที่รัน **DROP ก่อน → สร้างใหม่**
+Every run **DROPs first → creates fresh**.
 
-### 5.1 PG Relational (3 normalized tables)
+### PG Relational (3 normalized tables)
 
 ```sql
 CREATE TABLE bench_category (
@@ -125,25 +120,25 @@ CREATE TABLE bench_revision (
 
 **Relation:** `bench_category (1) → (N) bench_page (1) → (N) bench_revision`
 
-### 5.2 PG JSONB (1 flat table)
+### PG JSONB (1 flat table)
 
 ```sql
 CREATE TABLE bench_jsonb (id SERIAL PRIMARY KEY, data JSONB NOT NULL DEFAULT '{}');
 ```
 
-### 5.3 MongoDB (1 flat collection)
+### MongoDB (1 flat collection)
 
-`insertMany` flat documents — เหมือน JSONB แต่มี `_seq` field สำหรับ UPDATE/DELETE
+`insertMany` flat documents — same as JSONB but with `_seq` field for UPDATE/DELETE.
 
 ---
 
-## 6. Benchmark Operations (7 ops + GIN bonus)
+## Benchmark Operations (7 ops + GIN bonus)
 
-ทั้ง 3 แบบทำ 7 operations เหมือนกัน ทุกอันวัดด้วย `timer()`:
+All 3 approaches run 7 identical operations, each timed with `timer()`:
 
 | # | Operation | PG Relational | PG JSONB | MongoDB |
 |---|-----------|--------------|----------|---------|
-| 1 | INSERT (bulk) | 3 tables ตามลำดับ FK | 1 param/row | insertMany |
+| 1 | INSERT (bulk) | 3 tables in FK order | 1 param/row | insertMany |
 | 2 | SELECT * | JOIN 3 tables | flat scan | find({}) |
 | 3 | SELECT filter (no idx) | JOIN + WHERE c.name=? | data->>'category'=? | find({category:?}) |
 | 4 | CREATE INDEX (B-Tree) | bench_page(category_id) | ((data->>'category')) | {category:1} |
@@ -157,14 +152,14 @@ CREATE TABLE bench_jsonb (id SERIAL PRIMARY KEY, data JSONB NOT NULL DEFAULT '{}
 
 | | B-Tree | GIN |
 |--|--------|-----|
-| Index อะไร | field เดียว (category) | ทุก key+value ใน JSONB |
-| สร้าง | เร็ว | ช้ากว่า 3-10x |
-| ขนาด | เล็ก | ใหญ่กว่า 4-7x |
+| Indexes | single field (category) | all key+value in JSONB |
+| Create speed | fast | 3-10x slower |
+| Size | small | 4-7x larger |
 | Query | `data->>'category' = $1` | `data @> $1::jsonb` |
 
 ---
 
-## 7. timer() — วัดอะไร, ไม่วัดอะไร
+## timer() — What's Measured
 
 ```js
 async function timer(fn) {
@@ -174,22 +169,22 @@ async function timer(fn) {
 }
 ```
 
-**วัด**: Query execution, driver overhead, network hop (localhost)
-**ไม่วัด**: loadWikiData, buildFlatRows, connect, DROP/CREATE TABLE, storage queries, buildResult
+**Measured**: Query execution, driver overhead, network hop (localhost)
+**Not measured**: loadWikiData, buildFlatRows, connect, DROP/CREATE TABLE, storage queries, buildResult
 
 ---
 
-## 8. Storage Measurement
+## Storage Measurement
 
-| แบบ | วิธีวัด |
-|-----|---------|
-| PG Relational | `pg_relation_size()` + `pg_indexes_size()` รวม 3 tables |
-| PG JSONB | `pg_relation_size('bench_jsonb')` — วัด 2 ครั้ง (B-Tree + GIN) |
+| Type | Method |
+|------|--------|
+| PG Relational | `pg_relation_size()` + `pg_indexes_size()` for 3 tables |
+| PG JSONB | `pg_relation_size('bench_jsonb')` — measured twice (B-Tree + GIN) |
 | MongoDB | `db.command({ collStats })` → size, totalIndexSize, storageSize |
 
 ---
 
-## 9. Execution Sequence
+## Execution Sequence
 
 ```
 time ──────────────────────────────────►
@@ -207,107 +202,44 @@ time ─────────────────────────
   buildResult() → HTTP response → FE render
 ```
 
-**ทำไม sequential**: ป้องกัน PG กับ Mongo แย่ง CPU/IO กัน
+**Why sequential**: prevents PG and Mongo from competing for CPU/IO.
 
 ---
 
-## 9.1 กดปุ่ม Run Benchmark แล้วเกิดอะไร (End-to-End Flow)
+## End-to-End Flow (Click Run)
 
-```
-[Browser]  กดปุ่ม "▶ Run Benchmark"
-    │
-    │  1. ปุ่ม disabled + แสดง spinner "Running benchmark (10-60 seconds)..."
-    │  2. POST /api/benchmark/run (ไม่ส่ง body)
-    │
-    ▼
-[Express server.js :3003]
-    │
-    │  3. เช็คว่ามี benchmark กำลังรันอยู่มั้ย (ถ้ามี → 409 error)
-    │  4. เรียก runBenchmark() จาก benchCore.js
-    │
-    ▼
-[benchCore.js — runBenchmark()]
-    │
-    │  ── ไม่จับเวลา ──────────────────────────────
-    │  5. loadWikiData()     อ่าน JSON จาก data/json/
-    │     → 58 categories, 399 pages, 3,657 revisions
-    │  6. buildFlatRows()   แปลง revision เป็น flat row
-    │     → เพิ่ม category, page_title เข้าทุก revision
-    │  7. connect PG (port 5432) + Mongo (port 27017)
-    │
-    │  ── จับเวลาด้วย timer() ─────────────────────
-    │  8. benchPgRelational()  ← DROP 3 tables → CREATE → 7 ops
-    │     ├─ INSERT: 3 tables ตามลำดับ FK (category→page→revision)
-    │     ├─ SELECT *: JOIN 3 tables
-    │     ├─ SELECT filter: WHERE category='computer_science_research'
-    │     ├─ CREATE INDEX: B-Tree on bench_page(category_id)
-    │     ├─ SELECT indexed: same query หลังมี index
-    │     ├─ UPDATE: SET comment WHERE id=1
-    │     ├─ DELETE: WHERE id=1
-    │     └─ วัด storage (pg_relation_size + pg_indexes_size)
-    │
-    │  9. benchMongo()  ← DROP collection → 7 ops
-    │     ├─ INSERT: insertMany flat documents
-    │     ├─ SELECT *: find({})
-    │     ├─ SELECT filter: find({category:'computer_science_research'})
-    │     ├─ CREATE INDEX: {category:1}
-    │     ├─ SELECT indexed: same find หลังมี index
-    │     ├─ UPDATE: $set {comment} on _seq=1
-    │     ├─ DELETE: deleteOne({_seq:1})
-    │     └─ วัด storage (collStats)
-    │
-    │  10. benchPgJsonb()  ← DROP table → CREATE → 7 ops + GIN bonus
-    │     ├─ INSERT: flat JSONB rows
-    │     ├─ SELECT *: flat scan
-    │     ├─ SELECT filter: data->>'category'='computer_science_research'
-    │     ├─ CREATE INDEX: B-Tree on ((data->>'category'))
-    │     ├─ SELECT indexed: same query หลังมี index
-    │     ├─ UPDATE: data || jsonb WHERE id=1
-    │     ├─ DELETE: WHERE id=1
-    │     ├─ วัด storage (B-Tree)
-    │     ├─ BONUS: DROP B-Tree → CREATE GIN → SELECT @> containment
-    │     └─ วัด storage (GIN)
-    │
-    │  11. buildResult()  รวมผลทั้ง 3 แบบเป็น JSON
-    │
-    ▼
-[Express server.js]
-    │
-    │  12. บันทึกผล:
-    │     ├─ results.csv      ← append แถวใหม่ (สะสมทุกรอบ)
-    │     └─ result_wiki_3657.json ← เขียนทับทุกรอบ
-    │  13. ส่ง JSON กลับ { success: true, data: {...} }
-    │
-    ▼
-[Browser — benchmark.html]
-    │
-    │  14. ซ่อน spinner, enable ปุ่ม Run
-    │  15. แสดง Stats Grid (Categories, Pages, Revisions, Data Size)
-    │  16. renderResults() สร้าง 2 charts ด้วย Chart.js:
-    │     ├─ Execution Time (ms) — horizontal bar, log scale
-    │     │   เทียบ 7 ops ของ 3 แบบ (สีฟ้า/เขียว/เหลือง)
-    │     └─ Storage Size (MB) — vertical bar
-    │         เทียบ Data/Index/Total ของ 3 แบบ
-    │
-    └─ เสร็จ — user เห็นผลเปรียบเทียบ
-```
+1. Button disabled + spinner "Running benchmark (10-60 seconds)..."
+2. POST /api/benchmark/run (no body)
+3. Server checks no benchmark already running (else 409)
+4. `runBenchmark()`:
+   - loadWikiData → 58 categories, 399 pages, 3,657 revisions
+   - buildFlatRows → flatten revision with category/page_title
+   - Connect PG (5432) + Mongo (27017)
+   - benchPgRelational → DROP 3 tables → CREATE → 7 ops → measure storage
+   - benchMongo → DROP collection → 7 ops → measure storage
+   - benchPgJsonb → DROP table → CREATE → 7 ops + GIN bonus → measure storage
+   - buildResult → combine all 3
+5. Save results: `results.csv` (append) + `result_wiki_3657.json` (overwrite)
+6. Return JSON → browser renders 2 Chart.js charts:
+   - Execution Time (ms) — horizontal bar, log scale
+   - Storage Size (MB) — vertical bar
 
-### ใช้เวลาเท่าไหร่?
+### Timing
 
-| ขั้นตอน | เวลาโดยประมาณ |
-|---------|--------------|
-| loadWikiData (อ่าน 252 MB JSON) | 3-8 วินาที |
-| benchPgRelational (INSERT 3 tables) | 5-20 วินาที |
-| benchMongo (insertMany) | 3-10 วินาที |
-| benchPgJsonb (INSERT + GIN) | 5-15 วินาที |
-| **รวมทั้งหมด** | **~15-60 วินาที** |
+| Step | Approximate time |
+|------|-----------------|
+| loadWikiData (read 252 MB JSON) | 3-8 seconds |
+| benchPgRelational (INSERT 3 tables) | 5-20 seconds |
+| benchMongo (insertMany) | 3-10 seconds |
+| benchPgJsonb (INSERT + GIN) | 5-15 seconds |
+| **Total** | **~15-60 seconds** |
 
-> INSERT เป็น operation ที่ช้าสุดเพราะ content column ใหญ่ (~252 MB)
-> รอบแรกจะช้ากว่าเพราะ cold cache — รัน 2-3 ครั้งแล้วเปรียบเทียบ
+INSERT is the slowest operation because the content column is large (~252 MB).
+First run is slower due to cold cache — run 2-3 times then compare.
 
 ---
 
-## 10. API Contract
+## API Contract
 
 ### GET `/api/benchmark/status`
 
@@ -324,48 +256,40 @@ time ─────────────────────────
 
 ### POST `/api/benchmark/run`
 
-ไม่ต้องส่ง body → return `{ success, data: { execution_time_ms, storage_bytes, bonus_jsonb_gin, meta } }`
+No body needed → returns `{ success, data: { execution_time_ms, storage_bytes, bonus_jsonb_gin, meta } }`
 
 ---
 
-## 11. Output Formats
+## Output Formats
 
-| Format | ไฟล์ | คำอธิบาย |
-|--------|------|---------|
-| Console | - | ตาราง execution time + storage + winner |
-| JSON | `result_wiki_3657.json` | เขียนทับทุกรอบ |
-| CSV | `results.csv` | append แถวใหม่ทุกรอบ |
-| HTML | `report.html` | `node report.js` อ่าน CSV → สร้าง charts |
-
----
-
-## 12. Fairness — ทำให้เทียบกันได้
-
-| เงื่อนไข | รายละเอียด |
-|---------|-----------|
-| Data เดียวกัน | Wikipedia data ชุดเดียวกันทั้ง 3 |
-| Filter value เดียวกัน | `'computer_science_research'` |
-| Index ชนิดเดียวกัน | B-Tree ทั้ง 3 (ตารางหลัก) |
-| UPDATE/DELETE row เดียวกัน | row แรก (id=1 / _seq=1) |
-| วัดเวลาแบบเดียวกัน | `performance.now()` |
-| Sequential | ไม่แย่ง resource |
+| Format | File | Description |
+|--------|------|-------------|
+| Console | - | Execution time table + storage + winner |
+| JSON | `result_wiki_3657.json` | Overwritten each run |
+| CSV | `results.csv` | Appended each run |
+| HTML | `report.html` | `node report.js` reads CSV → generates charts |
 
 ---
 
-## 13. Troubleshooting
+## Fairness
 
-| อาการ | เช็คอะไร |
-|-------|----------|
-| FE ขึ้น "ต่อ Benchmark API ไม่ได้" | `npm start` ยังรันอยู่? port 3003 |
-| Status → PG offline | PG รัน port 5432? ตรวจ .env |
+| Condition | Detail |
+|-----------|--------|
+| Same data | Same Wikipedia data for all 3 |
+| Same filter value | `'computer_science_research'` |
+| Same index type | B-Tree for all 3 (main table) |
+| Same UPDATE/DELETE row | First row (id=1 / _seq=1) |
+| Same timing method | `performance.now()` |
+| Sequential | No resource contention |
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+|---------|-------|
+| FE shows "Cannot connect to Benchmark API" | Is `npm start` running? Port 3003 |
+| Status → PG offline | PG running on port 5432? Check .env |
 | Status → Mongo offline | `mongosh --eval 'db.runCommand({ping:1})'` |
-| INSERT ช้ามาก | content column ใหญ่ — ปกติ |
-| Run แรกช้า | Cold cache — รัน 2-3 ครั้งแล้วเปรียบเทียบ |
-
----
-
-## Communication Rules
-- ตอบตรงๆ ไม่อวย
-- สงสัยก็ถาม
-- แนะนำ 3 ข้อ
-- ไม่มีก็บอกไม่มี
+| INSERT very slow | content column is large — normal |
+| First run slow | Cold cache — run 2-3 times then compare |

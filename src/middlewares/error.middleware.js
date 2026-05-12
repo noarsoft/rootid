@@ -14,7 +14,8 @@ function errorHandler(err, req, res, next) {
     return res.status(400).json({ success: false, error: 'Invalid request data' });
   }
 
-  res.status(err.status || 500).json({ success: false, error: 'Internal Server Error' });
+  const status = err.status || 500;
+  res.status(status).json({ success: false, error: status < 500 ? err.message : 'Internal Server Error' });
 }
 
 module.exports = { errorHandler };

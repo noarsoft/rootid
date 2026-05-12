@@ -11,6 +11,8 @@ const prisma = {
     view: mockModel(),
     form: mockModel(),
     data: mockModel(),
+    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
+    $executeRaw: jest.fn().mockResolvedValue(1),
 };
 
 module.exports = prisma;

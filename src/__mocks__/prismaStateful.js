@@ -83,6 +83,7 @@ const prisma = {
     view: createStatefulModel('view'),
     form: createStatefulModel('form'),
     data: createStatefulModel('data'),
+    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
 };
 
 prisma._reset = reset;
