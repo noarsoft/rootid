@@ -1,0 +1,123 @@
+{
+  "continue": {
+    "rvcontinue": "20051222002650|32301764",
+    "continue": "||"
+  },
+  "query": {
+    "normalized": [
+      {
+        "from": "Apis_(genus)",
+        "to": "Apis (genus)"
+      }
+    ],
+    "pages": {
+      "821948": {
+        "pageid": 821948,
+        "ns": 0,
+        "title": "Apis (genus)",
+        "revisions": [
+          {
+            "revid": 76294323,
+            "parentid": 46148359,
+            "user": "Merope",
+            "timestamp": "2006-09-17T21:33:45Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "fixed double redirect",
+            "*": "#REDIRECT [[Honey bee]]"
+          },
+          {
+            "revid": 46148359,
+            "parentid": 45423177,
+            "user": "Stemonitis",
+            "timestamp": "2006-03-30T10:26:53Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "remove extraneous text",
+            "*": "#REDIRECT [[Honeybee]]"
+          },
+          {
+            "revid": 45423177,
+            "parentid": 45423128,
+            "user": "Tabmoc72",
+            "timestamp": "2006-03-25T15:05:37Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Redirect to \"Honeybee\"",
+            "*": "#REDIRECT [[Honeybee]]\n\n{{Taxobox\n| color = pink\n| name = Apis Species\n| image = Honigbiene.JPG\n| image_width = 200px\n| image_caption = [[Honeybee]]\n| regnum = [[Animal]]ia\n| phylum = [[Arthropod]]a\n| classis = [[Insect]]a\n| ordo = [[Hymenoptera]]\n| familia = [[Apidae]]\n| subfamilia = [[Apinae]]\n| tribus = [[Apinini]]\n| genus = '''''Apis'''''\n| genus_authority = [[Carolus Linnaeus|Linnaeus]], 1758\n| subdivision_ranks = Subgenera\n| subdivision = \n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other [[honey]] producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 45423128,
+            "parentid": 44388944,
+            "user": "Tabmoc72",
+            "timestamp": "2006-03-25T15:05:07Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[HONEYBEE]]\n\n{{Taxobox\n| color = pink\n| name = Apis Species\n| image = Honigbiene.JPG\n| image_width = 200px\n| image_caption = [[Honeybee]]\n| regnum = [[Animal]]ia\n| phylum = [[Arthropod]]a\n| classis = [[Insect]]a\n| ordo = [[Hymenoptera]]\n| familia = [[Apidae]]\n| subfamilia = [[Apinae]]\n| tribus = [[Apinini]]\n| genus = '''''Apis'''''\n| genus_authority = [[Carolus Linnaeus|Linnaeus]], 1758\n| subdivision_ranks = Subgenera\n| subdivision = \n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other [[honey]] producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 44388944,
+            "parentid": 38352683,
+            "user": "Stoa",
+            "timestamp": "2006-03-18T18:52:55Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Interwiki",
+            "*": "{{Taxobox\n| color = pink\n| name = Apis Species\n| image = Honigbiene.JPG\n| image_width = 200px\n| image_caption = [[Honeybee]]\n| regnum = [[Animal]]ia\n| phylum = [[Arthropod]]a\n| classis = [[Insect]]a\n| ordo = [[Hymenoptera]]\n| familia = [[Apidae]]\n| subfamilia = [[Apinae]]\n| tribus = [[Apinini]]\n| genus = '''''Apis'''''\n| genus_authority = [[Carolus Linnaeus|Linnaeus]], 1758\n| subdivision_ranks = Subgenera\n| subdivision = \n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other [[honey]] producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 38352683,
+            "parentid": 37535856,
+            "user": "Gdrbot",
+            "timestamp": "2006-02-05T20:10:22Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "nomialbot - adding authority for Apis [[Carolus Linnaeus|Linnaeus]], 1758",
+            "*": "{{Taxobox\n| color = pink\n| name = Apis Species\n| image = Honigbiene.JPG\n| image_width = 200px\n| image_caption = [[Honeybee]]\n| regnum = [[Animal]]ia\n| phylum = [[Arthropod]]a\n| classis = [[Insect]]a\n| ordo = [[Hymenoptera]]\n| familia = [[Apidae]]\n| subfamilia = [[Apinae]]\n| tribus = [[Apinini]]\n| genus = '''''Apis'''''\n| genus_authority = [[Carolus Linnaeus|Linnaeus]], 1758\n| subdivision_ranks = Subgenera\n| subdivision = \n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other honey producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 37535856,
+            "parentid": 37291671,
+            "user": "Gdrbot",
+            "timestamp": "2006-01-31T17:05:14Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "nomialbot — converted multi-template taxobox to {{Taxobox}}",
+            "*": "{{Taxobox\n| color = pink\n| name = Apis Species\n| image = Honigbiene.JPG\n| image_width = 200px\n| image_caption = [[Honeybee]]\n| regnum = [[Animal]]ia\n| phylum = [[Arthropod]]a\n| classis = [[Insect]]a\n| ordo = [[Hymenoptera]]\n| subordo = [[Apocrita]]\n| familia = [[Apidae]]\n| subfamilia = [[Apinae]]\n| tribus = [[Apinini]]\n| genus = ''Apis''\n| subdivision_ranks = Subgenera\n| subdivision = \n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other honey producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 37291671,
+            "parentid": 33843684,
+            "user": "GTBacchus",
+            "timestamp": "2006-01-30T01:25:35Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "dodging redirect",
+            "*": "{{Taxobox begin | color = pink | name = Apis Species}}\n{{Taxobox image | image = [[Image:Honigbiene.JPG|200px|[[Honeybee]]]] | caption = [[Honeybee]]}}\n{{Taxobox begin placement | color = pink}}\n{{Taxobox regnum entry | taxon = [[Animal]]ia}}\n{{Taxobox phylum entry | taxon = [[Arthropod]]a}}\n{{Taxobox classis entry | taxon = [[Insect]]a}}\n{{Taxobox ordo entry | taxon = [[Hymenoptera]]}}\n{{Taxobox subordo entry | taxon = [[Apocrita]]}}\n{{Taxobox familia entry | taxon = [[Apidae]]}}\n{{Taxobox subfamilia entry | taxon = [[Apinae]]}}\n{{Taxobox tribus entry | taxon = [[Apinini]]}}\n{{Taxobox genus entry | taxon = ''Apis''}}\n{{Taxobox end placement}}\n{{Taxobox section subdivision | color = pink | plural_taxon = Subgenera}}\n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n{{Taxobox end}}\n'''''Apis''''' is the [[genus]] of [[bee]]s from which the [[honeybee]] and most other honey producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 33843684,
+            "parentid": 33470606,
+            "user": "Summer Song",
+            "timestamp": "2006-01-04T14:05:49Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "{{Taxobox begin | color = pink | name = Apis Species}}\n{{Taxobox image | image = [[Image:Honigbiene.JPG|200px|[[Honeybee]]]] | caption = [[Honeybee]]}}\n{{Taxobox begin placement | color = pink}}\n{{Taxobox regnum entry | taxon = [[Animal]]ia}}\n{{Taxobox phylum entry | taxon = [[Arthropod]]a}}\n{{Taxobox classis entry | taxon = [[Insect]]a}}\n{{Taxobox ordo entry | taxon = [[Hymenoptera]]}}\n{{Taxobox subordo entry | taxon = [[Apocrita]]}}\n{{Taxobox familia entry | taxon = [[Apidae]]}}\n{{Taxobox subfamilia entry | taxon = [[Apinae]]}}\n{{Taxobox tribus entry | taxon = [[Apinini]]}}\n{{Taxobox genus entry | taxon = ''Apis''}}\n{{Taxobox end placement}}\n{{Taxobox section subdivision | color = pink | plural_taxon = Subgenera}}\n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n{{Taxobox end}}\n'''''Apis''''' is the [[genus (biology)|genus]] of [[bee]]s from which the [[honeybee]] and most other honey producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          },
+          {
+            "revid": 33470606,
+            "parentid": 32301764,
+            "user": "Audriusa",
+            "timestamp": "2006-01-01T11:19:58Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Info about systematic",
+            "*": "{{Taxobox begin | color = pink | name = Apis Species}}\n{{Taxobox image | image = [[Image:Honigbiene.JPG|200px|[[Honeybee]]]] | caption = [[Honeybee]]}}\n{{Taxobox begin placement | color = pink}}\n{{Taxobox regnum entry | taxon = [[Animal]]ia}}\n{{Taxobox phylum entry | taxon = [[Arthropod]]a}}\n{{Taxobox classis entry | taxon = [[Insect]]a}}\n{{Taxobox ordo entry | taxon = [[Hymenoptera]]}}\n{{Taxobox subordo entry | taxon = [[Apocrita]]}}\n{{Taxobox familia entry | taxon = [[Apidae]]}}\n{{Taxobox subfamilia entry | taxon = [[Apinae]]}}\n{{Taxobox tribus entry | taxon = [[Apinini]]}}\n{{Taxobox genus entry | taxon = ''[[Apis]]''}}\n{{Taxobox end placement}}\n{{Taxobox section subdivision | color = pink | plural_taxon = Subgenera}}\n''Apis''<br>\n''[[Megapis]]''<br>\n''[[Micrapis]]''\n{{Taxobox end}}\n'''''Apis''''' is the [[genus (biology)|genus]] of [[bee]]s from which the [[honeybee]] and most other honey producers originate. The genus at the moment of writing has nine [[species (biology)|species]]. \n\n== Literature ==\n#[http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7459 NCBI taxonomy database]\n\n{{insect-stub}}\n\n[[Category:Bees]]\n[[Category:Apocrita]]"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,422 +1,294 @@
-# RootID Backend — Architecture & API Guide
+# DB Benchmark — Architecture & Flow Guide
 
 ## Overview
 
-REST API for the **CakeControl Form Builder** — a dynamic form system like Google Forms.
+Benchmark comparing **PG Relational vs MongoDB vs PG JSONB** using real Wikipedia revision data.
 
-- **Tech Stack**: Express 5 + Prisma ORM + PostgreSQL 16
-- **Port**: 3002
-- **No auth** — free to use, no login
-- **Frontend**: CakeControl (React 19 + Vite 7) at `cakecontrol/`
+- **Stack**: Express :3003 → PostgreSQL 18 + MongoDB 8
+- **Data**: 58 categories, ~400 pages, ~3,657 revisions, ~252 MB
+- **No user input**: just click Run
 
 ```
-Request Flow:
-
-Client (React)
-  → POST /api/schemax { name: "...", json: {...} }
-  → Express (cors → json → rateLimit)
-    → Route (schemax.routes.js)
-      → Validate (Zod schema)
-        → Controller (base.controller.js)
-          → Service (base.service.js)
-            → Prisma → PostgreSQL
-  ← { success: true, data: { rootid: "...", id: 1, ... } }
+Browser (benchmark.html)
+    │ POST /api/benchmark/run
+    ▼
+Express @ :3003 (server.js)
+    │
+    ▼
+benchCore.js
+    ├─ loadWikiData()          ← wikiLoader.js
+    ├─ buildFlatRows()
+    ├─ benchPgRelational()  ─┐
+    ├─ benchMongo()         ─┤ sequential
+    ├─ benchPgJsonb()       ─┘
+    └─ buildResult()
+    │
+    ▼
+PostgreSQL 5432  +  MongoDB 27017
 ```
 
 ---
 
-## Project Structure
+## How to Run
 
-```
-rootid/
-├── prisma/
-│   └── schema.prisma          # DB schema (5 tables)
-├── generated/
-│   └── prisma/                # Prisma Client (auto-generated)
-├── src/
-│   ├── server.js              # Entry point — listen port
-│   ├── app.js                 # Express app setup (cors, json, routes, error handler)
-│   ├── config/
-│   │   └── db.prisma.js       # Prisma Client instance
-│   ├── routes/
-│   │   ├── index.js           # Mount route files at /api/*
-│   │   ├── schemax.routes.js  # /api/schemax
-│   │   ├── viewx.routes.js    # /api/viewx
-│   │   ├── formcfgx.routes.js # /api/formcfgx
-│   │   └── formx.routes.js    # /api/formx
-│   ├── controllers/
-│   │   ├── base.controller.js # Factory — creates controller with 6 methods
-│   │   └── *.controller.js    # Per-table (1-2 lines each)
-│   ├── services/
-│   │   ├── base.service.js    # Factory — creates service with 6 methods
-│   │   └── *.service.js       # Per-table (1 line each)
-│   ├── validators/            # Zod schemas per table
-│   ├── middlewares/
-│   │   ├── validate.middleware.js  # Zod validation
-│   │   └── error.middleware.js     # Prisma error mapping
-│   ├── utils/
-│   │   └── datetime.js        # now() → 14-digit BigInt (20260422143052)
-│   ├── __mocks__/
-│   │   └── prisma.js          # Mock Prisma for tests
-│   └── __tests__/
-│       └── api.test.js        # 95 tests (supertest)
-├── benchmark/                 # Separate sub-project (own package.json)
-├── package.json
-└── .env                       # DATABASE_URL
+```bash
+npm install                    # first time
+docker compose up -d           # PG 18 + Mongo 8
+npm start                      # http://localhost:3003 then click Run
 ```
 
-### Sub-projects
-
-| Directory | package.json | Purpose | Key deps |
-|-----------|-------------|---------|----------|
-| `rootid/` | `package.json` | Backend API | Express, Prisma, Zod |
-| `rootid/benchmark/` | `package.json` | Benchmark tool | raw pg, mongodb |
-
-Separate because dependencies differ — benchmark uses raw pg driver + mongodb, backend uses Prisma ORM.
+**Requires**: Docker (PG port 5432, Mongo port 27017)
 
 ---
 
-## Database Design (5 Tables)
+## Code Map
 
-### Design Principles
+| File | Purpose |
+|------|---------|
+| `wikiLoader.js` | Load Wikipedia JSON → `{ categories[], pages[], revisions[], stats }` |
+| `benchCore.js` | Core: `runBenchmark()`, `getStatus()`, 3 bench functions, `timer()`, `buildFlatRows()` |
+| `server.js` | Express API server (2 endpoints, port 3003) |
+| `index.js` | CLI runner (`node index.js` from terminal) |
+| `fetchWikiData.js` | Fetch Wikipedia data from API |
 
-1. **rootid** = UUID, PK, never changes, used in API URLs
-2. **id** = auto-increment integer, used as FK between tables
-3. **Default columns every table**: `rootid`, `id`, `prev_id`, `activate`, `flag`, `modify_datetime`
-4. **modify_datetime** = BigInt, 14-digit UTC number (e.g. `20260422143052`)
-5. **JSONB** for dynamic schema
-6. **No auth**
-7. **Append-only versioning** — updates create new records, never mutate existing ones
+---
 
-### ER Diagram
+## Wikipedia Data Structure
 
-```
-business (1) ──→ (N) data_schema
-data_schema (1) ──→ (N) view      (table display config)
-data_schema (1) ──→ (N) form      (form layout config)
-data_schema (1) ──→ (N) data      (actual records)
-```
+**No user input** — uses real data from Wikipedia API
 
-### Default Columns (every table)
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Categories | 58 | directory names in `data/json/` |
+| Pages | ~400 | JSON files (1 file = 1 article) |
+| Revisions | ~3,657 | all revisions from every article |
+| Data size | ~252 MB | raw JSON from Wikipedia API |
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `rootid` | UUID | PK, never changes, used as API param |
-| `id` | SERIAL | Auto-increment, used as FK between tables |
-| `prev_id` | INT? | Versioning — points to `id` of previous version |
-| `activate` | BOOLEAN | Soft delete (true = active, false = deleted/superseded) |
-| `flag` | VARCHAR(50) | Status (draft/published/active/archived/deleted) |
-| `modify_datetime` | BIGINT | 14-digit UTC number (`20260422143052`) |
+### wikiLoader output
 
-### Why rootid and id are separate
+- `categories[]` — 58 objects `{ name, date, time, date_time }`
+- `pages[]` — ~400 objects `{ rootid(=pageid), category, page_title, date, time, date_time }`
+- `revisions[]` — ~3,657 objects `{ rootid(=revid), prev_id(=parentid), pageid, username, timestamp, comment, content, date, time, date_time }`
 
-- **rootid** (UUID) = identity — never changes, used as PK and URL param
-- **id** (SERIAL) = auto-increment — used as FK and for `prev_id` versioning
+### date/time conversion from Wikipedia timestamp
 
 ```
-schema v1 (id: 1, prev_id: null)   ← first version
-    ↑
-schema v2 (id: 2, prev_id: 1)     ← edited once
-    ↑
-schema v3 (id: 3, prev_id: 2)     ← current
+Wikipedia: "2025-07-15T04:56:15Z"
+    → date:      20250715      (INTEGER)
+    → time:      45615         (INTEGER)
+    → date_time: 20250715045615 (BIGINT)
 ```
 
-### Table 1: business
+---
 
-| Column | Type | Description |
-|--------|------|-------------|
-| rootid | UUID | PK |
-| id | SERIAL | FK reference |
-| name | VARCHAR(255) | Business name |
-| icon | VARCHAR(100)? | Icon identifier |
-| flag | VARCHAR(50) | Default 'active' |
+## Database Schemas
 
-### Table 2: data_schema
+Every run **DROPs first → creates fresh**.
 
-Stores field format definitions (which fields exist and their types).
+### PG Relational (3 normalized tables)
 
-| Column | Type | Description |
-|--------|------|-------------|
-| rootid | UUID | PK |
-| id | SERIAL | FK reference |
-| business_id | INT? | FK → business(id) |
-| name | VARCHAR(255) | Schema name |
-| json | JSONB | Field definitions (key + type) |
-| flag | VARCHAR(50) | draft / published / archived |
+```sql
+CREATE TABLE bench_category (
+    id SERIAL PRIMARY KEY,
+    rootid UUID UNIQUE DEFAULT gen_random_uuid(),
+    prev_id INTEGER,
+    name VARCHAR(100),
+    date INTEGER, time INTEGER, date_time BIGINT
+);
 
-**json format**:
-```json
-{
-    "fname": { "type": "string" },
-    "age": { "type": "number" },
-    "birthday": { "type": "yymmdd" }
+CREATE TABLE bench_page (
+    id SERIAL PRIMARY KEY,
+    rootid INTEGER UNIQUE NOT NULL,
+    prev_id INTEGER,
+    category_id INTEGER REFERENCES bench_category(id),
+    page_title VARCHAR(500),
+    date INTEGER, time INTEGER, date_time BIGINT
+);
+
+CREATE TABLE bench_revision (
+    id SERIAL PRIMARY KEY,
+    rootid INTEGER UNIQUE NOT NULL,
+    prev_id INTEGER,
+    page_id INTEGER REFERENCES bench_page(id),
+    username VARCHAR(255),
+    timestamp VARCHAR(30),
+    comment TEXT, content TEXT,
+    date INTEGER, time INTEGER, date_time BIGINT
+);
+```
+
+**Relation:** `bench_category (1) → (N) bench_page (1) → (N) bench_revision`
+
+### PG JSONB (1 flat table)
+
+```sql
+CREATE TABLE bench_jsonb (id SERIAL PRIMARY KEY, data JSONB NOT NULL DEFAULT '{}');
+```
+
+### MongoDB (1 flat collection)
+
+`insertMany` flat documents — same as JSONB but with `_seq` field for UPDATE/DELETE.
+
+---
+
+## Benchmark Operations (7 ops + GIN bonus)
+
+All 3 approaches run 7 identical operations, each timed with `timer()`:
+
+| # | Operation | PG Relational | PG JSONB | MongoDB |
+|---|-----------|--------------|----------|---------|
+| 1 | INSERT (bulk) | 3 tables in FK order | 1 param/row | insertMany |
+| 2 | SELECT * | JOIN 3 tables | flat scan | find({}) |
+| 3 | SELECT filter (no idx) | JOIN + WHERE c.name=? | data->>'category'=? | find({category:?}) |
+| 4 | CREATE INDEX (B-Tree) | bench_page(category_id) | ((data->>'category')) | {category:1} |
+| 5 | SELECT filter (indexed) | same JOIN with index | same query with index | same find with index |
+| 6 | UPDATE (1 row) | SET comment=? WHERE id=1 | data \|\| jsonb WHERE id=1 | $set {comment:?} |
+| 7 | DELETE (1 row) | DELETE WHERE id=1 | DELETE WHERE id=1 | deleteOne({_seq:1}) |
+
+**BONUS (PG JSONB only):** DROP B-Tree → CREATE GIN index → SELECT with @> containment
+
+### B-Tree vs GIN
+
+| | B-Tree | GIN |
+|--|--------|-----|
+| Indexes | single field (category) | all key+value in JSONB |
+| Create speed | fast | 3-10x slower |
+| Size | small | 4-7x larger |
+| Query | `data->>'category' = $1` | `data @> $1::jsonb` |
+
+---
+
+## timer() — What's Measured
+
+```js
+async function timer(fn) {
+  const start = performance.now();
+  const result = await fn();
+  return { time: performance.now() - start, result };
 }
 ```
 
-**Supported types**: string, number, yymmdd, hhmm, yymmddhhmmhh
-
-### Table 3: view
-
-Table display configuration.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| data_schema_id | INT | FK → data_schema(id) |
-| view_type | VARCHAR(50) | 'table' |
-| json_table_config | JSONB | Columns config |
-
-### Table 4: form
-
-Form layout configuration. FK `data_id` points to `data_schema(id)`.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| data_id | INT | FK → data_schema(id) |
-| json_form_config | JSONB | Form layout config |
-
-### Table 5: data
-
-Actual user data records.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| data_schema_id | INT | FK → data_schema(id) |
-| data | JSONB | Actual form data |
-| flag | VARCHAR(50) | active / archived |
+**Measured**: Query execution, driver overhead, network hop (localhost)
+**Not measured**: loadWikiData, buildFlatRows, connect, DROP/CREATE TABLE, storage queries, buildResult
 
 ---
 
-## Append-Only Versioning
+## Storage Measurement
 
-All tables implement append-only versioning:
-
-### Update (creates new version)
-
-1. Deactivate current record (`activate=false`)
-2. Create new record with `prev_id` pointing to old `id`
-3. If `childFks` configured, cascade FK updates to child tables
-
-### Soft Delete (creates tombstone)
-
-1. Deactivate current record (`activate=false`)
-2. Create tombstone record (`activate=false, flag='deleted'`, `prev_id` = old `id`)
-
-### History
-
-`GET /:rootid/history` — returns version chain by walking `prev_id` links.
+| Type | Method |
+|------|--------|
+| PG Relational | `pg_relation_size()` + `pg_indexes_size()` for 3 tables |
+| PG JSONB | `pg_relation_size('bench_jsonb')` — measured twice (B-Tree + GIN) |
+| MongoDB | `db.command({ collStats })` → size, totalIndexSize, storageSize |
 
 ---
 
-## Architecture Pattern — Factory
+## Execution Sequence
 
-Core pattern: write logic once in `base.service.js` / `base.controller.js`, each table calls it in 1 line.
+```
+time ──────────────────────────────────►
 
-### Service Factory
-
-```js
-// Each table service = 1 line
-module.exports = createBaseService('data_schema');                                    // schemax
-module.exports = createBaseService('view', { fkField: 'data_schema_id' });           // viewx
-module.exports = createBaseService('form', { fkField: 'data_id' });                  // formcfgx
-module.exports = createBaseService('data', { fkField: 'data_schema_id' });           // formx
+  loadWikiData()      ← overhead
+  buildFlatRows()     ← overhead
+  connect PG + Mongo  ← overhead
+       │
+  benchPgRelational() → 7 ops measured
+       │
+  benchMongo()        → 7 ops measured
+       │
+  benchPgJsonb()      → 7 ops + GIN bonus measured
+       │
+  buildResult() → HTTP response → FE render
 ```
 
-### Service Methods (6)
-
-| Method | Description |
-|--------|-------------|
-| `findAll(query)` | List records (activate=true), filter by FK and flag, paginate |
-| `findByRootId(rootid)` | Find single record by UUID |
-| `create(data)` | Create new record |
-| `update(rootid, data)` | Append-only: deactivate old → create new with prev_id |
-| `softDelete(rootid)` | Create tombstone record |
-| `findHistory(rootid)` | Walk prev_id chain for version history |
-
-### Controller Factory
-
-Each table controller = 2 lines:
-```js
-const service = require('../services/schemax.service');
-module.exports = createBaseController(service);
-```
-
-### Adding a new table
-
-1. Add model in `prisma/schema.prisma`
-2. Create `xxx.service.js` — 1 line
-3. Create `xxx.controller.js` — 2 lines
-4. Create `xxx.validator.js` — Zod schema
-5. Create `xxx.routes.js` — mount routes
-6. Add `router.use('/xxx', ...)` in `routes/index.js`
+**Why sequential**: prevents PG and Mongo from competing for CPU/IO.
 
 ---
 
-## Routes & Middleware
+## End-to-End Flow (Click Run)
 
-### Middleware Stack
+1. Button disabled + spinner "Running benchmark (10-60 seconds)..."
+2. POST /api/benchmark/run (no body)
+3. Server checks no benchmark already running (else 409)
+4. `runBenchmark()`:
+   - loadWikiData → 58 categories, 399 pages, 3,657 revisions
+   - buildFlatRows → flatten revision with category/page_title
+   - Connect PG (5432) + Mongo (27017)
+   - benchPgRelational → DROP 3 tables → CREATE → 7 ops → measure storage
+   - benchMongo → DROP collection → 7 ops → measure storage
+   - benchPgJsonb → DROP table → CREATE → 7 ops + GIN bonus → measure storage
+   - buildResult → combine all 3
+5. Save results: `results.csv` (append) + `result_wiki_3657.json` (overwrite)
+6. Return JSON → browser renders 2 Chart.js charts:
+   - Execution Time (ms) — horizontal bar, log scale
+   - Storage Size (MB) — vertical bar
 
-```
-Request
-  → cors (allow localhost:3000, 5173)
-  → express.json (limit 1mb)
-  → express-rate-limit (200 req/min)
-  → route matching
-    → validate middleware (Zod) — POST/PUT only
-      → controller → service → Prisma → DB
-  → error middleware (catch Prisma errors)
-Response
-```
+### Timing
+
+| Step | Approximate time |
+|------|-----------------|
+| loadWikiData (read 252 MB JSON) | 3-8 seconds |
+| benchPgRelational (INSERT 3 tables) | 5-20 seconds |
+| benchMongo (insertMany) | 3-10 seconds |
+| benchPgJsonb (INSERT + GIN) | 5-15 seconds |
+| **Total** | **~15-60 seconds** |
+
+INSERT is the slowest operation because the content column is large (~252 MB).
+First run is slower due to cold cache — run 2-3 times then compare.
 
 ---
 
-## API Response Format
+## API Contract
 
-Every endpoint uses the same format:
-
-### Success
-
-```json
-{ "success": true, "data": { ... } }
-```
-
-### Error
+### GET `/api/benchmark/status`
 
 ```json
 {
-  "success": false,
-  "error": "Validation failed",
-  "details": [{ "field": "name", "message": "Required" }]
+  "success": true,
+  "data": {
+    "postgres": true, "pgVersion": "18.x",
+    "mongodb": true, "mongoVersion": "8.x",
+    "wikiData": { "categories": 58, "pages": 399, "revisions": 3657, "totalSizeMB": 252 }
+  }
 }
 ```
 
-### HTTP Status Codes
+### POST `/api/benchmark/run`
 
-| Code | When |
-|------|------|
-| 200 | GET, PUT, DELETE success |
-| 201 | POST created |
-| 400 | Validation failed / Invalid FK |
-| 404 | Record not found (rootid missing or activate=false) |
-| 409 | Duplicate record |
-| 500 | Internal error |
+No body needed → returns `{ success, data: { execution_time_ms, storage_bytes, bonus_jsonb_gin, meta } }`
 
 ---
 
-## API Reference
+## Output Formats
 
-### Health Check
-
-```
-GET /api/health → { success: true, data: { status: "ok", timestamp: "..." } }
-```
-
-### data_schema — `/api/schemax`
-
-```
-GET    /api/schemax                          List all (activate=true)
-GET    /api/schemax?flag=published           Filter by flag
-GET    /api/schemax?limit=10&offset=0        Pagination
-GET    /api/schemax/:rootid                  Get by UUID
-GET    /api/schemax/:rootid/history          Version chain
-POST   /api/schemax                          Create
-PUT    /api/schemax/:rootid                  Update (append-only)
-DELETE /api/schemax/:rootid                  Soft delete (tombstone)
-```
-
-### view — `/api/viewx`
-
-```
-GET    /api/viewx?data_schema_id=1           Views for schema id=1
-POST   /api/viewx                            Create
-PUT    /api/viewx/:rootid                    Update
-```
-
-### form — `/api/formcfgx`
-
-```
-GET    /api/formcfgx?data_id=1               Form configs for schema id=1
-POST   /api/formcfgx                         Create
-PUT    /api/formcfgx/:rootid                 Update
-```
-
-### data — `/api/formx`
-
-```
-GET    /api/formx?data_schema_id=1            Data records for schema id=1
-POST   /api/formx                             Create
-PUT    /api/formx/:rootid                     Update
-DELETE /api/formx/:rootid                     Soft delete
-```
+| Format | File | Description |
+|--------|------|-------------|
+| Console | - | Execution time table + storage + winner |
+| JSON | `result_wiki_3657.json` | Overwritten each run |
+| CSV | `results.csv` | Appended each run |
+| HTML | `report.html` | `node report.js` reads CSV → generates charts |
 
 ---
 
-## Testing
+## Fairness
 
-```bash
-npm test  # Jest 30 + supertest — 95 tests, ~2 seconds
-```
-
-### Test Coverage
-
-| Group | Count | Tests |
-|-------|-------|-------|
-| Unit (mock Prisma) | 36 | CRUD per table, validation, response format, column naming |
-| Integration (stateful mock) | 59 | Full CRUD flow, pagination, FK filter, soft delete |
+| Condition | Detail |
+|-----------|--------|
+| Same data | Same Wikipedia data for all 3 |
+| Same filter value | `'computer_science_research'` |
+| Same index type | B-Tree for all 3 (main table) |
+| Same UPDATE/DELETE row | First row (id=1 / _seq=1) |
+| Same timing method | `performance.now()` |
+| Sequential | No resource contention |
 
 ---
 
-## Setup & Commands
+## Troubleshooting
 
-### Prerequisites
-
-- Node.js 22+
-- PostgreSQL 16+
-
-### Install & Run
-
-```bash
-npm install
-echo 'DATABASE_URL="postgresql://user:pass@localhost:5432/rootid"' > .env
-npm run prisma:generate
-npm run prisma:migrate
-npm run dev              # http://localhost:3002
-npm test
-```
-
-### Available Scripts
-
-| Script | Description |
-|--------|-------------|
-| `npm start` | Production server |
-| `npm run dev` | Dev server (nodemon — auto-reload) |
-| `npm test` | Run all tests |
-| `npm run prisma:generate` | Generate Prisma Client |
-| `npm run prisma:migrate` | Run DB migrations |
-| `npm run prisma:studio` | Open Prisma Studio (DB GUI) |
-
----
-
-## Naming Conventions
-
-| What | Convention | Example |
-|------|-----------|---------|
-| API route | suffix `x` | `/api/schemax`, `/api/viewx` |
-| URL param | `rootid` (UUID) | `GET /api/schemax/:rootid` |
-| File names | `xxx.controller.js`, `xxx.service.js` | `schemax.controller.js` |
-| DB column | snake_case | `data_schema_id`, `json_table_config` |
-| Datetime | BigInt 14-digit UTC | `20260422143052` |
-
----
-
-## Benchmark (at rootid/benchmark/)
-
-Compares execution time + storage: PG Relational vs MongoDB vs PG JSONB.
-- Data: Wikipedia revision data (58 categories, 399 pages, 3,657 revisions, 252 MB)
-- DB: PostgreSQL 18 (port 5432) + MongoDB 8.2 (port 27017)
-
-```bash
-cd rootid/benchmark
-npm install && docker compose up -d && npm start  # http://localhost:3003
-```
-
-See `benchmark/CLAUDE.md` for full details.
+| Symptom | Check |
+|---------|-------|
+| FE shows "Cannot connect to Benchmark API" | Is `npm start` running? Port 3003 |
+| Status → PG offline | PG running on port 5432? Check .env |
+| Status → Mongo offline | `mongosh --eval 'db.runCommand({ping:1})'` |
+| INSERT very slow | content column is large — normal |
+| First run slow | Cold cache — run 2-3 times then compare |

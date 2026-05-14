@@ -1,34 +1,47 @@
-# RootID (Backend)
+# Database Benchmark
 
-ระบบ API หลังบ้านของโปรเจค พัฒนาด้วย Node.js, Express และใช้ Prisma เป็น ORM สำหรับเชื่อมต่อกับฐานข้อมูล PostgreSQL
+ระบบวัดประสิทธิภาพ (Benchmark) สำหรับประเมินความเร็วและพื้นที่จัดเก็บ (Storage) โดยทดสอบการนำเข้าและดึงข้อมูล Revision ของ Wikipedia เปรียบเทียบระหว่าง 3 รูปแบบ:
+1. **PostgreSQL (Relational)** - แยก 3 ตาราง
+2. **MongoDB** - Document Data (Flat)
+3. **PostgreSQL (JSONB)** - เก็บเป็น JSONB (Flat)
 
-## โครงสร้าง
-- `src/` - โค้ดหลักของ API (Controllers, Routes, Services)
-- `prisma/` - โครงสร้างฐานข้อมูล (Schema)
+หน้าจอแสดงผลถูกออกแบบในสไตล์ Premium (อิงดีไซน์จาก CakeControl) โดยสามารถแสดงผลกราฟ Chart.js เพื่อเปรียบเทียบได้ง่าย
+
+---
 
 ## วิธีการรัน (How to run)
 
-1. ติดตั้ง Dependencies:
+ระบบนี้ออกแบบมาให้รองรับทั้งการรันผ่าน **Docker** (แนะนำ) และการรันแบบ **Non-Docker (Local)**
+
+### วิธีที่ 1: รันผ่าน Docker (แนะนำ - ง่ายที่สุด)
+ระบบจะทำการเปิด Database ทั้ง Postgres, Mongo และเปิด API Server ให้ทั้งหมดแบบคลิกเดียวจบ
+
+1. เปิด Terminal ในโฟลเดอร์ `benchmark/`
+2. รันคำสั่ง:
+   ```bash
+   docker compose up --build -d
+   ```
+3. เปิดเบราว์เซอร์ไปที่: `http://localhost:3003`
+
+### วิธีที่ 2: รันแบบ Non-Docker (ใช้ Node.js Local)
+วิธีนี้เหมาะสำหรับคนที่อยากแก้โค้ด Node.js แล้วเห็นผลทันที โดยที่ยังใช้ Database จาก Docker อยู่
+
+1. ติดตั้งแพ็กเกจ (ทำครั้งแรกครั้งเดียว):
    ```bash
    npm install
    ```
-
-2. ตั้งค่าตัวแปรสภาพแวดล้อม (Environment Variables):
-   - คัดลอกไฟล์ `.env.example` เป็น `.env`
-   - แก้ไข `DATABASE_URL` ให้ตรงกับฐานข้อมูล PostgreSQL ในเครื่องของคุณ
-
-3. รัน Prisma Migrations (สร้างตารางในฐานข้อมูล):
+2. สั่งเปิด Database (Postgres/Mongo) ทิ้งไว้:
    ```bash
-   npx prisma migrate dev
+   docker compose up -d bench-postgres bench-mongo
    ```
-
-4. รัน Server:
+3. รันแอปพลิเคชัน:
    ```bash
-   npm run dev
+   npm start
    ```
+   *(หรือรันแบบหน้าจอดำผ่าน Terminal ด้วยคำสั่ง `node index.js`)*
+4. เปิดเบราว์เซอร์ไปที่: `http://localhost:3003`
 
-## เครื่องมือวัดประสิทธิภาพ (Benchmark)
-โปรเจคนี้มีระบบ Benchmark ย่อยฝังอยู่ภายในโฟลเดอร์ `benchmark/` กรุณาอ่าน [README ของ Benchmark](./benchmark/README.md) สำหรับวิธีการทดสอบความเร็วระหว่าง Relational vs MongoDB vs JSONB
+---
 
-## เอกสารเพิ่มเติม
-สำหรับรายละเอียดเชิงลึกเกี่ยวกับ Architecture และ Design Pattern สามารถอ่านได้ใน [CLAUDE.md](./CLAUDE.md)
+## ข้อมูล (Dataset)
+ชุดข้อมูลที่ใช้ทดสอบถูกเก็บอยู่ในโฟลเดอร์ `data/json/` ประกอบด้วยประวัติการแก้ไข Wikipedia (Revisions) ในหมวดหมู่ Computer Science (เช่น AI, Machine Learning, Deep Learning ฯลฯ)

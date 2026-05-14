@@ -1,0 +1,123 @@
+{
+  "continue": {
+    "rvcontinue": "20030717172158|1313581",
+    "continue": "||"
+  },
+  "query": {
+    "normalized": [
+      {
+        "from": "Sports_coaching",
+        "to": "Sports coaching"
+      }
+    ],
+    "pages": {
+      "270662": {
+        "pageid": 270662,
+        "ns": 0,
+        "title": "Sports coaching",
+        "revisions": [
+          {
+            "revid": 16144692,
+            "parentid": 4945304,
+            "user": "Gtrmp",
+            "timestamp": "2004-08-01T07:37:05Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "merged and redirected",
+            "*": "#redirect [[coach (sport)]]"
+          },
+          {
+            "revid": 4945304,
+            "parentid": 3126891,
+            "user": "Rj",
+            "timestamp": "2004-04-09T22:01:08Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "dab link",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players. This can be accomplished individually, by team, by division (ex. [[Defense (sport)|Defensive]] Coaching, [[Offense|Offensive]] Coaching, etc.) or by position (ex. [[receiver]] coach, [[quarterback]] coach, etc.) where applicable. Under this system in which duties are divided, there is a [[Head Coach]] who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed. In [[baseball]], the head coach is known as the [[manager (baseball)|manager]].\r\n\r\n[[Coaching]] is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received [[training]] with regard to it."
+          },
+          {
+            "revid": 3126891,
+            "parentid": 3126829,
+            "user": "Rj",
+            "timestamp": "2004-04-09T21:55:49Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players. This can be accomplished individually, by team, by division (ex. [[Defense|Defensive]] Coaching, [[Offense|Offensive]] Coaching, etc.) or by position (ex. [[receiver]] coach, [[quarterback]] coach, etc.) where applicable. Under this system in which duties are divided, there is a [[Head Coach]] who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed. In [[baseball]], the head coach is known as the [[manager (baseball)|manager]].\r\n\r\n[[Coaching]] is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 3126829,
+            "parentid": 3077510,
+            "user": "MisfitToys",
+            "timestamp": "2004-04-06T02:57:01Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players. This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. receiver coach, quarterback coach, etc.) where applicable. Under this system in which duties are divided, there is a [[Head Coach]] who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed. In [[baseball]], the head coach is known as the [[manager (baseball)|manager]].\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 3077510,
+            "parentid": 3077507,
+            "user": "MisfitToys",
+            "timestamp": "2004-04-06T02:56:46Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players. This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. receiver coach, quarterback coach, etc.) where applicable. Under this system in which duties are divided, there is a [[Head Coach]] who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed. In [[baseball]], the head coach is known as the [[manager (baseball)]].\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 3077507,
+            "parentid": 3071484,
+            "user": "MisfitToys",
+            "timestamp": "2004-04-05T19:25:55Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players.  This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. receiver coach, quarterback coach, etc.) where applicable.  Under this system in which duties are divided, there is a [[Head Coach]] (or ''manager'') who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed.\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 3071484,
+            "parentid": 2807588,
+            "user": "SD6-Agent",
+            "timestamp": "2004-03-17T18:53:48Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Added reference to Head Coach",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players.  This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. receiver coach, quarterback coach, etc.) where applicable.  Under this system in which duties are divided, there is a [[Head Coach]] who oversees all other coaches, as a [[supervisor]]. Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed.\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 2807588,
+            "parentid": 2199349,
+            "user": "SpellBott",
+            "timestamp": "2004-01-21T08:28:53Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Spelling  correction. reciever->receiver",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players.  This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. receiver coach, quarterback coach, etc.) where applicable.  Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed.\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 2199349,
+            "parentid": 1998755,
+            "user": "Owen",
+            "timestamp": "2003-12-19T14:21:51Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "recieved->received",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players.  This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. reciever coach, quarterback coach, etc.) where applicable.  Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed.\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have received training with regard to it."
+          },
+          {
+            "revid": 1998755,
+            "parentid": 1313581,
+            "user": "Ahoerstemeier",
+            "timestamp": "2003-08-19T13:14:34Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "wikify",
+            "*": "'''Sports coaching''' is the act of teaching the skills, rules and tactics involved in a particuliar [[sport]] to its players.  This can be accomplished individually, by team, by division (ex. Defensive Coaching, Offensive Coaching, etc.) or by position (ex. reciever coach, quarterback coach, etc.) where applicable.  Coaching also entails the application of sport tactics and strategies during the contest itself, and usually entails substitution of players and other such actions as needed.\r\n\r\nCoaching is accomplished by individuals referred to  \"coaches\" or \"the coach,\" who usually are either individuals who have played the sport in question in the past or who have recieved training with regard to it."
+          }
+        ]
+      }
+    }
+  }
+}

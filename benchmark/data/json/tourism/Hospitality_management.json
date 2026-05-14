@@ -1,0 +1,125 @@
+{
+  "continue": {
+    "rvcontinue": "20110405155616|422530119",
+    "continue": "||"
+  },
+  "query": {
+    "normalized": [
+      {
+        "from": "Hospitality_management",
+        "to": "Hospitality management"
+      }
+    ],
+    "pages": {
+      "13143943": {
+        "pageid": 13143943,
+        "ns": 0,
+        "title": "Hospitality management",
+        "revisions": [
+          {
+            "revid": 1178228543,
+            "parentid": 1178173724,
+            "user": "Renamed user g5s6n3yi8z7g08cs",
+            "timestamp": "2023-10-02T09:54:21Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "add",
+            "*": "'''Hospitality management''' may refer to:\n\n* [[Hotel manager|Hotel management occupation]], the practice of running hotels\n* [[Hospitality industry]] management positions\n* [[Hospitality management studies]], the academic study of the running of hotels, restaurants, and travel and tourism-related business.\n\n== See also ==\n* [[Hospitality (disambiguation)]]\n\n{{disambig}}"
+          },
+          {
+            "revid": 1178173724,
+            "parentid": 1178173677,
+            "user": "BD2412",
+            "timestamp": "2023-10-02T00:43:06Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "* [[Hospitality industry]] management positions",
+            "*": "'''Hospitality management''' may refer to:\n\n* [[Hotel manager|Hotel management occupation]], the practice of running hotels\n* [[Hospitality industry]] management positions\n* [[Hospitality management studies]], the academic study of the running of hotels, restaurants, and travel and tourism-related business.\n\n{{disambig}}"
+          },
+          {
+            "revid": 1178173677,
+            "parentid": 1178173324,
+            "user": "BD2412",
+            "timestamp": "2023-10-02T00:42:39Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "fmt per MOS:DAB",
+            "*": "'''Hospitality management''' may refer to:\n\n* [[Hotel manager|Hotel management occupation]], the practice of running hotels \n* [[Hospitality management studies]], the academic study of the running of hotels, restaurants, and travel and tourism-related business.\n\n{{disambig}}"
+          },
+          {
+            "revid": 1178173324,
+            "parentid": 1024875525,
+            "user": "Renamed user g5s6n3yi8z7g08cs",
+            "timestamp": "2023-10-02T00:40:00Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Restored revision 422520994 by [[Special:Contributions/TexasAndroid|TexasAndroid]] ([[User talk:TexasAndroid|talk]]): Restoring",
+            "*": "'''Hospitality management''' may refer to:\n\n* [[Hotel manager|Hotel management occupation]] - the practice of running hotels \n* [[Hospitality management studies]] - the academic study of the running of hotels, restaurants, and travel and tourism-related business.\n\n{{disambig}}"
+          },
+          {
+            "revid": 1024875525,
+            "parentid": 956275800,
+            "user": "Narky Blert",
+            "timestamp": "2021-05-24T14:47:48Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "ce lead",
+            "*": "'''Hospitality management''' may refer to:\n*[[Hospitality industry]]\n*[[Hotel manager]]\n\n{{disamb}}"
+          },
+          {
+            "revid": 956275800,
+            "parentid": 956275766,
+            "user": "Keizers",
+            "timestamp": "2020-05-12T13:24:56Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "For '''hospitality management''' see:\n*[[Hospitality industry]]\n*[[Hotel manager]]\n{{disamb}}"
+          },
+          {
+            "revid": 956275766,
+            "parentid": 498167113,
+            "user": "Keizers",
+            "timestamp": "2020-05-12T13:24:44Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Removed redirect to [[Hotel manager]]",
+            "*": "For '''hospitality management'''see:\n*[[Hospitality industry]]\n*[[Hotel manager]]\n{{disamb}}"
+          },
+          {
+            "revid": 498167113,
+            "parentid": 464191998,
+            "user": "BD2412",
+            "timestamp": "2012-06-18T12:14:21Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[Help:Reverting|Reverted]] edits by [[Special:Contributions/80.223.34.57|80.223.34.57]] ([[User talk:80.223.34.57|talk]]) to last version by BD2412",
+            "*": "#redirect[[Hotel manager]]"
+          },
+          {
+            "revid": 464191998,
+            "parentid": 464191865,
+            "user": "80.223.34.57",
+            "anon": "",
+            "timestamp": "2011-12-05T10:31:04Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Redirected page to [[Hospitality (disambiguation)]]",
+            "*": "#redirect[[Hospitality (disambiguation)]]"
+          },
+          {
+            "revid": 464191865,
+            "parentid": 422530119,
+            "user": "80.223.34.57",
+            "anon": "",
+            "timestamp": "2011-12-05T10:29:27Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Redirected page to [[Hospitality management studies]]",
+            "*": "#redirect[[Hospitality management studies]]"
+          }
+        ]
+      }
+    }
+  }
+}

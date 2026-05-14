@@ -1,0 +1,119 @@
+{
+  "continue": {
+    "rvcontinue": "20210909215802|1043391793",
+    "continue": "||"
+  },
+  "query": {
+    "pages": {
+      "33094327": {
+        "pageid": 33094327,
+        "ns": 0,
+        "title": "Telecommunication",
+        "revisions": [
+          {
+            "revid": 1348483659,
+            "parentid": 1303678605,
+            "user": "Thepharoah17",
+            "timestamp": "2026-04-12T23:04:51Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Added {{[[:Template:R from move|R from move]]}} tag  to redirect",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|\n{{R from move}}reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}{{R mentioned in a hatnote}}\n}}"
+          },
+          {
+            "revid": 1303678605,
+            "parentid": 1250246100,
+            "user": "OfTheUsername",
+            "timestamp": "2025-08-01T12:07:57Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "+ {{R mentioned in a hatnote}}",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n{{R mentioned in a hatnote}}\n}}"
+          },
+          {
+            "revid": 1250246100,
+            "parentid": 1250246077,
+            "user": "ClueBot NG",
+            "timestamp": "2024-10-09T08:10:57Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverting possible vandalism by [[Special:Contribs/2600:1005:B0CF:ACF:65B3:9663:11ED:25C6|2600:1005:B0CF:ACF:65B3:9663:11ED:25C6]] to version by Spinningspark. [[WP:CBFP|Report False Positive?]] Thanks, [[WP:CBNG|ClueBot NG]]. (4349873) (Bot)",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1250246077,
+            "parentid": 1100951318,
+            "user": "2600:1005:B0CF:ACF:65B3:9663:11ED:25C6",
+            "anon": "",
+            "timestamp": "2024-10-09T08:10:44Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "165.254.126.148",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: 165.254.126.148\"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1100951318,
+            "parentid": 1100769520,
+            "user": "Spinningspark",
+            "timestamp": "2022-07-28T14:18:15Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverted 1 edit by [[Special:Contributions/203.96.240.75|203.96.240.75]] ([[User talk:203.96.240.75|talk]]): Not helpful",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1100769520,
+            "parentid": 1045719736,
+            "user": "203.96.240.75",
+            "anon": "",
+            "timestamp": "2022-07-27T15:57:13Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Telecommunications]][[This page is a redirect. Per Talk:Plesiochronous system]]{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1045719736,
+            "parentid": 1045719726,
+            "user": "Buidhe",
+            "timestamp": "2021-09-22T02:40:57Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Retarget redirect to [[Telecommunications]] using [[User:Ahecht/Scripts/pageswap|pageswap]]",
+            "*": "#REDIRECT [[Telecommunications]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1045719726,
+            "parentid": 1045719701,
+            "user": "Buidhe",
+            "timestamp": "2021-09-22T02:40:51Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Buidhe moved page [[Draft:Move/Telecommunication]] to [[Telecommunication]] without leaving a redirect: [[WP:PMRC#4|Round-robin history swap]] step 3 using [[User:Ahecht/Scripts/pageswap|pageswap]]",
+            "*": "#REDIRECT [[Telecommunication]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1045719701,
+            "parentid": 1043391804,
+            "user": "Buidhe",
+            "timestamp": "2021-09-22T02:40:41Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Buidhe moved page [[Telecommunications]] to [[Draft:Move/Telecommunication]] without leaving a redirect: [[WP:PMRC#4|Round-robin history swap]] step 1 using [[User:Ahecht/Scripts/pageswap|pageswap]]",
+            "*": "#REDIRECT [[Telecommunication]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          },
+          {
+            "revid": 1043391804,
+            "parentid": 1043391793,
+            "user": "ClueBot NG",
+            "timestamp": "2021-09-09T21:58:05Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverting possible vandalism by [[Special:Contribs/47.148.130.108|47.148.130.108]] to version by SoledadKabocha. [[WP:CBFP|Report False Positive?]] Thanks, [[WP:CBNG|ClueBot NG]]. (4036158) (Bot)",
+            "*": "#REDIRECT [[Telecommunication]]\n\n{{Redirect category shell|h=Per [[Talk:Plesiochronous system#Linking through redirect]]: \"...''telecommunications'' is not the plural of ''telecommunication''. Telecommunication is the act or process of communicating at a distance. Telecommunications (which is a singular noun) is the science or industry of telecommunication.\"|1=\n{{R printworthy}}<!-- doubtful -->\n{{R with possibilities|reason=See [[Talk:Plesiochronous system#Linking through redirect]]}}\n}}"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "640493": {
+        "pageid": 640493,
+        "ns": 0,
+        "title": "Auditing",
+        "revisions": [
+          {
+            "revid": 843696627,
+            "parentid": 85198118,
+            "user": "QYYZ",
+            "timestamp": "2018-05-30T21:00:44Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Audit]]\n\n{{Rcat shell|\n{{R from gerund}}\n{{R hatnote}}\n}}"
+          },
+          {
+            "revid": 85198118,
+            "parentid": 59572037,
+            "user": "Srleffler",
+            "timestamp": "2006-11-02T05:10:02Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Auditing should redirect to audit.",
+            "*": "#REDIRECT [[Audit]]"
+          },
+          {
+            "revid": 59572037,
+            "parentid": 16464114,
+            "user": "Reinyday",
+            "timestamp": "2006-06-20T05:00:42Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "redirect",
+            "*": "#REDIRECT [[Audit (disambiguation)]]"
+          },
+          {
+            "revid": 16464114,
+            "parentid": 10562694,
+            "user": "David Gerard",
+            "timestamp": "2005-02-25T15:09:58Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "should redirect here",
+            "*": "#REDIRECT [[audit]]"
+          },
+          {
+            "revid": 10562694,
+            "parentid": 0,
+            "user": "Taxman",
+            "timestamp": "2004-05-07T13:14:07Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "redirect",
+            "*": "#REDIRECT [[Financial audit]"
+          }
+        ]
+      }
+    }
+  }
+}

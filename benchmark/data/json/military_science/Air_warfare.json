@@ -1,0 +1,30 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "normalized": [
+      {
+        "from": "Air_warfare",
+        "to": "Air warfare"
+      }
+    ],
+    "pages": {
+      "972788": {
+        "pageid": 972788,
+        "ns": 0,
+        "title": "Air warfare",
+        "revisions": [
+          {
+            "revid": 16758405,
+            "parentid": 0,
+            "user": "SimonP",
+            "timestamp": "2004-09-10T00:27:43Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "#REDIRECT [[Aerial warfare]]",
+            "*": "#REDIRECT [[Aerial warfare]]"
+          }
+        ]
+      }
+    }
+  }
+}

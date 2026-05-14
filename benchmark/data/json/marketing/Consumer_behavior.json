@@ -1,0 +1,50 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "normalized": [
+      {
+        "from": "Consumer_behavior",
+        "to": "Consumer behavior"
+      }
+    ],
+    "pages": {
+      "42173483": {
+        "pageid": 42173483,
+        "ns": 0,
+        "title": "Consumer behavior",
+        "revisions": [
+          {
+            "revid": 1156206711,
+            "parentid": 1156206602,
+            "user": "Summer92",
+            "timestamp": "2023-05-21T18:39:49Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "the page was moved against policy so that doesn't count as a move",
+            "*": "#REDIRECT [[Consumer behaviour]]\n{{R cat shell|\n{{R from American English}}\n}}"
+          },
+          {
+            "revid": 1156206602,
+            "parentid": 599133622,
+            "user": "Summer92",
+            "timestamp": "2023-05-21T18:38:58Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Consumer behaviour]]\n{{R cat shell|\n{{R from American English}}\n{{R from move}}\n}}"
+          },
+          {
+            "revid": 599133622,
+            "parentid": 0,
+            "user": "Fayenatic london",
+            "timestamp": "2014-03-11T13:58:34Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Fayenatic london moved page [[Consumer behavior]] to [[Consumer behaviour]] over redirect: This article is written in British English",
+            "*": "#REDIRECT [[Consumer behaviour]]\n{{R from move}}"
+          }
+        ]
+      }
+    }
+  }
+}

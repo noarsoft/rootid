@@ -1,0 +1,129 @@
+{
+  "execution_time_ms": {
+    "insert": {
+      "pg_relational": 9889.87,
+      "mongodb": 2380.58,
+      "pg_jsonb": 12496.84
+    },
+    "selectAll": {
+      "pg_relational": 1102.83,
+      "mongodb": 1354.02,
+      "pg_jsonb": 2507.11
+    },
+    "selectFilter": {
+      "pg_relational": 35.48,
+      "mongodb": 173.1,
+      "pg_jsonb": 1140.06
+    },
+    "createIndex": {
+      "pg_relational": 4.96,
+      "mongodb": 205.48,
+      "pg_jsonb": 1015.51
+    },
+    "selectIndexed": {
+      "pg_relational": 33.7,
+      "mongodb": 57.26,
+      "pg_jsonb": 37.07
+    },
+    "update": {
+      "pg_relational": 3.33,
+      "mongodb": 20.5,
+      "pg_jsonb": 1.53
+    },
+    "delete": {
+      "pg_relational": 0.56,
+      "mongodb": 3.68,
+      "pg_jsonb": 0.42
+    }
+  },
+  "storage_bytes": {
+    "pg_relational": {
+      "data": 139395072,
+      "index": 303104,
+      "total": 139698176
+    },
+    "mongodb": {
+      "data": 253538023,
+      "index": 94208,
+      "total": 144879616
+    },
+    "pg_jsonb": {
+      "data": 140025856,
+      "index": 147456,
+      "total": 140173312
+    }
+  },
+  "bonus_jsonb_gin": {
+    "createIndex_ms": 1112.38,
+    "selectIndexed_ms": 130.21,
+    "storage": {
+      "data": 140025856,
+      "index": 2203648,
+      "total": 142229504
+    }
+  },
+  "meta": {
+    "categories": 58,
+    "pages": 399,
+    "revisions": 3657,
+    "totalSizeMB": 252,
+    "timestamp": "2026-04-28T03:35:10.672Z"
+  },
+  "sampleData": [
+    {
+      "rootid": 1300578444,
+      "prev_id": 1283297281,
+      "page_rootid": 22395556,
+      "page_title": "Agricultural engineering",
+      "category": "agricultural_science",
+      "username": "Wikideas1",
+      "timestamp": "2025-07-15T04:56:15Z",
+      "comment": "/* See also */ List of agricultural journals",
+      "content_length": 12601
+    },
+    {
+      "rootid": 1283297281,
+      "prev_id": 1283296400,
+      "page_rootid": 22395556,
+      "page_title": "Agricultural engineering",
+      "category": "agricultural_science",
+      "username": "Entranced98",
+      "timestamp": "2025-03-31T16:50:36Z",
+      "comment": "Reverted edit by [[Special:Contribs/178.176.80.7|178.176.80.7]] ([[User talk:178",
+      "content_length": 12565
+    },
+    {
+      "rootid": 1283296400,
+      "prev_id": 1263761694,
+      "page_rootid": 22395556,
+      "page_title": "Agricultural engineering",
+      "category": "agricultural_science",
+      "username": "178.176.80.7",
+      "timestamp": "2025-03-31T16:44:09Z",
+      "comment": "/* Armenia */",
+      "content_length": 12570
+    },
+    {
+      "rootid": 1263761694,
+      "prev_id": 1263714029,
+      "page_rootid": 22395556,
+      "page_title": "Agricultural engineering",
+      "category": "agricultural_science",
+      "username": "MrOllie",
+      "timestamp": "2024-12-18T13:54:36Z",
+      "comment": "Reverted 2 edits by [[Special:Contributions/Kremoni-ze|Kremoni-ze]] ([[User talk",
+      "content_length": 12565
+    },
+    {
+      "rootid": 1263714029,
+      "prev_id": 1263637345,
+      "page_rootid": 22395556,
+      "page_title": "Agricultural engineering",
+      "category": "agricultural_science",
+      "username": "Kremoni-ze",
+      "timestamp": "2024-12-18T06:03:05Z",
+      "comment": "I did major editing on this page",
+      "content_length": 12568
+    }
+  ]
+}

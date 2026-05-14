@@ -2,15 +2,17 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-RUN npm ci
+# Copy package files
+COPY package*.json ./
 
-COPY prisma ./prisma
-COPY prisma.config.ts ./
-RUN npx prisma generate
+# Install dependencies
+RUN npm ci --only=production
 
+# Copy source code
 COPY . .
 
-EXPOSE 3002
+# Expose port
+EXPOSE 3003
 
-CMD ["sh", "-c", "npx prisma migrate deploy && node src/server.js"]
+# Start the application
+CMD ["npm", "start"]

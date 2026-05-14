@@ -1,42 +1,16 @@
 {
-  "name": "rootid",
+  "name": "db-benchmark",
   "version": "1.0.0",
-  "description": "RootID Backend API",
-  "main": "src/server.js",
+  "description": "Benchmark: PG Relational vs MongoDB vs PG JSONB-only",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio",
-    "test": "jest --forceExit --detectOpenHandles"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/noarsoft/rootid.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/noarsoft/rootid/issues"
-  },
-  "homepage": "https://github.com/noarsoft/rootid#readme",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.7.0",
-    "@prisma/client": "^7.7.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.3.2",
-    "pg": "^8.20.0",
-    "zod": "^4.3.6"
-  },
-  "devDependencies": {
-    "jest": "^30.3.0",
-    "nodemon": "^3.1.14",
-    "prisma": "^7.7.0",
-    "supertest": "^7.2.2"
+    "mongodb": "^6.16.0",
+    "pg": "^8.16.0"
   }
 }

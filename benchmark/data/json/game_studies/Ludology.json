@@ -1,0 +1,84 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "6191720": {
+        "pageid": 6191720,
+        "ns": 0,
+        "title": "Ludology",
+        "revisions": [
+          {
+            "revid": 1258186042,
+            "parentid": 1258185868,
+            "user": "Pbsouthwood",
+            "timestamp": "2024-11-18T16:18:55Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Game studies]]\n\n{{Short description|Study of games and the act of playing them}}\n\n{{Redirect category shell|\n{{R from alternative name}}\n{{R from move}}\n}}\n\n[[Category:Printworthy redirects]]"
+          },
+          {
+            "revid": 1258185868,
+            "parentid": 1145001512,
+            "user": "Pbsouthwood",
+            "timestamp": "2024-11-18T16:17:38Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Adding [[Wikipedia:Short description|short description]]: \"Study of games and the act of playing them\"",
+            "*": "#REDIRECT [[Game studies]]\n\n{{Redirect category shell|\n{{R from alternative name}}\n{{R from move}}\n}}\n[[Category:Printworthy redirects]]\n{{Short description|Study of games and the act of playing them}}"
+          },
+          {
+            "revid": 1145001512,
+            "parentid": 1145001451,
+            "user": "Sahaib",
+            "timestamp": "2023-03-16T18:45:57Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Game studies]]\n\n{{Redirect category shell|\n{{R from alternative name}}\n{{R from move}}\n}}\n[[Category:Printworthy redirects]]"
+          },
+          {
+            "revid": 1145001451,
+            "parentid": 813355645,
+            "user": "Sahaib",
+            "timestamp": "2023-03-16T18:45:26Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Game studies]]\n\n{{Redirect category shell|\n{{R from alternative name}}\n}}\n[[Category:Printworthy redirects]]"
+          },
+          {
+            "revid": 813355645,
+            "parentid": 313290851,
+            "user": "OlEnglish",
+            "timestamp": "2017-12-03T06:58:09Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "added [[Category:Printworthy redirects]] using [[WP:HC|HotCat]]",
+            "*": "#REDIRECT [[Game studies]]{{R from alternative name}}\n\n[[Category:Printworthy redirects]]"
+          },
+          {
+            "revid": 313290851,
+            "parentid": 66771540,
+            "user": "OlEnglish",
+            "timestamp": "2009-09-12T01:12:19Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "R from alt. name",
+            "*": "#REDIRECT [[Game studies]]{{R from alternative name}}"
+          },
+          {
+            "revid": 66771540,
+            "parentid": 0,
+            "user": "El Sandifer",
+            "timestamp": "2006-07-31T00:52:15Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "moved [[Ludology]] to [[Game studies]]: Ludology is a POV name.",
+            "*": "#REDIRECT [[Game studies]]"
+          }
+        ]
+      }
+    }
+  }
+}

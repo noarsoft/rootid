@@ -1,0 +1,124 @@
+{
+  "continue": {
+    "rvcontinue": "20110719070333|440264607",
+    "continue": "||"
+  },
+  "query": {
+    "normalized": [
+      {
+        "from": "Classical_philology",
+        "to": "Classical philology"
+      }
+    ],
+    "pages": {
+      "5703217": {
+        "pageid": 5703217,
+        "ns": 0,
+        "title": "Classical philology",
+        "revisions": [
+          {
+            "revid": 1136859482,
+            "parentid": 1033431896,
+            "user": "Qwerfjkl",
+            "timestamp": "2023-02-01T14:40:13Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Converting {{[[Template:Wikidata redirect|Wikidata redirect]]}} to {{[[Template:R with Wikidata item|R with Wikidata item]]}}. {{[[Template:Wikidata redirect|Wikidata redirect]]}} should only be used on [[WP:soft redirects|soft redirects]].",
+            "*": "#REDIRECT [[Classics#Philology]]\n\n{{R with Wikidata item}}\n\n{{Authority control}}\n\n[[Category:Latin-language literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]"
+          },
+          {
+            "revid": 1033431896,
+            "parentid": 780807799,
+            "user": "Tom.Reding",
+            "timestamp": "2021-07-13T17:07:02Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "+{{[[Template:Authority control|Authority control]]}} ([[d:Q841090|2 IDs]] from [[Wikidata]]), [[WP:GenFixes]] on",
+            "*": "#REDIRECT [[Classics#Philology]]\n\n{{Wikidata redirect}}\n\n{{Authority control}}\n\n[[Category:Latin-language literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]"
+          },
+          {
+            "revid": 780807799,
+            "parentid": 744306103,
+            "user": "RussBot",
+            "timestamp": "2017-05-17T09:10:03Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Bot: Change redirected category [[:Category:Latin literature|Latin literature]] to [[:Category:Latin-language literature|Latin-language literature]]",
+            "*": "#REDIRECT [[Classics#Philology]]\n\n{{wikidata-redirect}}\n\n[[Category:Latin-language literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]"
+          },
+          {
+            "revid": 744306103,
+            "parentid": 744306022,
+            "user": "Glovacki",
+            "timestamp": "2016-10-14T11:48:14Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Redirected page to [[Classics#Philology]]",
+            "*": "#REDIRECT [[Classics#Philology]]\n\n{{wikidata-redirect}}\n\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]"
+          },
+          {
+            "revid": 744306022,
+            "parentid": 479980830,
+            "user": "Glovacki",
+            "timestamp": "2016-10-14T11:47:50Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "REDIRECT [[Classics#Philology]]\n\n{{wikidata-redirect}}\n\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]"
+          },
+          {
+            "revid": 479980830,
+            "parentid": 467313566,
+            "user": "Dbachmann",
+            "timestamp": "2012-03-03T14:24:19Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "merged stub",
+            "*": "#REDIRECT [[Classics#Philology]]\n{{DEFAULTSORT:Classical Philology}}\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]\n\n[[cs:Klasická filologie]]\n[[da:Klassisk filologi]]\n[[de:Klassische Philologie]]\n[[et:Klassikaline filoloogia]]\n[[es:Filología clásica]]\n[[fa:فیلولوژی کلاسیک]]\n[[fr:Philologie classique]]\n[[hr:Klasična filologija]]\n[[it:Filologia classica]]\n[[no:Klassisk filologi]]\n[[nn:Klassisk filologi]]\n[[nds:Klassische Philologie]]\n[[pl:Filologia klasyczna]]\n[[pt:Filologia clássica]]\n[[ru:Классическая филология]]\n[[sl:Klasična filologija]]\n[[sh:Klasična filologija]]\n[[fi:Klassillinen filologia]]\n[[sv:Klassisk filologi]]"
+          },
+          {
+            "revid": 467313566,
+            "parentid": 460117347,
+            "user": "Pengyanan",
+            "timestamp": "2011-12-23T08:36:41Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[Franz Boll]] was moved to [[Franz Boll (philologist)]]",
+            "*": "{{For|the journal|Classical Philology (journal)}}\n{{Refimprove|date=December 2009}}\n\n'''Classical [[philology]]''' is the study of [[ancient Greek language|ancient Greek]] and [[classical Latin]]. Classical philology has been defined as \"the careful study of the literary and philosophical texts of the [[ancient Greece|ancient Greek]] and [[Ancient Rome|Roman]] worlds.\"<ref>Brian Leiter, ''Routledge Philosophy Guidebook to Nietzsche on Morality'' (Routledge, 2002), p. 36.</ref> Greek and Latin literature and civilization have traditionally been considered foundations of [[Western Culture]]. Important scholars in classical philology included Eduard Norden, [[Ulrich von Wilamowitz-Moellendorff]], [[Franz Boll (philologist)|Franz Boll]] and [[Károly Kerényi]].\n\nClassical philology was a major preoccupation of the 19th-century German education system, which became \"the paradigm for higher education\" throughout Western culture. The discipline was considered a form of ''[[Wissenschaft]]'', a \"science.\" The training in critical analysis afforded by an education in classical philology was of particular influence on [[Nietzsche]].<ref>Leiter, ''Nietzsche on Morality'', pp. 35–36 [http://books.google.com/books?id=KoiaGXtCV84C&pg=PA35&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=5&ved=0CEAQ6AEwBA#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online.]</ref>\n\n==See also==\n* [[Philology]]\n* [[:Category:Classical philologists|Classical philologists]], for the category listing individual scholars\n\n==Further reading==\n* George A. Kennedy, ''Classical Rhetoric and Its Christian and Secular Tradition from Ancient to Modern Times'' (University of North Carolina Press, 1999, 2nd edition), [http://books.google.com/books?id=LHHYx4idyPEC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n* Richard F. Thomas, \"Past and Future in Classical Philology,\" in ''On Philology'' (Pennsylvania State University Press, 1990), pp.&nbsp;66–74 [http://books.google.com/books?id=Z5LOraIe6pkC&pg=PA66&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=2&ved=0CDEQ6AEwAQ#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online]\n* ''Classics and National Cultures'' (Oxford University Press, 2010), essay collection edited by Susan A. Stephens and Phiroze Vasunia [http://books.google.com/books?id=XWJm5MTbB-QC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n\n==References==\n{{Reflist}}\n\n{{DEFAULTSORT:Classical Philology}}\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]\n\n\n{{Literature-stub}}\n{{Ancient-Greece-stub}}\n{{Ancient-Rome-stub}}\n\n[[cs:Klasická filologie]]\n[[da:Klassisk filologi]]\n[[de:Klassische Philologie]]\n[[et:Klassikaline filoloogia]]\n[[es:Filología clásica]]\n[[fa:فیلولوژی کلاسیک]]\n[[fr:Philologie classique]]\n[[hr:Klasična filologija]]\n[[it:Filologia classica]]\n[[no:Klassisk filologi]]\n[[nn:Klassisk filologi]]\n[[nds:Klassische Philologie]]\n[[pl:Filologia klasyczna]]\n[[pt:Filologia clássica]]\n[[ru:Классическая филология]]\n[[sl:Klasična filologija]]\n[[sh:Klasična filologija]]\n[[fi:Klassillinen filologia]]\n[[sv:Klassisk filologi]]"
+          },
+          {
+            "revid": 460117347,
+            "parentid": 460117345,
+            "user": "ClueBot NG",
+            "timestamp": "2011-11-11T12:09:18Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverting possible vandalism by [[Special:Contributions/89.238.148.10|89.238.148.10]] to version by Cardiffchestnut. False positive? [[User:ClueBot NG/FalsePositives|Report it]]. Thanks, [[User:ClueBot NG|ClueBot NG]]. (718680) (Bot)",
+            "*": "{{For|the journal|Classical Philology (journal)}}\n{{Refimprove|date=December 2009}}\n\n'''Classical [[philology]]''' is the study of [[ancient Greek language|ancient Greek]] and [[classical Latin]]. Classical philology has been defined as \"the careful study of the literary and philosophical texts of the [[ancient Greece|ancient Greek]] and [[Ancient Rome|Roman]] worlds.\"<ref>Brian Leiter, ''Routledge Philosophy Guidebook to Nietzsche on Morality'' (Routledge, 2002), p. 36.</ref> Greek and Latin literature and civilization have traditionally been considered foundations of [[Western Culture]]. Important scholars in classical philology included Eduard Norden, [[Ulrich von Wilamowitz-Moellendorff]], [[Franz Boll]] and [[Károly Kerényi]].\n\nClassical philology was a major preoccupation of the 19th-century German education system, which became \"the paradigm for higher education\" throughout Western culture. The discipline was considered a form of ''[[Wissenschaft]]'', a \"science.\" The training in critical analysis afforded by an education in classical philology was of particular influence on [[Nietzsche]].<ref>Leiter, ''Nietzsche on Morality'', pp. 35–36 [http://books.google.com/books?id=KoiaGXtCV84C&pg=PA35&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=5&ved=0CEAQ6AEwBA#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online.]</ref>\n\n==See also==\n* [[Philology]]\n* [[:Category:Classical philologists|Classical philologists]], for the category listing individual scholars\n\n==Further reading==\n* George A. Kennedy, ''Classical Rhetoric and Its Christian and Secular Tradition from Ancient to Modern Times'' (University of North Carolina Press, 1999, 2nd edition), [http://books.google.com/books?id=LHHYx4idyPEC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n* Richard F. Thomas, \"Past and Future in Classical Philology,\" in ''On Philology'' (Pennsylvania State University Press, 1990), pp.&nbsp;66–74 [http://books.google.com/books?id=Z5LOraIe6pkC&pg=PA66&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=2&ved=0CDEQ6AEwAQ#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online]\n* ''Classics and National Cultures'' (Oxford University Press, 2010), essay collection edited by Susan A. Stephens and Phiroze Vasunia [http://books.google.com/books?id=XWJm5MTbB-QC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n\n==References==\n{{Reflist}}\n\n{{DEFAULTSORT:Classical Philology}}\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]\n\n\n{{Literature-stub}}\n{{Ancient-Greece-stub}}\n{{Ancient-Rome-stub}}\n\n[[cs:Klasická filologie]]\n[[da:Klassisk filologi]]\n[[de:Klassische Philologie]]\n[[et:Klassikaline filoloogia]]\n[[es:Filología clásica]]\n[[fa:فیلولوژی کلاسیک]]\n[[fr:Philologie classique]]\n[[hr:Klasična filologija]]\n[[it:Filologia classica]]\n[[no:Klassisk filologi]]\n[[nn:Klassisk filologi]]\n[[nds:Klassische Philologie]]\n[[pl:Filologia klasyczna]]\n[[pt:Filologia clássica]]\n[[ru:Классическая филология]]\n[[sl:Klasična filologija]]\n[[sh:Klasična filologija]]\n[[fi:Klassillinen filologia]]\n[[sv:Klassisk filologi]]"
+          },
+          {
+            "revid": 460117345,
+            "parentid": 440267019,
+            "user": "89.238.148.10",
+            "anon": "",
+            "timestamp": "2011-11-11T12:09:16Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "/* Further reading */",
+            "*": "{{For|the journal|Classical Philology (journal)}}\n{{Refimprove|date=December 2009}}\n\n'''Classical [[philology]]''' is the study of [[ancient Greek language|ancient Greek]] and [[classical Latin]]. Classical philology has been defined as \"the careful study of the literary and philosophical texts of the [[ancient Greece|ancient Greek]] and [[Ancient Rome|Roman]] worlds.\"<ref>Brian Leiter, ''Routledge Philosophy Guidebook to Nietzsche on Morality'' (Routledge, 2002), p. 36.</ref> Greek and Latin literature and civilization have traditionally been considered foundations of [[Western Culture]]. Important scholars in classical philology included Eduard Norden, [[Ulrich von Wilamowitz-Moellendorff]], [[Franz Boll]] and [[Károly Kerényi]].\n\nClassical philology was a major preoccupation of the 19th-century German education system, which became \"the paradigm for higher education\" throughout Western culture. The discipline was considered a form of ''[[Wissenschaft]]'', a \"science.\" The training in critical analysis afforded by an education in classical philology was of particular influence on [[Nietzsche]].<ref>Leiter, ''Nietzsche on Morality'', pp. 35–36 [http://books.google.com/books?id=KoiaGXtCV84C&pg=PA35&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=5&ved=0CEAQ6AEwBA#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online.]</ref>\n\n==See also==\n* [[Philology]]\n* [[:Category:Classical philologists|Classical philologists]], for the category listing individual scholars\n\n==Further reading==\n* George A. Kennedy, OLI KIRK LOVES WILLY ''Classical Rhetoric and Its Christian and Secular Tradition from Ancient to Modern Times'' (University of North Carolina Press, 1999, 2nd edition), [http://books.google.com/books?id=LHHYx4idyPEC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n* Richard F. Thomas, \"Past and Future in Classical Philology,\" in ''On Philology'' (Pennsylvania State University Press, 1990), pp.&nbsp;66–74 [http://books.google.com/books?id=Z5LOraIe6pkC&pg=PA66&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=2&ved=0CDEQ6AEwAQ#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online]\n* ''Classics and National Cultures'' (Oxford University Press, 2010), essay collection edited by Susan A. Stephens and Phiroze Vasunia [http://books.google.com/books?id=XWJm5MTbB-QC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n\n==References==\n{{Reflist}}\n\n{{DEFAULTSORT:Classical Philology}}\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]\n\n\n{{Literature-stub}}\n{{Ancient-Greece-stub}}\n{{Ancient-Rome-stub}}\n\n[[cs:Klasická filologie]]\n[[da:Klassisk filologi]]\n[[de:Klassische Philologie]]\n[[et:Klassikaline filoloogia]]\n[[es:Filología clásica]]\n[[fa:فیلولوژی کلاسیک]]\n[[fr:Philologie classique]]\n[[hr:Klasična filologija]]\n[[it:Filologia classica]]\n[[no:Klassisk filologi]]\n[[nn:Klassisk filologi]]\n[[nds:Klassische Philologie]]\n[[pl:Filologia klasyczna]]\n[[pt:Filologia clássica]]\n[[ru:Классическая филология]]\n[[sl:Klasična filologija]]\n[[sh:Klasična filologija]]\n[[fi:Klassillinen filologia]]\n[[sv:Klassisk filologi]]"
+          },
+          {
+            "revid": 440267019,
+            "parentid": 440264607,
+            "user": "Davidiad",
+            "timestamp": "2011-07-19T07:25:58Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "unnecessary hedge",
+            "*": "{{For|the journal|Classical Philology (journal)}}\n{{Refimprove|date=December 2009}}\n\n'''Classical [[philology]]''' is the study of [[ancient Greek language|ancient Greek]] and [[classical Latin]]. Classical philology has been defined as \"the careful study of the literary and philosophical texts of the [[ancient Greece|ancient Greek]] and [[Ancient Rome|Roman]] worlds.\"<ref>Brian Leiter, ''Routledge Philosophy Guidebook to Nietzsche on Morality'' (Routledge, 2002), p. 36.</ref> Greek and Latin literature and civilization have traditionally been considered foundations of [[Western Culture]]. Important scholars in classical philology included Eduard Norden, [[Ulrich von Wilamowitz-Moellendorff]], [[Franz Boll]] and [[Károly Kerényi]].\n\nClassical philology was a major preoccupation of the 19th-century German education system, which became \"the paradigm for higher education\" throughout Western culture. The discipline was considered a form of ''[[Wissenschaft]]'', a \"science.\" The training in critical analysis afforded by an education in classical philology was of particular influence on [[Nietzsche]].<ref>Leiter, ''Nietzsche on Morality'', pp. 35–36 [http://books.google.com/books?id=KoiaGXtCV84C&pg=PA35&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=5&ved=0CEAQ6AEwBA#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online.]</ref>\n\n==See also==\n* [[Philology]]\n* [[:Category:Classical philologists|Classical philologists]], for the category listing individual scholars\n\n==Further reading==\n* George A. Kennedy, ''Classical Rhetoric and Its Christian and Secular Tradition from Ancient to Modern Times'' (University of North Carolina Press, 1999, 2nd edition), [http://books.google.com/books?id=LHHYx4idyPEC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n* Richard F. Thomas, \"Past and Future in Classical Philology,\" in ''On Philology'' (Pennsylvania State University Press, 1990), pp.&nbsp;66–74 [http://books.google.com/books?id=Z5LOraIe6pkC&pg=PA66&dq=%22classical+philology%22+-intitle:%22classical+philology%22&hl=en&ei=bWI_TN-gB8TYnAfg28HcBA&sa=X&oi=book_result&ct=result&resnum=2&ved=0CDEQ6AEwAQ#v=onepage&q=%22classical%20philology%22%20-intitle%3A%22classical%20philology%22&f=false online]\n* ''Classics and National Cultures'' (Oxford University Press, 2010), essay collection edited by Susan A. Stephens and Phiroze Vasunia [http://books.google.com/books?id=XWJm5MTbB-QC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false preview online]\n\n==References==\n{{Reflist}}\n\n{{DEFAULTSORT:Classical Philology}}\n[[Category:Latin literature]]\n[[Category:Ancient Greek literature|*]]\n[[Category:Philology|*]]\n[[Category:Classical philology| ]]\n\n\n{{Literature-stub}}\n{{Ancient-Greece-stub}}\n{{Ancient-Rome-stub}}\n\n[[cs:Klasická filologie]]\n[[da:Klassisk filologi]]\n[[de:Klassische Philologie]]\n[[et:Klassikaline filoloogia]]\n[[es:Filología clásica]]\n[[fa:فیلولوژی کلاسیک]]\n[[fr:Philologie classique]]\n[[hr:Klasična filologija]]\n[[it:Filologia classica]]\n[[no:Klassisk filologi]]\n[[nn:Klassisk filologi]]\n[[nds:Klassische Philologie]]\n[[pl:Filologia klasyczna]]\n[[pt:Filologia clássica]]\n[[ru:Классическая филология]]\n[[sl:Klasična filologija]]\n[[sh:Klasična filologija]]\n[[fi:Klassillinen filologia]]\n[[sv:Klassisk filologi]]"
+          }
+        ]
+      }
+    }
+  }
+}

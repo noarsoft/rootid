@@ -1,41 +1,45 @@
 services:
-  postgres:
-    image: postgres:16-alpine
+  bench-postgres:
+    image: postgres:18-alpine
     restart: unless-stopped
+    ports:
+      - "5434:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: rootid
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: benchmark
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - bench_pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 3s
       retries: 5
 
-  backend:
+  bench-mongo:
+    image: mongo:8
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - bench_mongodata:/data/db
+
+  benchmark-app:
     build: .
     restart: unless-stopped
     ports:
-      - "3002:3002"
+      - "3003:3003"
     environment:
-      PORT: 3002
-      DATABASE_URL: "postgresql://postgres:1234@postgres:5432/rootid?schema=public"
-      ALLOWED_ORIGINS: "http://localhost:3000,http://localhost:5173,http://localhost:4173"
+      - BENCH_PORT=3003
+      - PG_URL=postgresql://postgres:1234@bench-postgres:5432/benchmark
+      - MONGO_URL=mongodb://bench-mongo:27017
     depends_on:
-      postgres:
+      bench-postgres:
         condition: service_healthy
-
-  frontend:
-    build: ../cakecontrol
-    restart: unless-stopped
-    ports:
-      - "5173:5173"
-    depends_on:
-      - backend
+      bench-mongo:
+        condition: service_started
 
 volumes:
-  pgdata:
+  bench_pgdata:
+  bench_mongodata:

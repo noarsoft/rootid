@@ -1,0 +1,40 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "normalized": [
+      {
+        "from": "Sexuality_studies",
+        "to": "Sexuality studies"
+      }
+    ],
+    "pages": {
+      "39214326": {
+        "pageid": 39214326,
+        "ns": 0,
+        "title": "Sexuality studies",
+        "revisions": [
+          {
+            "revid": 552105551,
+            "parentid": 552097120,
+            "user": "AvicBot",
+            "timestamp": "2013-04-25T11:32:20Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Robot: Fixing double redirect to [[Gender studies]]",
+            "*": "#REDIRECT [[Gender studies]]"
+          },
+          {
+            "revid": 552097120,
+            "parentid": 0,
+            "user": "Nicole Sharp",
+            "timestamp": "2013-04-25T10:01:37Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Redirected page to [[Gender and sexuality studies]]",
+            "*": "#REDIRECT [[gender and sexuality studies]]"
+          }
+        ]
+      }
+    }
+  }
+}

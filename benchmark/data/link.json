@@ -1,0 +1,2292 @@
+[
+    {
+        "type": "plant",
+        "from": [
+            {
+                "name": "Rosa",
+                "raw": "https://en.wikipedia.org/wiki/Rosa",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Rosa&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mangifera",
+                "raw": "https://en.wikipedia.org/wiki/Mangifera",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mangifera&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ficus",
+                "raw": "https://en.wikipedia.org/wiki/Ficus",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ficus&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Arabidopsis_thaliana",
+                "raw": "https://en.wikipedia.org/wiki/Arabidopsis_thaliana",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Arabidopsis_thaliana&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Oryza_sativa",
+                "raw": "https://en.wikipedia.org/wiki/Oryza_sativa",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Oryza_sativa&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Photosynthesis",
+                "raw": "https://en.wikipedia.org/wiki/Photosynthesis",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Photosynthesis&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "insect",
+        "from": [
+            {
+                "name": "Apis_(genus)",
+                "raw": "https://en.wikipedia.org/wiki/Apis_(genus)",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Apis_(genus)&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Formica",
+                "raw": "https://en.wikipedia.org/wiki/Formica",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Formica&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Drosophila",
+                "raw": "https://en.wikipedia.org/wiki/Drosophila",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Drosophila&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Lepidoptera",
+                "raw": "https://en.wikipedia.org/wiki/Lepidoptera",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Lepidoptera&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Diptera",
+                "raw": "https://en.wikipedia.org/wiki/Diptera",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Diptera&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "university_research",
+        "from": [
+            {
+                "name": "Chiang_Mai_University",
+                "raw": "https://en.wikipedia.org/wiki/Chiang_Mai_University",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Chiang_Mai_University&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Chulalongkorn_University",
+                "raw": "https://en.wikipedia.org/wiki/Chulalongkorn_University",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Chulalongkorn_University&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Kasetsart_University",
+                "raw": "https://en.wikipedia.org/wiki/Kasetsart_University",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Kasetsart_University&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Research_university",
+                "raw": "https://en.wikipedia.org/wiki/Research_university",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Research_university&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Open_access",
+                "raw": "https://en.wikipedia.org/wiki/Open_access",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Open_access&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Scientific_method",
+                "raw": "https://en.wikipedia.org/wiki/Scientific_method",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Scientific_method&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "computer_science_research",
+        "from": [
+            {
+                "name": "Artificial_intelligence",
+                "raw": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Artificial_intelligence&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Machine_learning",
+                "raw": "https://en.wikipedia.org/wiki/Machine_learning",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Machine_learning&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Data_mining",
+                "raw": "https://en.wikipedia.org/wiki/Data_mining",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Data_mining&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Neural_network",
+                "raw": "https://en.wikipedia.org/wiki/Neural_network",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Neural_network&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Deep_learning",
+                "raw": "https://en.wikipedia.org/wiki/Deep_learning",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Deep_learning&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Information_retrieval",
+                "raw": "https://en.wikipedia.org/wiki/Information_retrieval",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Information_retrieval&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Natural_language_processing",
+                "raw": "https://en.wikipedia.org/wiki/Natural_language_processing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Natural_language_processing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Knowledge_graph",
+                "raw": "https://en.wikipedia.org/wiki/Knowledge_graph",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Knowledge_graph&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "earth_and_environment",
+        "from": [
+            {
+                "name": "Climate_change",
+                "raw": "https://en.wikipedia.org/wiki/Climate_change",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Climate_change&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ecosystem",
+                "raw": "https://en.wikipedia.org/wiki/Ecosystem",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ecosystem&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Biodiversity",
+                "raw": "https://en.wikipedia.org/wiki/Biodiversity",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biodiversity&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Carbon_cycle",
+                "raw": "https://en.wikipedia.org/wiki/Carbon_cycle",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Carbon_cycle&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Hydrology",
+                "raw": "https://en.wikipedia.org/wiki/Hydrology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Hydrology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Earth_system_science",
+                "raw": "https://en.wikipedia.org/wiki/Earth_system_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Earth_system_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Soil_science",
+                "raw": "https://en.wikipedia.org/wiki/Soil_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Soil_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Oceanography",
+                "raw": "https://en.wikipedia.org/wiki/Oceanography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Oceanography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Atmospheric_science",
+                "raw": "https://en.wikipedia.org/wiki/Atmospheric_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Atmospheric_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Biogeochemical_cycle",
+                "raw": "https://en.wikipedia.org/wiki/Biogeochemical_cycle",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biogeochemical_cycle&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sustainability",
+                "raw": "https://en.wikipedia.org/wiki/Sustainability",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sustainability&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "physics",
+        "from": [
+            {
+                "name": "Physics",
+                "raw": "https://en.wikipedia.org/wiki/Physics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Physics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Quantum_mechanics",
+                "raw": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Quantum_mechanics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Relativity",
+                "raw": "https://en.wikipedia.org/wiki/Relativity",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Relativity&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Thermodynamics",
+                "raw": "https://en.wikipedia.org/wiki/Thermodynamics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Thermodynamics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Electromagnetism",
+                "raw": "https://en.wikipedia.org/wiki/Electromagnetism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Electromagnetism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Optics",
+                "raw": "https://en.wikipedia.org/wiki/Optics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Optics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Condensed_matter_physics",
+                "raw": "https://en.wikipedia.org/wiki/Condensed_matter_physics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Condensed_matter_physics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Particle_physics",
+                "raw": "https://en.wikipedia.org/wiki/Particle_physics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Particle_physics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Nuclear_physics",
+                "raw": "https://en.wikipedia.org/wiki/Nuclear_physics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nuclear_physics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "chemistry",
+        "from": [
+            {
+                "name": "Chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Organic_chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Organic_chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Organic_chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Inorganic_chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Inorganic_chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Inorganic_chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Physical_chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Physical_chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Physical_chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Biochemistry",
+                "raw": "https://en.wikipedia.org/wiki/Biochemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biochemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Analytical_chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Analytical_chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Analytical_chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Chemical_kinetics",
+                "raw": "https://en.wikipedia.org/wiki/Chemical_kinetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Chemical_kinetics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Thermochemistry",
+                "raw": "https://en.wikipedia.org/wiki/Thermochemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Thermochemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Green_chemistry",
+                "raw": "https://en.wikipedia.org/wiki/Green_chemistry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Green_chemistry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "mathematics",
+        "from": [
+            {
+                "name": "Mathematics",
+                "raw": "https://en.wikipedia.org/wiki/Mathematics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mathematics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Algebra",
+                "raw": "https://en.wikipedia.org/wiki/Algebra",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Algebra&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Calculus",
+                "raw": "https://en.wikipedia.org/wiki/Calculus",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Calculus&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Linear_algebra",
+                "raw": "https://en.wikipedia.org/wiki/Linear_algebra",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Linear_algebra&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Probability_theory",
+                "raw": "https://en.wikipedia.org/wiki/Probability_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Probability_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Statistics",
+                "raw": "https://en.wikipedia.org/wiki/Statistics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Statistics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Graph_theory",
+                "raw": "https://en.wikipedia.org/wiki/Graph_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Graph_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Number_theory",
+                "raw": "https://en.wikipedia.org/wiki/Number_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Number_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Topology",
+                "raw": "https://en.wikipedia.org/wiki/Topology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Topology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "astronomy",
+        "from": [
+            {
+                "name": "Astronomy",
+                "raw": "https://en.wikipedia.org/wiki/Astronomy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Astronomy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Astrophysics",
+                "raw": "https://en.wikipedia.org/wiki/Astrophysics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Astrophysics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cosmology",
+                "raw": "https://en.wikipedia.org/wiki/Cosmology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cosmology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Galaxy",
+                "raw": "https://en.wikipedia.org/wiki/Galaxy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Galaxy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Star_formation",
+                "raw": "https://en.wikipedia.org/wiki/Star_formation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Star_formation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Exoplanet",
+                "raw": "https://en.wikipedia.org/wiki/Exoplanet",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Exoplanet&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Black_hole",
+                "raw": "https://en.wikipedia.org/wiki/Black_hole",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Black_hole&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Dark_matter",
+                "raw": "https://en.wikipedia.org/wiki/Dark_matter",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Dark_matter&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Dark_energy",
+                "raw": "https://en.wikipedia.org/wiki/Dark_energy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Dark_energy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "geology",
+        "from": [
+            {
+                "name": "Geology",
+                "raw": "https://en.wikipedia.org/wiki/Geology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Geology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Plate_tectonics",
+                "raw": "https://en.wikipedia.org/wiki/Plate_tectonics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Plate_tectonics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Volcanology",
+                "raw": "https://en.wikipedia.org/wiki/Volcanology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Volcanology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Seismology",
+                "raw": "https://en.wikipedia.org/wiki/Seismology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Seismology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sedimentology",
+                "raw": "https://en.wikipedia.org/wiki/Sedimentology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sedimentology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mineralogy",
+                "raw": "https://en.wikipedia.org/wiki/Mineralogy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mineralogy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Petrology",
+                "raw": "https://en.wikipedia.org/wiki/Petrology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Petrology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Geomorphology",
+                "raw": "https://en.wikipedia.org/wiki/Geomorphology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Geomorphology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Stratigraphy",
+                "raw": "https://en.wikipedia.org/wiki/Stratigraphy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Stratigraphy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "medicine_and_health_science",
+        "from": [
+            {
+                "name": "Medicine",
+                "raw": "https://en.wikipedia.org/wiki/Medicine",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Medicine&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Public_health",
+                "raw": "https://en.wikipedia.org/wiki/Public_health",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Public_health&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Epidemiology",
+                "raw": "https://en.wikipedia.org/wiki/Epidemiology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Epidemiology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Pathology",
+                "raw": "https://en.wikipedia.org/wiki/Pathology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Pathology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Immunology",
+                "raw": "https://en.wikipedia.org/wiki/Immunology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Immunology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Pharmacology",
+                "raw": "https://en.wikipedia.org/wiki/Pharmacology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Pharmacology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Medical_imaging",
+                "raw": "https://en.wikipedia.org/wiki/Medical_imaging",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Medical_imaging&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Clinical_research",
+                "raw": "https://en.wikipedia.org/wiki/Clinical_research",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Clinical_research&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "economics_and_business",
+        "from": [
+            {
+                "name": "Economics",
+                "raw": "https://en.wikipedia.org/wiki/Economics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Economics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Microeconomics",
+                "raw": "https://en.wikipedia.org/wiki/Microeconomics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Microeconomics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Macroeconomics",
+                "raw": "https://en.wikipedia.org/wiki/Macroeconomics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Macroeconomics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Behavioral_economics",
+                "raw": "https://en.wikipedia.org/wiki/Behavioral_economics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Behavioral_economics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Econometrics",
+                "raw": "https://en.wikipedia.org/wiki/Econometrics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Econometrics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "International_trade",
+                "raw": "https://en.wikipedia.org/wiki/International_trade",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=International_trade&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Market_economy",
+                "raw": "https://en.wikipedia.org/wiki/Market_economy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Market_economy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sustainable_development",
+                "raw": "https://en.wikipedia.org/wiki/Sustainable_development",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sustainable_development&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "sociology_and_social_science",
+        "from": [
+            {
+                "name": "Sociology",
+                "raw": "https://en.wikipedia.org/wiki/Sociology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sociology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Social_research",
+                "raw": "https://en.wikipedia.org/wiki/Social_research",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_research&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Demography",
+                "raw": "https://en.wikipedia.org/wiki/Demography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Demography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Urban_studies",
+                "raw": "https://en.wikipedia.org/wiki/Urban_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Urban_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Rural_sociology",
+                "raw": "https://en.wikipedia.org/wiki/Rural_sociology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Rural_sociology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Social_network_analysis",
+                "raw": "https://en.wikipedia.org/wiki/Social_network_analysis",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_network_analysis&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cultural_anthropology",
+                "raw": "https://en.wikipedia.org/wiki/Cultural_anthropology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cultural_anthropology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Human_geography",
+                "raw": "https://en.wikipedia.org/wiki/Human_geography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Human_geography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "information_and_library_science",
+        "from": [
+            {
+                "name": "Library_science",
+                "raw": "https://en.wikipedia.org/wiki/Library_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Library_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Information_science",
+                "raw": "https://en.wikipedia.org/wiki/Information_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Information_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Digital_library",
+                "raw": "https://en.wikipedia.org/wiki/Digital_library",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Digital_library&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Metadata",
+                "raw": "https://en.wikipedia.org/wiki/Metadata",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Metadata&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ontology_(information_science)",
+                "raw": "https://en.wikipedia.org/wiki/Ontology_(information_science)",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ontology_(information_science)&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Controlled_vocabulary",
+                "raw": "https://en.wikipedia.org/wiki/Controlled_vocabulary",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Controlled_vocabulary&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Digital_preservation",
+                "raw": "https://en.wikipedia.org/wiki/Digital_preservation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Digital_preservation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Information_architecture",
+                "raw": "https://en.wikipedia.org/wiki/Information_architecture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Information_architecture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "energy_and_resources",
+        "from": [
+            {
+                "name": "Energy",
+                "raw": "https://en.wikipedia.org/wiki/Energy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Energy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Renewable_energy",
+                "raw": "https://en.wikipedia.org/wiki/Renewable_energy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Renewable_energy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Solar_power",
+                "raw": "https://en.wikipedia.org/wiki/Solar_power",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Solar_power&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Wind_power",
+                "raw": "https://en.wikipedia.org/wiki/Wind_power",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Wind_power&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Hydroelectricity",
+                "raw": "https://en.wikipedia.org/wiki/Hydroelectricity",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Hydroelectricity&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Energy_storage",
+                "raw": "https://en.wikipedia.org/wiki/Energy_storage",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Energy_storage&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Smart_grid",
+                "raw": "https://en.wikipedia.org/wiki/Smart_grid",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Smart_grid&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "history",
+        "from": [
+            {
+                "name": "Ancient_history",
+                "raw": "https://en.wikipedia.org/wiki/Ancient_history",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ancient_history&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Feudalism",
+                "raw": "https://en.wikipedia.org/wiki/Feudalism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Feudalism&rvslots=main&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Industrial_Revolution",
+                "raw": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Industrial_Revolution&rvslots=main&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cold_War",
+                "raw": "https://en.wikipedia.org/wiki/Cold_War",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cold_War&rvslots=main&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Historiography",
+                "raw": "https://en.wikipedia.org/wiki/Historiography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Historiography&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "philosophy",
+        "from": [
+            {
+                "name": "Philosophy",
+                "raw": "https://en.wikipedia.org/wiki/Philosophy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Philosophy&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Epistemology",
+                "raw": "https://en.wikipedia.org/wiki/Epistemology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Epistemology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Metaphysics",
+                "raw": "https://en.wikipedia.org/wiki/Metaphysics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Metaphysics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ethics",
+                "raw": "https://en.wikipedia.org/wiki/Ethics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ethics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Logic",
+                "raw": "https://en.wikipedia.org/wiki/Logic",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Logic&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "linguistics",
+        "from": [
+            {
+                "name": "Linguistics",
+                "raw": "https://en.wikipedia.org/wiki/Linguistics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Linguistics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Phonetics",
+                "raw": "https://en.wikipedia.org/wiki/Phonetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Phonetics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Syntax",
+                "raw": "https://en.wikipedia.org/wiki/Syntax",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Syntax&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Semantics",
+                "raw": "https://en.wikipedia.org/wiki/Semantics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Semantics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Pragmatics",
+                "raw": "https://en.wikipedia.org/wiki/Pragmatics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Pragmatics&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "education_science",
+        "from": [
+            {
+                "name": "Education_science",
+                "raw": "https://en.wikipedia.org/wiki/Education_sciences",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Education_sciences&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Curriculum",
+                "raw": "https://en.wikipedia.org/wiki/Curriculum",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Curriculum&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Pedagogy",
+                "raw": "https://en.wikipedia.org/wiki/Pedagogy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Pedagogy&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Educational_psychology",
+                "raw": "https://en.wikipedia.org/wiki/Educational_psychology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Educational_psychology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Instructional_design",
+                "raw": "https://en.wikipedia.org/wiki/Instructional_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Instructional_design&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "law_and_legal_studies",
+        "from": [
+            {
+                "name": "Law",
+                "raw": "https://en.wikipedia.org/wiki/Law",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Law&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "International_law",
+                "raw": "https://en.wikipedia.org/wiki/International_law",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=International_law&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Constitutional_law",
+                "raw": "https://en.wikipedia.org/wiki/Constitutional_law",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Constitutional_law&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Criminal_law",
+                "raw": "https://en.wikipedia.org/wiki/Criminal_law",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Criminal_law&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Legal_research",
+                "raw": "https://en.wikipedia.org/wiki/Legal_research",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Legal_research&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "psychology",
+        "from": [
+            {
+                "name": "Psychology",
+                "raw": "https://en.wikipedia.org/wiki/Psychology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Psychology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cognitive_psychology",
+                "raw": "https://en.wikipedia.org/wiki/Cognitive_psychology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cognitive_psychology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Behavioral_psychology",
+                "raw": "https://en.wikipedia.org/wiki/Behaviorism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Behaviorism&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Developmental_psychology",
+                "raw": "https://en.wikipedia.org/wiki/Developmental_psychology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Developmental_psychology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Social_psychology",
+                "raw": "https://en.wikipedia.org/wiki/Social_psychology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_psychology&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "neuroscience",
+        "from": [
+            {
+                "name": "Neuroscience",
+                "raw": "https://en.wikipedia.org/wiki/Neuroscience",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Neuroscience&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Neuroplasticity",
+                "raw": "https://en.wikipedia.org/wiki/Neuroplasticity",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Neuroplasticity&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Neuroimaging",
+                "raw": "https://en.wikipedia.org/wiki/Neuroimaging",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Neuroimaging&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Synapse",
+                "raw": "https://en.wikipedia.org/wiki/Synapse",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Synapse&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Neural_network",
+                "raw": "https://en.wikipedia.org/wiki/Neural_network",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Neural_network&rvslots=main&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "engineering",
+        "from": [
+            {
+                "name": "Civil_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Civil_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Civil_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mechanical_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Mechanical_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mechanical_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Electrical_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Electrical_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Electrical_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Chemical_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Chemical_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Chemical_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Aerospace_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Aerospace_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Aerospace_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Robotics",
+                "raw": "https://en.wikipedia.org/wiki/Robotics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Robotics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Materials_science",
+                "raw": "https://en.wikipedia.org/wiki/Materials_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Materials_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "architecture",
+        "from": [
+            {
+                "name": "Architecture",
+                "raw": "https://en.wikipedia.org/wiki/Architecture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Architecture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Urban_planning",
+                "raw": "https://en.wikipedia.org/wiki/Urban_planning",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Urban_planning&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Landscape_architecture",
+                "raw": "https://en.wikipedia.org/wiki/Landscape_architecture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Landscape_architecture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sustainable_architecture",
+                "raw": "https://en.wikipedia.org/wiki/Sustainable_architecture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sustainable_architecture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Interior_design",
+                "raw": "https://en.wikipedia.org/wiki/Interior_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Interior_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Brutalist_architecture",
+                "raw": "https://en.wikipedia.org/wiki/Brutalist_architecture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Brutalist_architecture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "political_science",
+        "from": [
+            {
+                "name": "Political_science",
+                "raw": "https://en.wikipedia.org/wiki/Political_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Political_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "International_relations",
+                "raw": "https://en.wikipedia.org/wiki/International_relations",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=International_relations&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Public_policy",
+                "raw": "https://en.wikipedia.org/wiki/Public_policy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Public_policy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Democracy",
+                "raw": "https://en.wikipedia.org/wiki/Democracy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Democracy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Geopolitics",
+                "raw": "https://en.wikipedia.org/wiki/Geopolitics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Geopolitics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Public_administration",
+                "raw": "https://en.wikipedia.org/wiki/Public_administration",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Public_administration&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "anthropology_and_archaeology",
+        "from": [
+            {
+                "name": "Anthropology",
+                "raw": "https://en.wikipedia.org/wiki/Anthropology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Anthropology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Archaeology",
+                "raw": "https://en.wikipedia.org/wiki/Archaeology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Archaeology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ethnography",
+                "raw": "https://en.wikipedia.org/wiki/Ethnography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ethnography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Biological_anthropology",
+                "raw": "https://en.wikipedia.org/wiki/Biological_anthropology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biological_anthropology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Human_evolution",
+                "raw": "https://en.wikipedia.org/wiki/Human_evolution",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Human_evolution&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Forensic_anthropology",
+                "raw": "https://en.wikipedia.org/wiki/Forensic_anthropology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Forensic_anthropology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "musicology_and_theory",
+        "from": [
+            {
+                "name": "Musicology",
+                "raw": "https://en.wikipedia.org/wiki/Musicology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Musicology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Music_theory",
+                "raw": "https://en.wikipedia.org/wiki/Music_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Music_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ethnomusicology",
+                "raw": "https://en.wikipedia.org/wiki/Ethnomusicology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ethnomusicology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Harmony",
+                "raw": "https://en.wikipedia.org/wiki/Harmony",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Harmony&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Acoustics",
+                "raw": "https://en.wikipedia.org/wiki/Acoustics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Acoustics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Organology",
+                "raw": "https://en.wikipedia.org/wiki/Organology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Organology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "art_history",
+        "from": [
+            {
+                "name": "Art_history",
+                "raw": "https://en.wikipedia.org/wiki/Art_history",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Art_history&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Visual_arts",
+                "raw": "https://en.wikipedia.org/wiki/Visual_arts",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Visual_arts&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Contemporary_art",
+                "raw": "https://en.wikipedia.org/wiki/Contemporary_art",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Contemporary_art&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Renaissance_art",
+                "raw": "https://en.wikipedia.org/wiki/Renaissance_art",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Renaissance_art&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Aesthetics",
+                "raw": "https://en.wikipedia.org/wiki/Aesthetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Aesthetics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Iconography",
+                "raw": "https://en.wikipedia.org/wiki/Iconography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Iconography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "media_and_communication",
+        "from": [
+            {
+                "name": "Media_studies",
+                "raw": "https://en.wikipedia.org/wiki/Media_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Media_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Journalism",
+                "raw": "https://en.wikipedia.org/wiki/Journalism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Journalism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mass_communication",
+                "raw": "https://en.wikipedia.org/wiki/Mass_communication",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mass_communication&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Digital_media",
+                "raw": "https://en.wikipedia.org/wiki/Digital_media",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Digital_media&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Public_relations",
+                "raw": "https://en.wikipedia.org/wiki/Public_relations",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Public_relations&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Telecommunication",
+                "raw": "https://en.wikipedia.org/wiki/Telecommunication",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Telecommunication&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "agricultural_science",
+        "from": [
+            {
+                "name": "Agronomy",
+                "raw": "https://en.wikipedia.org/wiki/Agronomy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Agronomy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Horticulture",
+                "raw": "https://en.wikipedia.org/wiki/Horticulture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Horticulture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Plant_pathology",
+                "raw": "https://en.wikipedia.org/wiki/Plant_pathology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Plant_pathology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Agroecology",
+                "raw": "https://en.wikipedia.org/wiki/Agroecology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Agroecology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Aquaculture",
+                "raw": "https://en.wikipedia.org/wiki/Aquaculture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Aquaculture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Agricultural_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Agricultural_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Agricultural_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "literature",
+        "from": [
+            {
+                "name": "Literature",
+                "raw": "https://en.wikipedia.org/wiki/Literature",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Literature&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Poetry",
+                "raw": "https://en.wikipedia.org/wiki/Poetry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Poetry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Novel",
+                "raw": "https://en.wikipedia.org/wiki/Novel",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Novel&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Drama",
+                "raw": "https://en.wikipedia.org/wiki/Drama",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Drama&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Literary_theory",
+                "raw": "https://en.wikipedia.org/wiki/Literary_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Literary_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Creative_writing",
+                "raw": "https://en.wikipedia.org/wiki/Creative_writing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Creative_writing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "World_literature",
+                "raw": "https://en.wikipedia.org/wiki/World_literature",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=World_literature&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "film_studies",
+        "from": [
+            {
+                "name": "Film_studies",
+                "raw": "https://en.wikipedia.org/wiki/Film_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Film_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Film_theory",
+                "raw": "https://en.wikipedia.org/wiki/Film_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Film_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cinematography",
+                "raw": "https://en.wikipedia.org/wiki/Cinematography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cinematography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Screenwriting",
+                "raw": "https://en.wikipedia.org/wiki/Screenwriting",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Screenwriting&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Documentary_film",
+                "raw": "https://en.wikipedia.org/wiki/Documentary_film",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Documentary_film&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Animation",
+                "raw": "https://en.wikipedia.org/wiki/Animation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Animation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Film_criticism",
+                "raw": "https://en.wikipedia.org/wiki/Film_criticism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Film_criticism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "performing_arts",
+        "from": [
+            {
+                "name": "Performing_arts",
+                "raw": "https://en.wikipedia.org/wiki/Performing_arts",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Performing_arts&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Theatre",
+                "raw": "https://en.wikipedia.org/wiki/Theatre",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Theatre&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Dance",
+                "raw": "https://en.wikipedia.org/wiki/Dance",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Dance&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Opera",
+                "raw": "https://en.wikipedia.org/wiki/Opera",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Opera&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Circus",
+                "raw": "https://en.wikipedia.org/wiki/Circus",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Circus&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Magic_(illusion)",
+                "raw": "https://en.wikipedia.org/wiki/Magic_(illusion)",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Magic_(illusion)&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Puppetry",
+                "raw": "https://en.wikipedia.org/wiki/Puppetry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Puppetry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "religious_studies",
+        "from": [
+            {
+                "name": "Religious_studies",
+                "raw": "https://en.wikipedia.org/wiki/Religious_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Religious_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Theology",
+                "raw": "https://en.wikipedia.org/wiki/Theology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Theology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Comparative_religion",
+                "raw": "https://en.wikipedia.org/wiki/Comparative_religion",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Comparative_religion&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mythology",
+                "raw": "https://en.wikipedia.org/wiki/Mythology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mythology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mysticism",
+                "raw": "https://en.wikipedia.org/wiki/Mysticism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mysticism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Secularism",
+                "raw": "https://en.wikipedia.org/wiki/Secularism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Secularism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Esotericism",
+                "raw": "https://en.wikipedia.org/wiki/Esotericism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Esotericism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "military_science",
+        "from": [
+            {
+                "name": "Military_science",
+                "raw": "https://en.wikipedia.org/wiki/Military_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Military_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Military_strategy",
+                "raw": "https://en.wikipedia.org/wiki/Military_strategy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Military_strategy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Military_tactics",
+                "raw": "https://en.wikipedia.org/wiki/Military_tactics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Military_tactics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Logistics",
+                "raw": "https://en.wikipedia.org/wiki/Logistics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Logistics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Naval_warfare",
+                "raw": "https://en.wikipedia.org/wiki/Naval_warfare",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Naval_warfare&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Air_warfare",
+                "raw": "https://en.wikipedia.org/wiki/Air_warfare",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Air_warfare&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cyberwarfare",
+                "raw": "https://en.wikipedia.org/wiki/Cyberwarfare",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cyberwarfare&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "food_science",
+        "from": [
+            {
+                "name": "Food_science",
+                "raw": "https://en.wikipedia.org/wiki/Food_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Food_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Nutrition",
+                "raw": "https://en.wikipedia.org/wiki/Nutrition",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nutrition&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Food_technology",
+                "raw": "https://en.wikipedia.org/wiki/Food_technology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Food_technology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Gastronomy",
+                "raw": "https://en.wikipedia.org/wiki/Gastronomy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gastronomy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Food_safety",
+                "raw": "https://en.wikipedia.org/wiki/Food_safety",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Food_safety&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sensory_analysis",
+                "raw": "https://en.wikipedia.org/wiki/Sensory_analysis",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sensory_analysis&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Fermentation",
+                "raw": "https://en.wikipedia.org/wiki/Fermentation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Fermentation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "transportation",
+        "from": [
+            {
+                "name": "Transport",
+                "raw": "https://en.wikipedia.org/wiki/Transport",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Transport&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Public_transport",
+                "raw": "https://en.wikipedia.org/wiki/Public_transport",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Public_transport&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Aviation",
+                "raw": "https://en.wikipedia.org/wiki/Aviation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Aviation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Maritime_transport",
+                "raw": "https://en.wikipedia.org/wiki/Maritime_transport",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Maritime_transport&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Rail_transport",
+                "raw": "https://en.wikipedia.org/wiki/Rail_transport",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Rail_transport&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Supply_chain_management",
+                "raw": "https://en.wikipedia.org/wiki/Supply_chain_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Supply_chain_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Intelligent_transportation_system",
+                "raw": "https://en.wikipedia.org/wiki/Intelligent_transportation_system",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Intelligent_transportation_system&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "tourism",
+        "from": [
+            {
+                "name": "Tourism",
+                "raw": "https://en.wikipedia.org/wiki/Tourism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Tourism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ecotourism",
+                "raw": "https://en.wikipedia.org/wiki/Ecotourism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ecotourism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Hospitality_management",
+                "raw": "https://en.wikipedia.org/wiki/Hospitality_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Hospitality_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Heritage_tourism",
+                "raw": "https://en.wikipedia.org/wiki/Heritage_tourism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Heritage_tourism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sustainable_tourism",
+                "raw": "https://en.wikipedia.org/wiki/Sustainable_tourism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sustainable_tourism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Travel_agency",
+                "raw": "https://en.wikipedia.org/wiki/Travel_agency",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Travel_agency&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Tour_guide",
+                "raw": "https://en.wikipedia.org/wiki/Tour_guide",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Tour_guide&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "gender_studies",
+        "from": [
+            {
+                "name": "Gender_studies",
+                "raw": "https://en.wikipedia.org/wiki/Gender_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gender_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Feminism",
+                "raw": "https://en.wikipedia.org/wiki/Feminism",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Feminism&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Queer_theory",
+                "raw": "https://en.wikipedia.org/wiki/Queer_theory",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Queer_theory&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Men's_studies",
+                "raw": "https://en.wikipedia.org/wiki/Men's_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Men's_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sexuality_studies",
+                "raw": "https://en.wikipedia.org/wiki/Sexuality_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sexuality_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Gender_role",
+                "raw": "https://en.wikipedia.org/wiki/Gender_role",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gender_role&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Intersectionality",
+                "raw": "https://en.wikipedia.org/wiki/Intersectionality",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Intersectionality&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "game_studies",
+        "from": [
+            {
+                "name": "Game_studies",
+                "raw": "https://en.wikipedia.org/wiki/Game_studies",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Game_studies&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ludology",
+                "raw": "https://en.wikipedia.org/wiki/Ludology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ludology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Video_game_design",
+                "raw": "https://en.wikipedia.org/wiki/Video_game_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Video_game_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Gamification",
+                "raw": "https://en.wikipedia.org/wiki/Gamification",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gamification&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Serious_game",
+                "raw": "https://en.wikipedia.org/wiki/Serious_game",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Serious_game&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Level_design",
+                "raw": "https://en.wikipedia.org/wiki/Level_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Level_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Esports",
+                "raw": "https://en.wikipedia.org/wiki/Esports",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Esports&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "veterinary_medicine",
+        "from": [
+            {
+                "name": "Veterinary_medicine",
+                "raw": "https://en.wikipedia.org/wiki/Veterinary_medicine",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Veterinary_medicine&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Animal_husbandry",
+                "raw": "https://en.wikipedia.org/wiki/Animal_husbandry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Animal_husbandry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Veterinary_surgery",
+                "raw": "https://en.wikipedia.org/wiki/Veterinary_surgery",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Veterinary_surgery&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Animal_welfare",
+                "raw": "https://en.wikipedia.org/wiki/Animal_welfare",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Animal_welfare&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Zoonosis",
+                "raw": "https://en.wikipedia.org/wiki/Zoonosis",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Zoonosis&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Veterinary_pathology",
+                "raw": "https://en.wikipedia.org/wiki/Veterinary_pathology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Veterinary_pathology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ethology",
+                "raw": "https://en.wikipedia.org/wiki/Ethology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ethology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "museum_studies",
+        "from": [
+            {
+                "name": "Museology",
+                "raw": "https://en.wikipedia.org/wiki/Museology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Museology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Art_curator",
+                "raw": "https://en.wikipedia.org/wiki/Art_curator",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Art_curator&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Archival_science",
+                "raw": "https://en.wikipedia.org/wiki/Archival_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Archival_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Conservation_and_restoration_of_cultural_heritage",
+                "raw": "https://en.wikipedia.org/wiki/Conservation_and_restoration_of_cultural_heritage",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Conservation_and_restoration_of_cultural_heritage&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cultural_heritage",
+                "raw": "https://en.wikipedia.org/wiki/Cultural_heritage",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cultural_heritage&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Exhibition",
+                "raw": "https://en.wikipedia.org/wiki/Exhibition",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Exhibition&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Library_history",
+                "raw": "https://en.wikipedia.org/wiki/Library_history",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Library_history&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "forestry",
+        "from": [
+            {
+                "name": "Forestry",
+                "raw": "https://en.wikipedia.org/wiki/Forestry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Forestry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Silviculture",
+                "raw": "https://en.wikipedia.org/wiki/Silviculture",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Silviculture&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Forest_management",
+                "raw": "https://en.wikipedia.org/wiki/Forest_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Forest_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Agroforestry",
+                "raw": "https://en.wikipedia.org/wiki/Agroforestry",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Agroforestry&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Deforestation",
+                "raw": "https://en.wikipedia.org/wiki/Deforestation",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Deforestation&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Dendrology",
+                "raw": "https://en.wikipedia.org/wiki/Dendrology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Dendrology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Forest_ecology",
+                "raw": "https://en.wikipedia.org/wiki/Forest_ecology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Forest_ecology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "marine_biology",
+        "from": [
+            {
+                "name": "Marine_biology",
+                "raw": "https://en.wikipedia.org/wiki/Marine_biology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Marine_biology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Coral_reef",
+                "raw": "https://en.wikipedia.org/wiki/Coral_reef",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Coral_reef&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Marine_mammal",
+                "raw": "https://en.wikipedia.org/wiki/Marine_mammal",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Marine_mammal&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ichthyology",
+                "raw": "https://en.wikipedia.org/wiki/Ichthyology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ichthyology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Hydrography",
+                "raw": "https://en.wikipedia.org/wiki/Hydrography",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Hydrography&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Deep_sea",
+                "raw": "https://en.wikipedia.org/wiki/Deep_sea",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Deep_sea&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Plankton",
+                "raw": "https://en.wikipedia.org/wiki/Plankton",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Plankton&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "zoology",
+        "from": [
+            {
+                "name": "Zoology",
+                "raw": "https://en.wikipedia.org/wiki/Zoology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Zoology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mammalogy",
+                "raw": "https://en.wikipedia.org/wiki/Mammalogy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mammalogy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ornithology",
+                "raw": "https://en.wikipedia.org/wiki/Ornithology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ornithology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Herpetology",
+                "raw": "https://en.wikipedia.org/wiki/Herpetology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Herpetology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Primatology",
+                "raw": "https://en.wikipedia.org/wiki/Primatology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Primatology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Invertebrate",
+                "raw": "https://en.wikipedia.org/wiki/Invertebrate",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Invertebrate&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Animal_cognition",
+                "raw": "https://en.wikipedia.org/wiki/Animal_cognition",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Animal_cognition&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "microbiology",
+        "from": [
+            {
+                "name": "Microbiology",
+                "raw": "https://en.wikipedia.org/wiki/Microbiology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Microbiology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Bacteriology",
+                "raw": "https://en.wikipedia.org/wiki/Bacteriology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Bacteriology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Virology",
+                "raw": "https://en.wikipedia.org/wiki/Virology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Virology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Mycology",
+                "raw": "https://en.wikipedia.org/wiki/Mycology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Mycology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Parasitology",
+                "raw": "https://en.wikipedia.org/wiki/Parasitology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Parasitology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Microbial_ecology",
+                "raw": "https://en.wikipedia.org/wiki/Microbial_ecology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Microbial_ecology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Protist",
+                "raw": "https://en.wikipedia.org/wiki/Protist",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Protist&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "genetics",
+        "from": [
+            {
+                "name": "Genetics",
+                "raw": "https://en.wikipedia.org/wiki/Genetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Genetics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Genomics",
+                "raw": "https://en.wikipedia.org/wiki/Genomics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Genomics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "DNA",
+                "raw": "https://en.wikipedia.org/wiki/DNA",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=DNA&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Gene",
+                "raw": "https://en.wikipedia.org/wiki/Gene",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gene&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Epigenetics",
+                "raw": "https://en.wikipedia.org/wiki/Epigenetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Epigenetics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Population_genetics",
+                "raw": "https://en.wikipedia.org/wiki/Population_genetics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Population_genetics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "CRISPR",
+                "raw": "https://en.wikipedia.org/wiki/CRISPR",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=CRISPR&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "biotechnology",
+        "from": [
+            {
+                "name": "Biotechnology",
+                "raw": "https://en.wikipedia.org/wiki/Biotechnology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biotechnology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Genetic_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Genetic_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Genetic_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Synthetic_biology",
+                "raw": "https://en.wikipedia.org/wiki/Synthetic_biology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Synthetic_biology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Bioinformatics",
+                "raw": "https://en.wikipedia.org/wiki/Bioinformatics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Bioinformatics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Bioprocess_engineering",
+                "raw": "https://en.wikipedia.org/wiki/Bioprocess_engineering",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Bioprocess_engineering&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cloning",
+                "raw": "https://en.wikipedia.org/wiki/Cloning",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cloning&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Stem_cell",
+                "raw": "https://en.wikipedia.org/wiki/Stem_cell",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Stem_cell&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "nanotechnology",
+        "from": [
+            {
+                "name": "Nanotechnology",
+                "raw": "https://en.wikipedia.org/wiki/Nanotechnology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nanotechnology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Nanomaterials",
+                "raw": "https://en.wikipedia.org/wiki/Nanomaterials",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nanomaterials&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Graphene",
+                "raw": "https://en.wikipedia.org/wiki/Graphene",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Graphene&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Nanomedicine",
+                "raw": "https://en.wikipedia.org/wiki/Nanomedicine",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nanomedicine&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Carbon_nanotube",
+                "raw": "https://en.wikipedia.org/wiki/Carbon_nanotube",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Carbon_nanotube&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Nanoelectronics",
+                "raw": "https://en.wikipedia.org/wiki/Nanoelectronics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Nanoelectronics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Molecular_machine",
+                "raw": "https://en.wikipedia.org/wiki/Molecular_machine",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Molecular_machine&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "business_management",
+        "from": [
+            {
+                "name": "Management",
+                "raw": "https://en.wikipedia.org/wiki/Management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Strategic_management",
+                "raw": "https://en.wikipedia.org/wiki/Strategic_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Strategic_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Human_resource_management",
+                "raw": "https://en.wikipedia.org/wiki/Human_resource_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Human_resource_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Leadership",
+                "raw": "https://en.wikipedia.org/wiki/Leadership",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Leadership&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Organizational_behavior",
+                "raw": "https://en.wikipedia.org/wiki/Organizational_behavior",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Organizational_behavior&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Project_management",
+                "raw": "https://en.wikipedia.org/wiki/Project_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Project_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Business_ethics",
+                "raw": "https://en.wikipedia.org/wiki/Business_ethics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Business_ethics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "marketing",
+        "from": [
+            {
+                "name": "Marketing",
+                "raw": "https://en.wikipedia.org/wiki/Marketing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Marketing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Digital_marketing",
+                "raw": "https://en.wikipedia.org/wiki/Digital_marketing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Digital_marketing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Brand_management",
+                "raw": "https://en.wikipedia.org/wiki/Brand_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Brand_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Advertising",
+                "raw": "https://en.wikipedia.org/wiki/Advertising",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Advertising&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Consumer_behavior",
+                "raw": "https://en.wikipedia.org/wiki/Consumer_behavior",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Consumer_behavior&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Market_research",
+                "raw": "https://en.wikipedia.org/wiki/Market_research",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Market_research&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Social_media_marketing",
+                "raw": "https://en.wikipedia.org/wiki/Social_media_marketing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_media_marketing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "finance_and_accounting",
+        "from": [
+            {
+                "name": "Finance",
+                "raw": "https://en.wikipedia.org/wiki/Finance",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Finance&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Accounting",
+                "raw": "https://en.wikipedia.org/wiki/Accounting",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Accounting&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Financial_market",
+                "raw": "https://en.wikipedia.org/wiki/Financial_market",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Financial_market&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Investment",
+                "raw": "https://en.wikipedia.org/wiki/Investment",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Investment&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Corporate_finance",
+                "raw": "https://en.wikipedia.org/wiki/Corporate_finance",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Corporate_finance&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Auditing",
+                "raw": "https://en.wikipedia.org/wiki/Auditing",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Auditing&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Financial_risk_management",
+                "raw": "https://en.wikipedia.org/wiki/Financial_risk_management",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Financial_risk_management&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "fashion_and_design",
+        "from": [
+            {
+                "name": "Fashion",
+                "raw": "https://en.wikipedia.org/wiki/Fashion",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Fashion&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Fashion_design",
+                "raw": "https://en.wikipedia.org/wiki/Fashion_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Fashion_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Textile_design",
+                "raw": "https://en.wikipedia.org/wiki/Textile_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Textile_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Industrial_design",
+                "raw": "https://en.wikipedia.org/wiki/Industrial_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Industrial_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Graphic_design",
+                "raw": "https://en.wikipedia.org/wiki/Graphic_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Graphic_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "User_experience_design",
+                "raw": "https://en.wikipedia.org/wiki/User_experience_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=User_experience_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Service_design",
+                "raw": "https://en.wikipedia.org/wiki/Service_design",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Service_design&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "criminology",
+        "from": [
+            {
+                "name": "Criminology",
+                "raw": "https://en.wikipedia.org/wiki/Criminology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Criminology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Criminal_justice",
+                "raw": "https://en.wikipedia.org/wiki/Criminal_justice",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Criminal_justice&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Penology",
+                "raw": "https://en.wikipedia.org/wiki/Penology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Penology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Victimology",
+                "raw": "https://en.wikipedia.org/wiki/Victimology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Victimology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Forensic_science",
+                "raw": "https://en.wikipedia.org/wiki/Forensic_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Forensic_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Crime_prevention",
+                "raw": "https://en.wikipedia.org/wiki/Crime_prevention",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Crime_prevention&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Cybercrime",
+                "raw": "https://en.wikipedia.org/wiki/Cybercrime",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Cybercrime&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "social_work",
+        "from": [
+            {
+                "name": "Social_work",
+                "raw": "https://en.wikipedia.org/wiki/Social_work",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_work&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Child_welfare",
+                "raw": "https://en.wikipedia.org/wiki/Child_welfare",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Child_welfare&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Human_services",
+                "raw": "https://en.wikipedia.org/wiki/Human_services",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Human_services&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Community_development",
+                "raw": "https://en.wikipedia.org/wiki/Community_development",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Community_development&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Gerontology",
+                "raw": "https://en.wikipedia.org/wiki/Gerontology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Gerontology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Welfare_state",
+                "raw": "https://en.wikipedia.org/wiki/Welfare_state",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Welfare_state&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Social_policy",
+                "raw": "https://en.wikipedia.org/wiki/Social_policy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Social_policy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "sports_science",
+        "from": [
+            {
+                "name": "Sports_science",
+                "raw": "https://en.wikipedia.org/wiki/Sports_science",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sports_science&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Kinesiology",
+                "raw": "https://en.wikipedia.org/wiki/Kinesiology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Kinesiology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Exercise_physiology",
+                "raw": "https://en.wikipedia.org/wiki/Exercise_physiology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Exercise_physiology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sports_medicine",
+                "raw": "https://en.wikipedia.org/wiki/Sports_medicine",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sports_medicine&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Biomechanics",
+                "raw": "https://en.wikipedia.org/wiki/Biomechanics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Biomechanics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Sports_coaching",
+                "raw": "https://en.wikipedia.org/wiki/Sports_coaching",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Sports_coaching&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Physical_education",
+                "raw": "https://en.wikipedia.org/wiki/Physical_education",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Physical_education&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "paleontology",
+        "from": [
+            {
+                "name": "Paleontology",
+                "raw": "https://en.wikipedia.org/wiki/Paleontology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Paleontology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Fossil",
+                "raw": "https://en.wikipedia.org/wiki/Fossil",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Fossil&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Dinosaur",
+                "raw": "https://en.wikipedia.org/wiki/Dinosaur",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Dinosaur&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Paleobiology",
+                "raw": "https://en.wikipedia.org/wiki/Paleobiology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Paleobiology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Paleoanthropology",
+                "raw": "https://en.wikipedia.org/wiki/Paleoanthropology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Paleoanthropology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Taphonomy",
+                "raw": "https://en.wikipedia.org/wiki/Taphonomy",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Taphonomy&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Geologic_time_scale",
+                "raw": "https://en.wikipedia.org/wiki/Geologic_time_scale",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Geologic_time_scale&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    },
+    {
+        "type": "classics",
+        "from": [
+            {
+                "name": "Classics",
+                "raw": "https://en.wikipedia.org/wiki/Classics",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Classics&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ancient_Greece",
+                "raw": "https://en.wikipedia.org/wiki/Ancient_Greece",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ancient_Greece&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ancient_Rome",
+                "raw": "https://en.wikipedia.org/wiki/Ancient_Rome",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ancient_Rome&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Classical_philology",
+                "raw": "https://en.wikipedia.org/wiki/Classical_philology",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Classical_philology&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Greco-Roman_world",
+                "raw": "https://en.wikipedia.org/wiki/Greco-Roman_world",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Greco-Roman_world&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Latin",
+                "raw": "https://en.wikipedia.org/wiki/Latin",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Latin&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            },
+            {
+                "name": "Ancient_Greek",
+                "raw": "https://en.wikipedia.org/wiki/Ancient_Greek",
+                "api": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ancient_Greek&rvlimit=10&rvprop=ids|timestamp|user|comment|content&format=json"
+            }
+        ]
+    }
+]

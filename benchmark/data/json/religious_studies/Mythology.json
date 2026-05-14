@@ -1,0 +1,120 @@
+{
+  "continue": {
+    "rvcontinue": "20211228213434|1062504343",
+    "continue": "||"
+  },
+  "query": {
+    "pages": {
+      "19685": {
+        "pageid": 19685,
+        "ns": 0,
+        "title": "Mythology",
+        "revisions": [
+          {
+            "revid": 1332361314,
+            "parentid": 1332355610,
+            "user": "Doug Weller",
+            "timestamp": "2026-01-11T12:18:31Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverted edit by [[Special:Contribs/~2026-18330-1|~2026-18330-1]] ([[User talk:~2026-18330-1|talk]]) to last version by Paine Ellsworth",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R with Wikidata item}}\n{{R from merge}}\n{{R mentioned in hatnote}}\n{{R to section}}\n{{R printworthy}}\n}}"
+          },
+          {
+            "revid": 1332355610,
+            "parentid": 1324647851,
+            "user": "~2026-18330-1",
+            "temp": "",
+            "timestamp": "2026-01-11T11:12:37Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Changed redirect target from [[Myth#Mythology]] to [[Land]]",
+            "*": "#REDIRECT [[Land]]\n\n{{Redirect category shell|\n{{R with Wikidata item}}\n{{R from merge}}\n{{R mentioned in hatnote}}\n{{R to section}}\n{{R printworthy}}\n}}"
+          },
+          {
+            "revid": 1324647851,
+            "parentid": 1324647792,
+            "user": "Paine Ellsworth",
+            "timestamp": "2025-11-28T21:47:35Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "add [[WP:RCAT|rcat template]]",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R with Wikidata item}}\n{{R from merge}}\n{{R mentioned in hatnote}}\n{{R to section}}\n{{R printworthy}}\n}}"
+          },
+          {
+            "revid": 1324647792,
+            "parentid": 1307345934,
+            "user": "Paine Ellsworth",
+            "timestamp": "2025-11-28T21:47:01Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "remove [[WP:RCAT|rcat template]] and add rcat templates",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R with Wikidata item}}\n{{R from merge}}\n{{R mentioned in hatnote}}\n{{R to section}}\n}}"
+          },
+          {
+            "revid": 1307345934,
+            "parentid": 1307345789,
+            "user": "2804:388:C2A8:987D:0:43:2A02:4701",
+            "anon": "",
+            "timestamp": "2025-08-23T03:05:01Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R mentioned in hatnote}}\n{{R to section}}\n{{R with history}}\n}}"
+          },
+          {
+            "revid": 1307345789,
+            "parentid": 1307345779,
+            "user": "ClueBot NG",
+            "timestamp": "2025-08-23T03:03:51Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Reverting possible vandalism by [[Special:Contribs/2804:388:C2A8:987D:0:43:2A02:4701|2804:388:C2A8:987D:0:43:2A02:4701]] to version by Wiki13565. [[WP:CBFP|Report False Positive?]] Thanks, [[WP:CBNG|ClueBot NG]]. (4411877) (Bot)",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R with history}}\n{{R to section}}\n{{R hatnote}}\n}}"
+          },
+          {
+            "revid": 1307345779,
+            "parentid": 1127400437,
+            "user": "2804:388:C2A8:987D:0:43:2A02:4701",
+            "anon": "",
+            "timestamp": "2025-08-23T03:03:47Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R mentioned in hatnote}}\n{{R to section}}\n{{R with history}}\n}}"
+          },
+          {
+            "revid": 1127400437,
+            "parentid": 1098429780,
+            "user": "Wiki13565",
+            "timestamp": "2022-12-14T14:01:45Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "{{R to section}} {{R hatnote}}",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{Redirect category shell|\n{{R with history}}\n{{R to section}}\n{{R hatnote}}\n}}"
+          },
+          {
+            "revid": 1098429780,
+            "parentid": 1093339256,
+            "user": "L337m4n",
+            "timestamp": "2022-07-15T20:12:39Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Changed redirect target from [[Myth]] to [[Myth#Mythology]]",
+            "*": "#REDIRECT [[Myth#Mythology]]\n\n{{R with history}}"
+          },
+          {
+            "revid": 1093339256,
+            "parentid": 1062504343,
+            "user": "Srnec",
+            "timestamp": "2022-06-16T00:14:41Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "[[WP:AES|←]]Changed redirect target from [[Myth#Mythology]] to [[Myth]]",
+            "*": "#REDIRECT [[Myth]]\n\n{{R with history}}"
+          }
+        ]
+      }
+    }
+  }
+}

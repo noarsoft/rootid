@@ -1,0 +1,30 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "normalized": [
+      {
+        "from": "Conservation_and_restoration_of_cultural_heritage",
+        "to": "Conservation and restoration of cultural heritage"
+      }
+    ],
+    "pages": {
+      "67939895": {
+        "pageid": 67939895,
+        "ns": 0,
+        "title": "Conservation and restoration of cultural heritage",
+        "revisions": [
+          {
+            "revid": 1028407162,
+            "parentid": 0,
+            "user": "Micga",
+            "timestamp": "2021-06-13T20:10:15Z",
+            "contentformat": "text/x-wiki",
+            "contentmodel": "wikitext",
+            "comment": "Micga moved page [[Conservation and restoration of cultural heritage]] to [[Conservation and restoration of cultural property]]",
+            "*": "#REDIRECT [[Conservation and restoration of cultural property]]\n\n{{Redirect category shell|\n{{R from move}}\n}}"
+          }
+        ]
+      }
+    }
+  }
+}
