@@ -39,7 +39,8 @@ app.get("/api/benchmark/run-sse", async (req, res) => {
   const emit = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
 
   try {
-    const result = await runBenchmark(emit);
+    const runs = parseInt(req.query.runs) || 1;
+    const result = await runBenchmark(emit, runs);
     saveResults(result);
     emit({ step: "complete", result });
   } catch (err) {

@@ -4,15 +4,18 @@
   const $ = (sel) => document.querySelector(sel);
   const themeToggle = $("#themeToggle");
   const runBtn = $("#runBtn");
+  const runCountSelect = $("#runCount");
   const progressPanel = $("#progressPanel");
   const progressSteps = $("#progressSteps");
   const progressFill = $("#progressFill");
   const resultsSection = $("#resultsSection");
+  const exportBtn = $("#exportBtn");
 
   const STEP_LABELS = {
     load: "โหลดข้อมูล Wikipedia",
     flatten: "สร้าง Flat Rows",
     connect: "เชื่อมต่อ PostgreSQL + MongoDB",
+    run_start: "เริ่มรอบใหม่",
     pg_rel: "[1/3] PG Relational — เตรียมตาราง",
     pg_rel_insert: "[1/3] PG Relational — INSERT",
     pg_rel_select: "[1/3] PG Relational — SELECT *",
@@ -93,13 +96,17 @@
   }
 
   let stepIndex = 0;
-  function showStep(step) {
+  function showStep(step, data) {
     const idx = ALL_STEPS.indexOf(step);
     if (idx >= 0) stepIndex = idx;
     const pct = Math.round(((stepIndex + 1) / ALL_STEPS.length) * 100);
     progressFill.style.width = pct + "%";
 
-    const label = STEP_LABELS[step] || step;
+    let label = STEP_LABELS[step] || step;
+    if (step === "run_start" && data) {
+      label = `รอบที่ ${data.run}/${data.total}`;
+    }
+
     const div = document.createElement("div");
     div.className = "step active";
     div.innerHTML = `<span class="spinner"></span> ${label}`;
@@ -119,7 +126,8 @@
     progressFill.style.width = "0%";
     stepIndex = 0;
 
-    const evtSource = new EventSource("/api/benchmark/run-sse");
+    const runs = runCountSelect.value;
+    const evtSource = new EventSource(`/api/benchmark/run-sse?runs=${runs}`);
     evtSource.onmessage = (e) => {
       const data = JSON.parse(e.data);
       if (data.step === "complete") {
@@ -131,15 +139,15 @@
         runBtn.disabled = false;
       } else if (data.step === "error") {
         evtSource.close();
-        showStep("error");
+        showStep("error", data);
         runBtn.disabled = false;
       } else {
-        showStep(data.step);
+        showStep(data.step, data);
       }
     };
     evtSource.onerror = () => {
       evtSource.close();
-      showStep("error");
+      showStep("error", {});
       const errDiv = progressSteps.querySelector(".step.active");
       if (errDiv) errDiv.textContent = "การเชื่อมต่อขัดข้อง — ลองใหม่อีกครั้ง";
       runBtn.disabled = false;
@@ -148,9 +156,19 @@
 
   let chartTime = null;
   let chartStorage = null;
+  let lastResult = null;
 
   function renderResults(result) {
+    lastResult = result;
     resultsSection.classList.remove("hidden");
+
+    const meta = result.meta;
+    const metaInfo = $("#metaInfo");
+    if (meta.runs && meta.runs > 1) {
+      metaInfo.textContent = `เฉลี่ย ${meta.runs} รอบ — ${meta.timestamp}`;
+    } else {
+      metaInfo.textContent = meta.timestamp;
+    }
 
     const ops = ["insert", "selectAll", "selectFilter", "createIndex", "selectIndexed", "update", "delete"];
     const opLabels = { insert: "INSERT (bulk)", selectAll: "SELECT *", selectFilter: "SELECT filter (no index)", createIndex: "CREATE INDEX", selectIndexed: "SELECT filter (indexed)", update: "UPDATE (1 row)", delete: "DELETE (1 row)" };
@@ -193,8 +211,76 @@
     ginBody.innerHTML += `<tr><td>SELECT filter (ms)</td><td>${result.execution_time_ms.selectIndexed.pg_jsonb.toFixed(2)}</td><td>${gin.selectIndexed_ms.toFixed(2)}</td></tr>`;
     ginBody.innerHTML += `<tr><td>Index Size (MB)</td><td>${(s.pg_jsonb.index / 1024 / 1024).toFixed(1)}</td><td>${(gin.storage.index / 1024 / 1024).toFixed(1)}</td></tr>`;
 
+    renderRowCountValidation(result);
+    renderExplainPlans(result);
     renderCharts(result, ops, opLabels);
   }
+
+  function renderRowCountValidation(result) {
+    const v = result.row_count_validation;
+    if (!v) return;
+
+    const banner = $("#validationBanner");
+    banner.classList.remove("hidden", "pass", "fail");
+    if (v.all_match) {
+      banner.classList.add("pass");
+      banner.textContent = "Row Count Validation: PASS — ทุก engine คืนจำนวน row เท่ากัน";
+    } else {
+      banner.classList.add("fail");
+      banner.textContent = "Row Count Validation: FAIL — จำนวน row ไม่ตรงกัน ดูรายละเอียดด้านล่าง";
+    }
+
+    const tbody = $("#rowCountTable tbody");
+    tbody.innerHTML = "";
+    for (const d of v.details) {
+      const tr = document.createElement("tr");
+      const matchBadge = d.match
+        ? `<span class="badge badge--ok">PASS</span>`
+        : `<span class="badge badge--err">FAIL</span>`;
+      tr.innerHTML = `<td>${d.operation}</td><td>${d.pg_relational}</td><td>${d.mongodb}</td><td>${d.pg_jsonb}</td><td>${matchBadge}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function renderExplainPlans(result) {
+    const plans = result.explain_plans;
+    if (!plans) return;
+
+    const relFilter = plans.pg_relational?.selectFilter;
+    const relIndexed = plans.pg_relational?.selectIndexed;
+    const jsonbBtree = plans.pg_jsonb?.selectIndexed_btree;
+
+    $("#explainRelFilter").textContent = relFilter ? JSON.stringify(relFilter, null, 2) : "N/A";
+    $("#explainRelIndexed").textContent = relIndexed ? JSON.stringify(relIndexed, null, 2) : "N/A";
+    $("#explainJsonbBtree").textContent = jsonbBtree ? JSON.stringify(jsonbBtree, null, 2) : "N/A";
+
+    document.querySelectorAll(".explain-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".explain-tab").forEach((t) => t.classList.remove("active"));
+        document.querySelectorAll(".explain-pre").forEach((p) => p.classList.add("hidden"));
+        tab.classList.add("active");
+        $(`#${tab.dataset.target}`).classList.remove("hidden");
+      });
+    });
+  }
+
+  exportBtn.addEventListener("click", () => {
+    if (!lastResult) return;
+    const printWin = window.open("", "_blank");
+    const styles = Array.from(document.querySelectorAll("link[rel=stylesheet], style"))
+      .map((el) => el.outerHTML).join("");
+    const content = resultsSection.innerHTML;
+    printWin.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">${styles}<title>Benchmark Report</title></head><body style="padding:24px;font-family:${getComputedStyle(document.body).fontFamily}">`);
+    printWin.document.write(`<h1 style="font-size:1.25rem">DB Benchmark Report — ${lastResult.meta.timestamp}</h1>`);
+    printWin.document.write(`<p>Categories: ${lastResult.meta.categories} | Pages: ${lastResult.meta.pages} | Revisions: ${lastResult.meta.revisions} | Data: ${lastResult.meta.totalSizeMB} MB</p>`);
+    if (lastResult.meta.runs > 1) {
+      printWin.document.write(`<p>Average of ${lastResult.meta.runs} runs</p>`);
+    }
+    printWin.document.write(content);
+    printWin.document.write("</body></html>");
+    printWin.document.close();
+    setTimeout(() => { printWin.print(); }, 500);
+  });
 
   function renderCharts(result, ops, opLabels) {
     const isDark = document.documentElement.getAttribute("data-theme") === "dark";

@@ -52,10 +52,19 @@
         </div>
 
         <div class="run-section">
-            <button class="run-btn" id="runBtn" disabled>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-                เริ่ม Benchmark
-            </button>
+            <div class="run-controls">
+                <label class="run-label">จำนวนรอบ:
+                    <select id="runCount">
+                        <option value="1">1 รอบ</option>
+                        <option value="3" selected>3 รอบ (เฉลี่ย)</option>
+                        <option value="5">5 รอบ (เฉลี่ย)</option>
+                    </select>
+                </label>
+                <button class="run-btn" id="runBtn" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                    เริ่ม Benchmark
+                </button>
+            </div>
             <div class="progress-panel hidden" id="progressPanel">
                 <div id="progressSteps"></div>
                 <div class="progress-bar"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
@@ -63,7 +72,19 @@
         </div>
 
         <div class="results-section hidden" id="resultsSection">
-            <h2>ผลลัพธ์ Execution Time (ms)</h2>
+            <div class="results-header">
+                <h2>ผลลัพธ์ Execution Time (ms)</h2>
+                <div class="results-actions">
+                    <span class="meta-info" id="metaInfo"></span>
+                    <button class="export-btn" id="exportBtn" title="Export PDF">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <div id="validationBanner" class="validation-banner hidden"></div>
+
             <div style="overflow-x:auto">
                 <table class="result-table" id="timeTable">
                     <thead><tr><th>Operation</th><th style="color:var(--color-pg)">PG Relational</th><th style="color:var(--color-mongo)">MongoDB</th><th style="color:var(--color-jsonb)">PG JSONB</th></tr></thead>
@@ -90,6 +111,26 @@
                     <thead><tr><th>Metric</th><th style="color:var(--color-pg)">PG Relational</th><th style="color:var(--color-mongo)">MongoDB</th><th style="color:var(--color-jsonb)">PG JSONB</th></tr></thead>
                     <tbody></tbody>
                 </table>
+            </div>
+
+            <div class="bonus-section" id="rowCountSection">
+                <h3>Row Count Validation</h3>
+                <table class="result-table" id="rowCountTable">
+                    <thead><tr><th>Operation</th><th style="color:var(--color-pg)">PG Relational</th><th style="color:var(--color-mongo)">MongoDB</th><th style="color:var(--color-jsonb)">PG JSONB</th><th>Match</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="bonus-section" id="explainSection">
+                <h3>EXPLAIN ANALYZE — Query Plans</h3>
+                <div class="explain-tabs">
+                    <button class="explain-tab active" data-target="explainRelFilter">PG Relational (filter)</button>
+                    <button class="explain-tab" data-target="explainRelIndexed">PG Relational (indexed)</button>
+                    <button class="explain-tab" data-target="explainJsonbBtree">PG JSONB (B-Tree)</button>
+                </div>
+                <pre class="explain-pre" id="explainRelFilter"></pre>
+                <pre class="explain-pre hidden" id="explainRelIndexed"></pre>
+                <pre class="explain-pre hidden" id="explainJsonbBtree"></pre>
             </div>
         </div>
     </div>

@@ -3,6 +3,8 @@
 const {
   buildFlatRows,
   buildResult,
+  validateRowCounts,
+  averageResults,
   timer,
   PG_MAX_PARAMS,
   FILTER_CATEGORY,
@@ -226,6 +228,8 @@ describe("buildResult", () => {
     expect(result).toHaveProperty("storage_bytes");
     expect(result).toHaveProperty("bonus_jsonb_gin");
     expect(result).toHaveProperty("row_counts");
+    expect(result).toHaveProperty("row_count_validation");
+    expect(result).toHaveProperty("explain_plans");
     expect(result).toHaveProperty("meta");
     expect(result).toHaveProperty("sampleData");
   });
@@ -379,5 +383,98 @@ describe("buildResult", () => {
       mongodb: 1,
       pg_jsonb: 1,
     });
+  });
+});
+
+describe("validateRowCounts", () => {
+  const makeEngine = (selectAll, selectFilter, selectIndexed) => ({
+    rowCounts: { selectAll, selectFilter, selectIndexed },
+  });
+
+  test("all_match true when all engines return same counts", () => {
+    const result = validateRowCounts(
+      makeEngine(100, 10, 10),
+      makeEngine(100, 10, 10),
+      makeEngine(100, 10, 10),
+    );
+    expect(result.all_match).toBe(true);
+    expect(result.details).toHaveLength(3);
+    expect(result.details.every((d) => d.match)).toBe(true);
+  });
+
+  test("all_match false when counts differ", () => {
+    const result = validateRowCounts(
+      makeEngine(100, 10, 10),
+      makeEngine(100, 8, 10),
+      makeEngine(100, 10, 10),
+    );
+    expect(result.all_match).toBe(false);
+    expect(result.details[1].match).toBe(false);
+    expect(result.details[1].mongodb).toBe(8);
+  });
+
+  test("checks selectAll, selectFilter, selectIndexed", () => {
+    const result = validateRowCounts(
+      makeEngine(1, 2, 3),
+      makeEngine(1, 2, 3),
+      makeEngine(1, 2, 3),
+    );
+    expect(result.details.map((d) => d.operation)).toEqual([
+      "selectAll",
+      "selectFilter",
+      "selectIndexed",
+    ]);
+  });
+});
+
+describe("averageResults", () => {
+  const makeResult = (insertPg, insertMongo, insertJsonb) => ({
+    execution_time_ms: {
+      insert: { pg_relational: insertPg, mongodb: insertMongo, pg_jsonb: insertJsonb },
+      selectAll: { pg_relational: 10, mongodb: 10, pg_jsonb: 10 },
+      selectFilter: { pg_relational: 5, mongodb: 5, pg_jsonb: 5 },
+      createIndex: { pg_relational: 1, mongodb: 1, pg_jsonb: 1 },
+      selectIndexed: { pg_relational: 2, mongodb: 2, pg_jsonb: 2 },
+      update: { pg_relational: 0.5, mongodb: 0.5, pg_jsonb: 0.5 },
+      delete: { pg_relational: 0.3, mongodb: 0.3, pg_jsonb: 0.3 },
+    },
+    storage_bytes: { pg_relational: {}, mongodb: {}, pg_jsonb: {} },
+    bonus_jsonb_gin: { createIndex_ms: 0, selectIndexed_ms: 0, storage: {} },
+    row_counts: {},
+    row_count_validation: { all_match: true, details: [] },
+    explain_plans: {},
+    meta: { categories: 58, pages: 399, revisions: 3657, timestamp: "t" },
+    sampleData: [],
+  });
+
+  test("single result returned as-is", () => {
+    const r = makeResult(100, 200, 300);
+    const avg = averageResults([r]);
+    expect(avg.execution_time_ms.insert.pg_relational).toBe(100);
+  });
+
+  test("averages timing across multiple runs", () => {
+    const r1 = makeResult(100, 200, 300);
+    const r2 = makeResult(200, 400, 600);
+    const avg = averageResults([r1, r2]);
+    expect(avg.execution_time_ms.insert.pg_relational).toBe(150);
+    expect(avg.execution_time_ms.insert.mongodb).toBe(300);
+    expect(avg.execution_time_ms.insert.pg_jsonb).toBe(450);
+  });
+
+  test("sets meta.runs and meta.per_run", () => {
+    const r1 = makeResult(100, 200, 300);
+    const r2 = makeResult(200, 400, 600);
+    const avg = averageResults([r1, r2]);
+    expect(avg.meta.runs).toBe(2);
+    expect(avg.meta.per_run).toHaveLength(2);
+  });
+
+  test("averages to 2 decimal places", () => {
+    const r1 = makeResult(100.11, 200, 300);
+    const r2 = makeResult(100.22, 200, 300);
+    const r3 = makeResult(100.33, 200, 300);
+    const avg = averageResults([r1, r2, r3]);
+    expect(avg.execution_time_ms.insert.pg_relational).toBe(100.22);
   });
 });

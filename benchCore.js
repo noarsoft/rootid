@@ -69,6 +69,28 @@ async function ensurePgDatabase() {
   }
 }
 
+function validateRowCounts(rel, mongo, jsonb) {
+  const checks = [];
+  const ops = ["selectAll", "selectFilter", "selectIndexed"];
+  for (const op of ops) {
+    const pg = rel.rowCounts[op];
+    const mo = mongo.rowCounts[op];
+    const jb = jsonb.rowCounts[op];
+    const match = pg === mo && mo === jb;
+    checks.push({
+      operation: op,
+      pg_relational: pg,
+      mongodb: mo,
+      pg_jsonb: jb,
+      match,
+    });
+  }
+  return {
+    all_match: checks.every((c) => c.match),
+    details: checks,
+  };
+}
+
 function buildResult(rel, mongo, jsonb, stats, flatRows) {
   const mainOps = [
     "insert",
@@ -124,6 +146,11 @@ function buildResult(rel, mongo, jsonb, stats, flatRows) {
       update: { pg_relational: 1, mongodb: 1, pg_jsonb: 1 },
       delete: { pg_relational: 1, mongodb: 1, pg_jsonb: 1 },
     },
+    row_count_validation: validateRowCounts(rel, mongo, jsonb),
+    explain_plans: {
+      pg_relational: rel.explainPlans || {},
+      pg_jsonb: jsonb.explainPlans || {},
+    },
     meta: {
       categories: stats.categories,
       pages: stats.pages,
@@ -145,8 +172,60 @@ function buildResult(rel, mongo, jsonb, stats, flatRows) {
   };
 }
 
-async function runBenchmark(onProgress) {
+function averageResults(results) {
+  const n = results.length;
+  if (n === 1) return results[0];
+
+  const base = JSON.parse(JSON.stringify(results[0]));
+  const engines = ["pg_relational", "mongodb", "pg_jsonb"];
+  const ops = Object.keys(base.execution_time_ms);
+
+  for (const op of ops) {
+    for (const eng of engines) {
+      const values = results.map((r) => r.execution_time_ms[op][eng]);
+      base.execution_time_ms[op][eng] = +(
+        values.reduce((a, b) => a + b, 0) / n
+      ).toFixed(2);
+    }
+  }
+
+  base.meta.runs = n;
+  base.meta.per_run = results.map((r) => ({
+    timestamp: r.meta.timestamp,
+    execution_time_ms: r.execution_time_ms,
+  }));
+
+  return base;
+}
+
+async function runSingleBenchmark(pgClient, mongoDB, categories, pages, revisions, flatRows, stats, emit) {
+  emit({
+    step: "pg_rel",
+    message: "[1/3] PG Relational — DROP + CREATE tables...",
+  });
+  const relResult = await benchPgRelational(
+    pgClient,
+    categories,
+    pages,
+    revisions,
+    emit,
+  );
+
+  emit({ step: "mongo", message: "[2/3] MongoDB — DROP collection..." });
+  const mongoResult = await benchMongo(mongoDB, flatRows, emit);
+
+  emit({
+    step: "pg_jsonb",
+    message: "[3/3] PG JSONB — DROP + CREATE table...",
+  });
+  const jsonbResult = await benchPgJsonb(pgClient, flatRows, emit);
+
+  return buildResult(relResult, mongoResult, jsonbResult, stats, flatRows);
+}
+
+async function runBenchmark(onProgress, runCount = 1) {
   const emit = onProgress || (() => {});
+  const runs = Math.max(1, Math.min(runCount, 10));
 
   emit({ step: "load", message: "Loading Wikipedia data..." });
   const wikiData = getWikiData();
@@ -169,29 +248,19 @@ async function runBenchmark(onProgress) {
   const mongoDB = mongoClient.db(MONGO_DB);
 
   try {
-    emit({
-      step: "pg_rel",
-      message: "[1/3] PG Relational — DROP + CREATE tables...",
-    });
-    const relResult = await benchPgRelational(
-      pgClient,
-      categories,
-      pages,
-      revisions,
-      emit,
-    );
-
-    emit({ step: "mongo", message: "[2/3] MongoDB — DROP collection..." });
-    const mongoResult = await benchMongo(mongoDB, flatRows, emit);
-
-    emit({
-      step: "pg_jsonb",
-      message: "[3/3] PG JSONB — DROP + CREATE table...",
-    });
-    const jsonbResult = await benchPgJsonb(pgClient, flatRows, emit);
+    const results = [];
+    for (let i = 0; i < runs; i++) {
+      if (runs > 1) {
+        emit({ step: "run_start", message: `Run ${i + 1}/${runs}...`, run: i + 1, total: runs });
+      }
+      const result = await runSingleBenchmark(
+        pgClient, mongoDB, categories, pages, revisions, flatRows, stats, emit,
+      );
+      results.push(result);
+    }
 
     emit({ step: "done", message: "Building results..." });
-    return buildResult(relResult, mongoResult, jsonbResult, stats, flatRows);
+    return averageResults(results);
   } finally {
     await pgClient.end();
     await mongoClient.close();
@@ -377,6 +446,20 @@ async function benchPgRelational(pg, categories, pages, rawRevisions, emit) {
     update: 1,
     delete: 1,
   };
+
+  const explainFilter = await pg.query(
+    `EXPLAIN (ANALYZE, FORMAT JSON) SELECT r.*, p.page_title, c.name AS category FROM bench_revision r JOIN bench_page p ON r.page_id = p.id JOIN bench_category c ON p.category_id = c.id WHERE c.name = $1`,
+    [FILTER_CATEGORY],
+  );
+  const explainIndexed = await pg.query(
+    `EXPLAIN (ANALYZE, FORMAT JSON) SELECT r.*, p.page_title, c.name AS category FROM bench_revision r JOIN bench_page p ON r.page_id = p.id JOIN bench_category c ON p.category_id = c.id WHERE c.name = $1`,
+    [FILTER_CATEGORY],
+  );
+  R.explainPlans = {
+    selectFilter: explainFilter.rows[0]["QUERY PLAN"],
+    selectIndexed: explainIndexed.rows[0]["QUERY PLAN"],
+  };
+
   return R;
 }
 
@@ -599,6 +682,15 @@ async function benchPgJsonb(pg, flatRows, emit) {
     update: 1,
     delete: 1,
   };
+
+  const explainBtree = await pg.query(
+    `EXPLAIN (ANALYZE, FORMAT JSON) SELECT * FROM bench_jsonb WHERE data->>'category' = $1`,
+    [FILTER_CATEGORY],
+  );
+  R.explainPlans = {
+    selectIndexed_btree: explainBtree.rows[0]["QUERY PLAN"],
+  };
+
   return R;
 }
 
@@ -701,6 +793,8 @@ module.exports = {
   ensurePgDatabase,
   buildFlatRows,
   buildResult,
+  validateRowCounts,
+  averageResults,
   timer,
   PG_URL,
   MONGO_URL,
