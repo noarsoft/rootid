@@ -23,3 +23,8 @@ coverage/
 *.db
 *.db-shm
 *.db-wal
+
+# Benchmark results (generated each run)
+result_wiki_*.json
+results.csv
+report.html

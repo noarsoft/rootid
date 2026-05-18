@@ -11,6 +11,14 @@ const PG_URL =
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017";
 const MONGO_DB = process.env.MONGO_DB || "benchmark";
 const DATA_DIR = path.join(__dirname, "data", "json");
+const PG_MAX_PARAMS = 65535;
+const FILTER_CATEGORY = "computer_science_research";
+
+let _wikiCache = null;
+function getWikiData() {
+  if (!_wikiCache) _wikiCache = loadWikiData(DATA_DIR);
+  return _wikiCache;
+}
 
 async function timer(fn) {
   const start = performance.now();
@@ -18,7 +26,7 @@ async function timer(fn) {
   return { time: performance.now() - start, result };
 }
 
-function buildFlatRows(categories, pages, revisions) {
+function buildFlatRows(pages, revisions) {
   const pageMap = new Map();
   pages.forEach((p) => pageMap.set(p.rootid, p));
 
@@ -59,346 +67,6 @@ async function ensurePgDatabase() {
   } finally {
     await client.end();
   }
-}
-
-async function benchPgRelational(pg, categories, pages, rawRevisions) {
-  const seen = new Set();
-  const revisions = rawRevisions.filter((r) => {
-    if (seen.has(r.rootid)) return false;
-    seen.add(r.rootid);
-    return true;
-  });
-  const R = {};
-
-  await pg.query("DROP TABLE IF EXISTS bench_revision");
-  await pg.query("DROP TABLE IF EXISTS bench_page");
-  await pg.query("DROP TABLE IF EXISTS bench_category");
-
-  await pg.query(`CREATE TABLE bench_category (
-    id SERIAL PRIMARY KEY,
-    rootid UUID UNIQUE DEFAULT gen_random_uuid(),
-    prev_id INTEGER,
-    name VARCHAR(100),
-    date INTEGER,
-    time INTEGER,
-    date_time BIGINT
-  )`);
-
-  await pg.query(`CREATE TABLE bench_page (
-    id SERIAL PRIMARY KEY,
-    rootid INTEGER UNIQUE NOT NULL,
-    prev_id INTEGER,
-    category_id INTEGER REFERENCES bench_category(id),
-    page_title VARCHAR(500),
-    date INTEGER,
-    time INTEGER,
-    date_time BIGINT
-  )`);
-
-  await pg.query(`CREATE TABLE bench_revision (
-    id SERIAL PRIMARY KEY,
-    rootid INTEGER UNIQUE NOT NULL,
-    prev_id INTEGER,
-    page_id INTEGER REFERENCES bench_page(id),
-    username VARCHAR(255),
-    timestamp VARCHAR(30),
-    comment TEXT,
-    content TEXT,
-    date INTEGER,
-    time INTEGER,
-    date_time BIGINT
-  )`);
-
-  const { time: tInsert } = await timer(async () => {
-    const catVals = [];
-    const catPhs = categories.map((c, i) => {
-      const off = i * 4;
-      catVals.push(c.name, c.date, c.time, c.date_time);
-      return `($${off + 1}, $${off + 2}, $${off + 3}, $${off + 4})`;
-    });
-    await pg.query(
-      `INSERT INTO bench_category (name, date, time, date_time) VALUES ${catPhs.join(",")}`,
-      catVals,
-    );
-
-    const catRows = await pg.query("SELECT id, name FROM bench_category");
-    const catIdMap = new Map();
-    catRows.rows.forEach((r) => catIdMap.set(r.name, r.id));
-
-    const maxPageBatch = Math.floor(65535 / 6);
-    for (let i = 0; i < pages.length; i += maxPageBatch) {
-      const batch = pages.slice(i, Math.min(i + maxPageBatch, pages.length));
-      const vals = [];
-      const phs = batch.map((p, bi) => {
-        const off = bi * 6;
-        vals.push(
-          p.rootid,
-          catIdMap.get(p.category),
-          p.page_title,
-          p.date,
-          p.time,
-          p.date_time,
-        );
-        return `($${off + 1}, $${off + 2}, $${off + 3}, $${off + 4}, $${off + 5}, $${off + 6})`;
-      });
-      await pg.query(
-        `INSERT INTO bench_page (rootid, category_id, page_title, date, time, date_time) VALUES ${phs.join(",")}`,
-        vals,
-      );
-    }
-
-    const pageRows = await pg.query("SELECT id, rootid FROM bench_page");
-    const pageIdMap = new Map();
-    pageRows.rows.forEach((r) => pageIdMap.set(r.rootid, r.id));
-
-    const maxRevBatch = Math.floor(65535 / 9);
-    for (let i = 0; i < revisions.length; i += maxRevBatch) {
-      const batch = revisions.slice(
-        i,
-        Math.min(i + maxRevBatch, revisions.length),
-      );
-      const vals = [];
-      const phs = batch.map((rev, bi) => {
-        const off = bi * 9;
-        vals.push(
-          rev.rootid,
-          rev.prev_id,
-          pageIdMap.get(rev.pageid),
-          rev.username,
-          rev.timestamp,
-          rev.comment,
-          rev.content,
-          rev.date,
-          rev.date_time,
-        );
-        return `($${off + 1}, $${off + 2}, $${off + 3}, $${off + 4}, $${off + 5}, $${off + 6}, $${off + 7}, $${off + 8}, $${off + 9})`;
-      });
-      await pg.query(
-        `INSERT INTO bench_revision (rootid, prev_id, page_id, username, timestamp, comment, content, date, date_time) VALUES ${phs.join(",")}`,
-        vals,
-      );
-    }
-  });
-  R.insert = tInsert;
-
-  const { time: tAll } = await timer(() =>
-    pg.query(`
-    SELECT r.*, p.page_title, p.rootid AS page_rootid, c.name AS category
-    FROM bench_revision r
-    JOIN bench_page p ON r.page_id = p.id
-    JOIN bench_category c ON p.category_id = c.id
-  `),
-  );
-  R.selectAll = tAll;
-
-  const filterCat = "computer_science_research";
-  const { time: tFilter } = await timer(() =>
-    pg.query(
-      `
-    SELECT r.*, p.page_title, c.name AS category
-    FROM bench_revision r
-    JOIN bench_page p ON r.page_id = p.id
-    JOIN bench_category c ON p.category_id = c.id
-    WHERE c.name = $1
-  `,
-      [filterCat],
-    ),
-  );
-  R.selectFilter = tFilter;
-
-  const { time: tIdx } = await timer(() =>
-    pg.query("CREATE INDEX idx_bench_page_cat ON bench_page(category_id)"),
-  );
-  R.createIndex = tIdx;
-
-  const { time: tIdxQ } = await timer(() =>
-    pg.query(
-      `
-    SELECT r.*, p.page_title, c.name AS category
-    FROM bench_revision r
-    JOIN bench_page p ON r.page_id = p.id
-    JOIN bench_category c ON p.category_id = c.id
-    WHERE c.name = $1
-  `,
-      [filterCat],
-    ),
-  );
-  R.selectIndexed = tIdxQ;
-
-  const { time: tUpd } = await timer(() =>
-    pg.query("UPDATE bench_revision SET comment = $1 WHERE id = 1", [
-      "updated_comment",
-    ]),
-  );
-  R.update = tUpd;
-
-  const { time: tDel } = await timer(() =>
-    pg.query("DELETE FROM bench_revision WHERE id = 1"),
-  );
-  R.delete = tDel;
-
-  const sz = await pg.query(`
-    SELECT
-      (pg_table_size('bench_category') + pg_table_size('bench_page') + pg_table_size('bench_revision')) AS data,
-      (pg_indexes_size('bench_category') + pg_indexes_size('bench_page') + pg_indexes_size('bench_revision')) AS idx,
-      (pg_total_relation_size('bench_category') + pg_total_relation_size('bench_page') + pg_total_relation_size('bench_revision')) AS total
-  `);
-  R.storage = {
-    data: parseInt(sz.rows[0].data),
-    index: parseInt(sz.rows[0].idx),
-    total: parseInt(sz.rows[0].total),
-  };
-
-  return R;
-}
-
-async function benchPgJsonb(pg, flatRows) {
-  const R = {};
-
-  await pg.query("DROP TABLE IF EXISTS bench_jsonb");
-  await pg.query(
-    `CREATE TABLE bench_jsonb (id SERIAL PRIMARY KEY, data JSONB NOT NULL DEFAULT '{}')`,
-  );
-
-  const maxBatch = 65535;
-  const { time: tInsert } = await timer(async () => {
-    for (let i = 0; i < flatRows.length; i += maxBatch) {
-      const batch = flatRows.slice(i, Math.min(i + maxBatch, flatRows.length));
-      const vals = [];
-      const phs = batch.map((row, bi) => {
-        vals.push(JSON.stringify(row));
-        return `($${bi + 1}::jsonb)`;
-      });
-      await pg.query(
-        `INSERT INTO bench_jsonb (data) VALUES ${phs.join(",")}`,
-        vals,
-      );
-    }
-  });
-  R.insert = tInsert;
-
-  const { time: tAll } = await timer(() =>
-    pg.query("SELECT * FROM bench_jsonb"),
-  );
-  R.selectAll = tAll;
-
-  const filterCat = "computer_science_research";
-  const { time: tFilter } = await timer(() =>
-    pg.query(`SELECT * FROM bench_jsonb WHERE data->>'category' = $1`, [
-      filterCat,
-    ]),
-  );
-  R.selectFilter = tFilter;
-
-  const { time: tBtreeCreate } = await timer(() =>
-    pg.query(
-      `CREATE INDEX idx_bench_jsonb_btree ON bench_jsonb ((data->>'category'))`,
-    ),
-  );
-  R.createIndex = tBtreeCreate;
-
-  const { time: tBtreeSelect } = await timer(() =>
-    pg.query(`SELECT * FROM bench_jsonb WHERE data->>'category' = $1`, [
-      filterCat,
-    ]),
-  );
-  R.selectIndexed = tBtreeSelect;
-
-  const szBtree = await pg.query(`
-    SELECT pg_table_size('bench_jsonb') AS data,
-           pg_indexes_size('bench_jsonb') AS idx,
-           pg_total_relation_size('bench_jsonb') AS total
-  `);
-  R.storage = {
-    data: parseInt(szBtree.rows[0].data),
-    index: parseInt(szBtree.rows[0].idx),
-    total: parseInt(szBtree.rows[0].total),
-  };
-
-  await pg.query("DROP INDEX idx_bench_jsonb_btree");
-
-  const { time: tGinCreate } = await timer(() =>
-    pg.query("CREATE INDEX idx_bench_jsonb_gin ON bench_jsonb USING GIN(data)"),
-  );
-  R.ginCreateIndex = tGinCreate;
-
-  const { time: tGinSelect } = await timer(() =>
-    pg.query("SELECT * FROM bench_jsonb WHERE data @> $1::jsonb", [
-      JSON.stringify({ category: filterCat }),
-    ]),
-  );
-  R.ginSelectIndexed = tGinSelect;
-
-  const szGin = await pg.query(`
-    SELECT pg_table_size('bench_jsonb') AS data,
-           pg_indexes_size('bench_jsonb') AS idx,
-           pg_total_relation_size('bench_jsonb') AS total
-  `);
-  R.ginStorage = {
-    data: parseInt(szGin.rows[0].data),
-    index: parseInt(szGin.rows[0].idx),
-    total: parseInt(szGin.rows[0].total),
-  };
-
-  const { time: tUpd } = await timer(() =>
-    pg.query(`UPDATE bench_jsonb SET data = data || $1::jsonb WHERE id = 1`, [
-      JSON.stringify({ comment: "updated_comment" }),
-    ]),
-  );
-  R.update = tUpd;
-
-  const { time: tDel } = await timer(() =>
-    pg.query("DELETE FROM bench_jsonb WHERE id = 1"),
-  );
-  R.delete = tDel;
-
-  return R;
-}
-
-async function benchMongo(db, flatRows) {
-  const R = {};
-  const col = db.collection("bench_mongo");
-  await col.drop().catch(() => {});
-
-  const { time: tInsert } = await timer(async () => {
-    const docs = flatRows.map((row, i) => ({ _seq: i + 1, ...row }));
-    await col.insertMany(docs, { ordered: false });
-  });
-  R.insert = tInsert;
-
-  const { time: tAll } = await timer(() => col.find({}).toArray());
-  R.selectAll = tAll;
-
-  const filterCat = "computer_science_research";
-  const { time: tFilter } = await timer(() =>
-    col.find({ category: filterCat }).toArray(),
-  );
-  R.selectFilter = tFilter;
-
-  const { time: tIdx } = await timer(() => col.createIndex({ category: 1 }));
-  R.createIndex = tIdx;
-
-  const { time: tIdxQ } = await timer(() =>
-    col.find({ category: filterCat }).toArray(),
-  );
-  R.selectIndexed = tIdxQ;
-
-  const { time: tUpd } = await timer(() =>
-    col.updateOne({ _seq: 1 }, { $set: { comment: "updated_comment" } }),
-  );
-  R.update = tUpd;
-
-  const { time: tDel } = await timer(() => col.deleteOne({ _seq: 1 }));
-  R.delete = tDel;
-
-  const stats = await db.command({ collStats: "bench_mongo" });
-  R.storage = {
-    data: stats.size || 0,
-    index: stats.totalIndexSize || 0,
-    total: (stats.size || 0) + (stats.totalIndexSize || 0),
-  };
-
-  return R;
 }
 
 function buildResult(rel, mongo, jsonb, stats, flatRows) {
@@ -481,14 +149,14 @@ async function runBenchmark(onProgress) {
   const emit = onProgress || (() => {});
 
   emit({ step: "load", message: "Loading Wikipedia data..." });
-  const wikiData = loadWikiData(DATA_DIR);
+  const wikiData = getWikiData();
   const { categories, pages, revisions, stats } = wikiData;
 
   emit({
     step: "flatten",
     message: `Building flat rows (${revisions.length} revisions)...`,
   });
-  const flatRows = buildFlatRows(categories, pages, revisions);
+  const flatRows = buildFlatRows(pages, revisions);
 
   emit({ step: "connect", message: "Connecting to PostgreSQL + MongoDB..." });
   await ensurePgDatabase();
@@ -505,7 +173,7 @@ async function runBenchmark(onProgress) {
       step: "pg_rel",
       message: "[1/3] PG Relational — DROP + CREATE tables...",
     });
-    const relResult = await benchPgRelationalWithProgress(
+    const relResult = await benchPgRelational(
       pgClient,
       categories,
       pages,
@@ -514,17 +182,13 @@ async function runBenchmark(onProgress) {
     );
 
     emit({ step: "mongo", message: "[2/3] MongoDB — DROP collection..." });
-    const mongoResult = await benchMongoWithProgress(mongoDB, flatRows, emit);
+    const mongoResult = await benchMongo(mongoDB, flatRows, emit);
 
     emit({
       step: "pg_jsonb",
       message: "[3/3] PG JSONB — DROP + CREATE table...",
     });
-    const jsonbResult = await benchPgJsonbWithProgress(
-      pgClient,
-      flatRows,
-      emit,
-    );
+    const jsonbResult = await benchPgJsonb(pgClient, flatRows, emit);
 
     emit({ step: "done", message: "Building results..." });
     return buildResult(relResult, mongoResult, jsonbResult, stats, flatRows);
@@ -534,13 +198,7 @@ async function runBenchmark(onProgress) {
   }
 }
 
-async function benchPgRelationalWithProgress(
-  pg,
-  categories,
-  pages,
-  rawRevisions,
-  emit,
-) {
+async function benchPgRelational(pg, categories, pages, rawRevisions, emit) {
   const seen = new Set();
   const revisions = rawRevisions.filter((r) => {
     if (seen.has(r.rootid)) return false;
@@ -580,7 +238,7 @@ async function benchPgRelationalWithProgress(
     const catRows = await pg.query("SELECT id, name FROM bench_category");
     const catIdMap = new Map();
     catRows.rows.forEach((r) => catIdMap.set(r.name, r.id));
-    const maxPageBatch = Math.floor(65535 / 6);
+    const maxPageBatch = Math.floor(PG_MAX_PARAMS / 6);
     for (let i = 0; i < pages.length; i += maxPageBatch) {
       const batch = pages.slice(i, Math.min(i + maxPageBatch, pages.length));
       const vals = [];
@@ -604,7 +262,7 @@ async function benchPgRelationalWithProgress(
     const pageRows = await pg.query("SELECT id, rootid FROM bench_page");
     const pageIdMap = new Map();
     pageRows.rows.forEach((r) => pageIdMap.set(r.rootid, r.id));
-    const maxRevBatch = Math.floor(65535 / 9);
+    const maxRevBatch = Math.floor(PG_MAX_PARAMS / 10);
     for (let i = 0; i < revisions.length; i += maxRevBatch) {
       const batch = revisions.slice(
         i,
@@ -612,7 +270,7 @@ async function benchPgRelationalWithProgress(
       );
       const vals = [];
       const phs = batch.map((rev, bi) => {
-        const off = bi * 9;
+        const off = bi * 10;
         vals.push(
           rev.rootid,
           rev.prev_id,
@@ -622,12 +280,13 @@ async function benchPgRelationalWithProgress(
           rev.comment,
           rev.content,
           rev.date,
+          rev.time,
           rev.date_time,
         );
-        return `($${off + 1},$${off + 2},$${off + 3},$${off + 4},$${off + 5},$${off + 6},$${off + 7},$${off + 8},$${off + 9})`;
+        return `($${off + 1},$${off + 2},$${off + 3},$${off + 4},$${off + 5},$${off + 6},$${off + 7},$${off + 8},$${off + 9},$${off + 10})`;
       });
       await pg.query(
-        `INSERT INTO bench_revision (rootid, prev_id, page_id, username, timestamp, comment, content, date, date_time) VALUES ${phs.join(",")}`,
+        `INSERT INTO bench_revision (rootid, prev_id, page_id, username, timestamp, comment, content, date, time, date_time) VALUES ${phs.join(",")}`,
         vals,
       );
     }
@@ -645,7 +304,6 @@ async function benchPgRelationalWithProgress(
   );
   R.selectAll = tAll;
 
-  const filterCat = "computer_science_research";
   emit({
     step: "pg_rel_filter",
     message: "[1/3] PG Relational — SELECT filter (no index)...",
@@ -653,7 +311,7 @@ async function benchPgRelationalWithProgress(
   const { time: tFilter, result: rFilter } = await timer(() =>
     pg.query(
       `SELECT r.*, p.page_title, c.name AS category FROM bench_revision r JOIN bench_page p ON r.page_id = p.id JOIN bench_category c ON p.category_id = c.id WHERE c.name = $1`,
-      [filterCat],
+      [FILTER_CATEGORY],
     ),
   );
   R.selectFilter = tFilter;
@@ -674,7 +332,7 @@ async function benchPgRelationalWithProgress(
   const { time: tIdxQ, result: rIdxQ } = await timer(() =>
     pg.query(
       `SELECT r.*, p.page_title, c.name AS category FROM bench_revision r JOIN bench_page p ON r.page_id = p.id JOIN bench_category c ON p.category_id = c.id WHERE c.name = $1`,
-      [filterCat],
+      [FILTER_CATEGORY],
     ),
   );
   R.selectIndexed = tIdxQ;
@@ -722,7 +380,7 @@ async function benchPgRelationalWithProgress(
   return R;
 }
 
-async function benchMongoWithProgress(db, flatRows, emit) {
+async function benchMongo(db, flatRows, emit) {
   const R = {};
   const col = db.collection("bench_mongo");
   await col.drop().catch(() => {});
@@ -746,13 +404,12 @@ async function benchMongoWithProgress(db, flatRows, emit) {
   );
   R.selectAll = tAll;
 
-  const filterCat = "computer_science_research";
   emit({
     step: "mongo_filter",
     message: "[2/3] MongoDB — SELECT filter (no index)...",
   });
   const { time: tFilter, result: rFilter } = await timer(() =>
-    col.find({ category: filterCat }).toArray(),
+    col.find({ category: FILTER_CATEGORY }).toArray(),
   );
   R.selectFilter = tFilter;
 
@@ -768,7 +425,7 @@ async function benchMongoWithProgress(db, flatRows, emit) {
     message: "[2/3] MongoDB — SELECT filter (with index)...",
   });
   const { time: tIdxQ, result: rIdxQ } = await timer(() =>
-    col.find({ category: filterCat }).toArray(),
+    col.find({ category: FILTER_CATEGORY }).toArray(),
   );
   R.selectIndexed = tIdxQ;
 
@@ -803,7 +460,7 @@ async function benchMongoWithProgress(db, flatRows, emit) {
   return R;
 }
 
-async function benchPgJsonbWithProgress(pg, flatRows, emit) {
+async function benchPgJsonb(pg, flatRows, emit) {
   const R = {};
   await pg.query("DROP TABLE IF EXISTS bench_jsonb");
   await pg.query(
@@ -814,10 +471,12 @@ async function benchPgJsonbWithProgress(pg, flatRows, emit) {
     step: "jsonb_insert",
     message: "[3/3] PG JSONB — INSERT " + flatRows.length + " rows...",
   });
-  const maxBatch = 65535;
   const { time: tInsert } = await timer(async () => {
-    for (let i = 0; i < flatRows.length; i += maxBatch) {
-      const batch = flatRows.slice(i, Math.min(i + maxBatch, flatRows.length));
+    for (let i = 0; i < flatRows.length; i += PG_MAX_PARAMS) {
+      const batch = flatRows.slice(
+        i,
+        Math.min(i + PG_MAX_PARAMS, flatRows.length),
+      );
       const vals = [];
       const phs = batch.map((row, bi) => {
         vals.push(JSON.stringify(row));
@@ -837,14 +496,13 @@ async function benchPgJsonbWithProgress(pg, flatRows, emit) {
   );
   R.selectAll = tAll;
 
-  const filterCat = "computer_science_research";
   emit({
     step: "jsonb_filter",
     message: "[3/3] PG JSONB — SELECT filter (no index)...",
   });
   const { time: tFilter, result: rFilter } = await timer(() =>
     pg.query(`SELECT * FROM bench_jsonb WHERE data->>'category' = $1`, [
-      filterCat,
+      FILTER_CATEGORY,
     ]),
   );
   R.selectFilter = tFilter;
@@ -866,7 +524,7 @@ async function benchPgJsonbWithProgress(pg, flatRows, emit) {
   });
   const { time: tBtreeSelect, result: rBtreeSelect } = await timer(() =>
     pg.query(`SELECT * FROM bench_jsonb WHERE data->>'category' = $1`, [
-      filterCat,
+      FILTER_CATEGORY,
     ]),
   );
   R.selectIndexed = tBtreeSelect;
@@ -901,7 +559,7 @@ async function benchPgJsonbWithProgress(pg, flatRows, emit) {
   });
   const { time: tGinSelect } = await timer(() =>
     pg.query("SELECT * FROM bench_jsonb WHERE data @> $1::jsonb", [
-      JSON.stringify({ category: filterCat }),
+      JSON.stringify({ category: FILTER_CATEGORY }),
     ]),
   );
   R.ginSelectIndexed = tGinSelect;
@@ -945,35 +603,35 @@ async function benchPgJsonbWithProgress(pg, flatRows, emit) {
 }
 
 async function getStatus() {
-  const wikiData = loadWikiData(DATA_DIR);
+  const wikiData = getWikiData();
 
   let pgOk = false,
     pgVersion = "";
+  const pgClient = new Client({ connectionString: PG_URL });
   try {
-    const pgClient = new Client({ connectionString: PG_URL });
     await pgClient.connect();
     const res = await pgClient.query("SELECT version()");
     pgVersion = res.rows[0].version.match(/PostgreSQL ([\d.]+)/)?.[1] || "";
     pgOk = true;
-    await pgClient.end();
-  } catch (_) {}
+  } catch (_) {
+  } finally {
+    await pgClient.end().catch(() => {});
+  }
 
   let mongoOk = false,
     mongoVersion = "";
+  const mongoClient = new MongoClient(MONGO_URL);
   try {
-    const mongoClient = new MongoClient(MONGO_URL);
     await mongoClient.connect();
     const info = await mongoClient.db("admin").command({ buildInfo: 1 });
     mongoVersion = info.version || "";
     mongoOk = true;
-    await mongoClient.close();
-  } catch (_) {}
+  } catch (_) {
+  } finally {
+    await mongoClient.close().catch(() => {});
+  }
 
-  const flatRows = buildFlatRows(
-    wikiData.categories,
-    wikiData.pages,
-    wikiData.revisions,
-  );
+  const flatRows = buildFlatRows(wikiData.pages, wikiData.revisions);
 
   const sampleCategories = wikiData.categories.slice(0, 5).map((c, i) => ({
     id: i + 1,
@@ -1042,12 +700,12 @@ module.exports = {
   getStatus,
   ensurePgDatabase,
   buildFlatRows,
-  benchPgRelational,
-  benchMongo,
-  benchPgJsonb,
   buildResult,
+  timer,
   PG_URL,
   MONGO_URL,
   MONGO_DB,
   DATA_DIR,
+  PG_MAX_PARAMS,
+  FILTER_CATEGORY,
 };

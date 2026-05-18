@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Benchmark — PG vs MongoDB vs JSONB</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="benchmark.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+    <header class="app-header">
+        <h1>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            DB Benchmark
+            <span>PG Relational vs MongoDB vs PG JSONB</span>
+        </h1>
+        <button class="theme-btn" id="themeToggle" title="สลับธีม">
+            <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+    </header>
+
+    <div class="container">
+        <div class="status-grid" id="statusGrid">
+            <div class="status-card">
+                <div class="label">PostgreSQL</div>
+                <div id="pgStatus"><span class="badge badge--wait">กำลังตรวจสอบ...</span></div>
+                <div class="sub" id="pgVersion"></div>
+            </div>
+            <div class="status-card">
+                <div class="label">MongoDB</div>
+                <div id="mongoStatus"><span class="badge badge--wait">กำลังตรวจสอบ...</span></div>
+                <div class="sub" id="mongoVersion"></div>
+            </div>
+            <div class="status-card">
+                <div class="label">Categories</div>
+                <div class="value" id="statCategories">-</div>
+            </div>
+            <div class="status-card">
+                <div class="label">Pages</div>
+                <div class="value" id="statPages">-</div>
+            </div>
+            <div class="status-card">
+                <div class="label">Revisions</div>
+                <div class="value" id="statRevisions">-</div>
+            </div>
+            <div class="status-card">
+                <div class="label">Data Size</div>
+                <div class="value" id="statSize">-</div>
+                <div class="sub">MB (raw JSON)</div>
+            </div>
+        </div>
+
+        <div class="run-section">
+            <button class="run-btn" id="runBtn" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                เริ่ม Benchmark
+            </button>
+            <div class="progress-panel hidden" id="progressPanel">
+                <div id="progressSteps"></div>
+                <div class="progress-bar"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+            </div>
+        </div>
+
+        <div class="results-section hidden" id="resultsSection">
+            <h2>ผลลัพธ์ Execution Time (ms)</h2>
+            <div style="overflow-x:auto">
+                <table class="result-table" id="timeTable">
+                    <thead><tr><th>Operation</th><th style="color:var(--color-pg)">PG Relational</th><th style="color:var(--color-mongo)">MongoDB</th><th style="color:var(--color-jsonb)">PG JSONB</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card"><h3>Execution Time (ms) — Log Scale</h3><canvas id="chartTime"></canvas></div>
+                <div class="chart-card"><h3>Storage Size (MB)</h3><canvas id="chartStorage"></canvas></div>
+            </div>
+
+            <div class="bonus-section">
+                <h3>Bonus: PG JSONB — B-Tree vs GIN Index</h3>
+                <table class="result-table" id="ginTable">
+                    <thead><tr><th>Metric</th><th>B-Tree</th><th>GIN</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <h2 style="margin-top:var(--spacing-xl)">Storage Size (bytes)</h2>
+            <div style="overflow-x:auto">
+                <table class="result-table" id="storageTable">
+                    <thead><tr><th>Metric</th><th style="color:var(--color-pg)">PG Relational</th><th style="color:var(--color-mongo)">MongoDB</th><th style="color:var(--color-jsonb)">PG JSONB</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="benchmark.js"></script>
+</body>
+</html>
